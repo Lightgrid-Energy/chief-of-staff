@@ -1,0 +1,13 @@
+# Private — never commit contact files
+contacts/*.md
+
+# Local overrides
+*.local.yaml
+*.local.md
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Task outputs (generated, not source)
+task-outputs/

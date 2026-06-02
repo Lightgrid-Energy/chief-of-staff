@@ -1,0 +1,73 @@
+quarter: Q2-2026
+last_updated: 2026-06-02
+owner: Mujtaba Khan
+
+# ---------------------------------------------------------------
+# INSTRUCTIONS
+# Keep 3-5 objectives max. Be specific and measurable.
+# Claude references this file constantly — invest time here.
+# Update quarterly, review weekly.
+# ---------------------------------------------------------------
+
+objectives:
+
+  - id: OBJ-1
+    title: "Ship Lightgrid v1 product to first paying data center customers"
+    priority: 1
+    description: >
+      Build and ship the core flexibility software product — multi-renewable
+      dispatch and demand response orchestration for data centers. Get to
+      at least one signed pilot/paid contract.
+    key_results:
+      - kr: "Define and lock v1 product spec"
+        due: 2026-06-15
+        progress: 0.1
+        status: in_progress
+      - kr: "Build MVP of core dispatch optimization engine"
+        due: 2026-07-15
+        progress: 0.0
+        status: not_started
+      - kr: "Sign first pilot agreement with a data center operator"
+        due: 2026-08-31
+        progress: 0.0
+        status: not_started
+
+  - id: OBJ-2
+    title: "Build strategic partnerships with renewable energy developers"
+    priority: 2
+    description: >
+      Establish 2-3 relationships with renewable developers or grid operators
+      who could become integration partners or early customers.
+    key_results:
+      - kr: "Identify top 10 target partners in energy flexibility space"
+        due: 2026-06-20
+        progress: 0.0
+        status: not_started
+      - kr: "Have first substantive conversation with 3 potential partners"
+        due: 2026-07-31
+        progress: 0.0
+        status: not_started
+
+  - id: OBJ-3
+    title: "Establish GitHub org and technical foundation for Lightgrid"
+    priority: 3
+    description: >
+      Set up the engineering foundation — repos, architecture decisions,
+      and initial codebase that can grow with the company.
+    key_results:
+      - kr: "Lightgrid-Energy GitHub org set up with first repo"
+        due: 2026-06-05
+        progress: 0.8
+        status: in_progress
+      - kr: "Core architecture documented and agreed"
+        due: 2026-06-20
+        progress: 0.0
+        status: not_started
+
+# ---------------------------------------------------------------
+# PERSONAL GOALS (optional — add what matters to you)
+# ---------------------------------------------------------------
+personal:
+  - "Stay close to family and personal relationships — don't let company consume everything"
+  - "Weekly deep work blocks — protect calendar ruthlessly"
+  - "Stay physically active — energy for the long game"

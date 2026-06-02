@@ -1,0 +1,59 @@
+owner: Mujtaba Khan
+last_updated: 2026-06-02
+
+# ---------------------------------------------------------------
+# TASK STATUS OPTIONS: pending | in_progress | blocked | complete
+# PRIORITY: 1 (highest) to 4 (lowest)
+# ---------------------------------------------------------------
+
+tasks:
+
+  - id: TASK-001
+    title: "Complete GitHub setup and push chief-of-staff repo"
+    description: "Authenticate gh CLI, create Lightgrid-Energy/chief-of-staff repo, push initial files"
+    status: in_progress
+    priority: 1
+    due_date: 2026-06-02
+    goal_alignment: OBJ-3
+    created: 2026-06-02
+    notes: "In progress with Claude Code"
+
+  - id: TASK-002
+    title: "Connect Gmail MCP server to Claude Code"
+    description: "Set up gmail-mcp so Claude can read/draft emails in triage"
+    status: pending
+    priority: 1
+    due_date: 2026-06-05
+    goal_alignment: OBJ-1
+    created: 2026-06-02
+    notes: "See docs/mcp-setup.md for instructions"
+
+  - id: TASK-003
+    title: "Connect Google Calendar MCP server"
+    description: "Set up calendar MCP so Claude can check availability and schedule"
+    status: pending
+    priority: 1
+    due_date: 2026-06-05
+    goal_alignment: OBJ-1
+    created: 2026-06-02
+    notes: "Required for /gm morning briefing to work properly"
+
+  - id: TASK-004
+    title: "Fill in CLAUDE.md personal details"
+    description: "Complete all CUSTOMIZE sections: team members, hard constraints, writing examples, timezone"
+    status: pending
+    priority: 2
+    due_date: 2026-06-07
+    goal_alignment: OBJ-1
+    created: 2026-06-02
+    notes: "The more detail added, the better the system performs"
+
+  - id: TASK-005
+    title: "Define Lightgrid v1 product spec"
+    description: "Lock the core product definition: what the dispatch optimization engine does, data inputs, APIs"
+    status: pending
+    priority: 1
+    due_date: 2026-06-15
+    goal_alignment: OBJ-1
+    created: 2026-06-02
+    notes: "First key result for OBJ-1"
