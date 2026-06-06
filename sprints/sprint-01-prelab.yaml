@@ -1,0 +1,260 @@
+sprint: "01-prelab"
+goal: "Zones A+B production-ready for first lab deployment"
+start: 2026-06-06
+end: 2026-06-28
+trl_gate: "TRL 4->5 — internal simulation complete by 2026-07-31"
+status: in_progress
+
+# -------------------------------------------------------------------
+# TEAM
+# -------------------------------------------------------------------
+owners:
+  mujtaba: "Mujtaba Khan — CEO, project owner, PM, agreements"
+  manish: "Manish Chauhan — CPTO, architecture, design, technical lead"
+  rakshit: "Rakshit Mishra — Lead dev (part-time), geo+time shift models, Zone A opt engine"
+  nishant: "Nishant Raghuvanshi — MLOps, pipelines, GCP, Zone B cloud infra"
+  tilak: "Tilak — Analyst, data, evaluation framework, testing"
+  hasti: "Hasti — ML researcher (not yet joined, TBD)"
+
+# -------------------------------------------------------------------
+# ASSUMPTIONS — correct if wrong
+# Geo+time shift RL pathways: in progress (Rakshit)
+# Data layer ingestion: partially built
+# Zone B: early stage
+# Hi-fi DT: Mostafa working independently at U-Calgary
+# -------------------------------------------------------------------
+
+weeks:
+
+  week_1:
+    dates: "2026-06-06 to 2026-06-12"
+    focus: "Team map locked + interface specs defined — downstream builds are blocked until ownership and contracts are clear"
+    tasks:
+      - id: T-01
+        task: "Complete team responsibility map — named owner for every Zone A and Zone B component"
+        owner: mujtaba
+        due: 2026-06-12
+        kr: "OBJ-1 KR1"
+        status: in_progress
+        notes: "Use Zone A v7 and Zone B diagrams as the component list. Manish co-owns."
+
+      - id: T-02
+        task: "Define Zone A data schema contract — fields, types, validation rules for all 3 ingestion sources (grid APIs, facility telemetry, workload traces)"
+        owner: tilak
+        due: 2026-06-10
+        kr: "OBJ-1 KR2"
+        status: not_started
+
+      - id: T-03
+        task: "Define Zone A <-> Zone B interface contract — API endpoints, payload schema, error handling, telemetry return format"
+        owner: manish
+        due: 2026-06-12
+        kr: "OBJ-1 KR4"
+        status: not_started
+        notes: "Nishant must co-sign from Zone B side. This is the critical seam."
+
+      - id: T-04
+        task: "Define Zone B historian connector spec — what Zone A hands off, format, cadence, GCP target"
+        owner: nishant
+        due: 2026-06-12
+        kr: "OBJ-1 KR3"
+        status: not_started
+
+      - id: T-05
+        task: "Draft lab onboarding checklist — data requirements, system access needs, customer qualification questions"
+        owner: mujtaba
+        due: 2026-06-12
+        kr: "OBJ-1 KR6"
+        status: not_started
+        notes: "Manish reviews for technical completeness"
+
+      - id: T-06
+        task: "CI/CD pipeline skeleton — repo structure, branch strategy, automated test gates, deploy pipeline to GCP"
+        owner: nishant
+        due: 2026-06-12
+        kr: "OBJ-1 KR2"
+        status: not_started
+
+  week_2:
+    dates: "2026-06-13 to 2026-06-20"
+    focus: "Zone A data layer + classifier + eval framework core / Zone B historian connector"
+    tasks:
+      - id: T-07
+        task: "Finalize and sign off lab onboarding checklist and customer qualification criteria"
+        owner: mujtaba
+        due: 2026-06-15
+        kr: "OBJ-1 KR6"
+        status: not_started
+
+      - id: T-08
+        task: "Zone A data layer — ingestion pipeline for 3rd-party APIs (grid signals, weather) validated against schema contract"
+        owner: nishant
+        due: 2026-06-17
+        kr: "OBJ-1 KR2"
+        status: not_started
+
+      - id: T-09
+        task: "Zone A data layer — ingestion pipeline for facility telemetry (DCIM, BMS, EMS) validated"
+        owner: nishant
+        due: 2026-06-17
+        kr: "OBJ-1 KR2"
+        status: not_started
+
+      - id: T-10
+        task: "Zone A data layer — ingestion pipeline for workload traces (GPU utilization, job queue, tenant data) validated"
+        owner: nishant
+        due: 2026-06-17
+        kr: "OBJ-1 KR2"
+        status: not_started
+
+      - id: T-11
+        task: "Zone A classifier — flex tier assignment (0-3), priority scoring, tenant sensitivity, only-what-is-given enforcement"
+        owner: rakshit
+        due: 2026-06-20
+        kr: "OBJ-1 KR2"
+        status: not_started
+        notes: "Core IP — needs thorough unit tests. Manish reviews design."
+
+      - id: T-12
+        task: "Zone A eval framework — data quality gate + physical out-of-bounds gate: implemented, tested, blocking pipeline on failure"
+        owner: tilak
+        due: 2026-06-20
+        kr: "OBJ-1 KR2"
+        status: not_started
+
+      - id: T-13
+        task: "Zone B historian connector — initial cloud implementation on GCP, connecting per spec from T-04"
+        owner: nishant
+        due: 2026-06-20
+        kr: "OBJ-1 KR3"
+        status: not_started
+
+      - id: T-14
+        task: "MLOps pipeline — model versioning, experiment tracking, promotion workflow (dev -> staging -> prod on GCP)"
+        owner: nishant
+        due: 2026-06-20
+        kr: "OBJ-1 KR2"
+        status: not_started
+        notes: "Rakshit to validate promotion workflow fits his model development cycle"
+
+  week_3:
+    dates: "2026-06-21 to 2026-06-27"
+    focus: "Optimization engine (geo+time RL) + Zone B OPC UA + eval framework complete"
+    tasks:
+      - id: T-15
+        task: "Zone A eval framework — remaining gates: overfit detection, per-variable accuracy, latency budget, zero physics violations"
+        owner: tilak
+        due: 2026-06-23
+        kr: "OBJ-1 KR2"
+        status: not_started
+        notes: "All eval gates must pass before optimizer output reaches the rescheduler"
+
+      - id: T-16
+        task: "Zone A optimization engine — geo-based shifting (RL) pathway: train, validate, pass all eval gates"
+        owner: rakshit
+        due: 2026-06-25
+        kr: "OBJ-1 KR2"
+        status: in_progress
+
+      - id: T-17
+        task: "Zone A optimization engine — time-based shifting (RL) pathway: train, validate, pass all eval gates"
+        owner: rakshit
+        due: 2026-06-25
+        kr: "OBJ-1 KR2"
+        status: in_progress
+
+      - id: T-18
+        task: "Zone B OPC UA layer — standard endpoint implementation, master tag list integration, read/write validated end-to-end"
+        owner: nishant
+        due: 2026-06-24
+        kr: "OBJ-1 KR3"
+        status: not_started
+
+      - id: T-19
+        task: "Zone B GCP telemetry return path — telemetry flowing from PLC/physical asset layer back to GCP, latency measured"
+        owner: nishant
+        due: 2026-06-25
+        kr: "OBJ-1 KR3"
+        status: not_started
+
+      - id: T-20
+        task: "Zone A rescheduler — dispatch layer with trigger gates (grid signal, $/CO2 delta threshold, emergency)"
+        owner: manish
+        due: 2026-06-25
+        kr: "OBJ-1 KR2"
+        status: not_started
+        notes: "Trigger gate logic lives here, not in the optimizer — critical design constraint"
+
+      - id: T-21
+        task: "Zone A accountability engine — 11 rules, 4 clusters (Know/Decide/Limit/Give Back), customer slider inputs wired"
+        owner: manish
+        due: 2026-06-25
+        kr: "OBJ-1 KR2"
+        status: not_started
+
+  week_4:
+    dates: "2026-06-28 to 2026-07-04"
+    focus: "Zone A<->B integration locked + end-to-end test passing + AE loop"
+    tasks:
+      - id: T-22
+        task: "Zone A <-> Zone B end-to-end integration test — full flow: ingestion -> classifier -> eval -> opt engine -> rescheduler -> AE -> historian connector -> OPC UA -> telemetry return"
+        owner: tilak
+        due: 2026-06-28
+        kr: "OBJ-1 KR4"
+        status: not_started
+        notes: "HARD GATE — if this does not pass, lab deployment does not proceed. Nishant + Rakshit on-call to fix."
+
+      - id: T-23
+        task: "Interface contract sign-off — Mujtaba and Manish review and formally lock Zone A <-> Zone B contract"
+        owner: mujtaba
+        due: 2026-06-28
+        kr: "OBJ-1 KR4"
+        status: not_started
+
+      - id: T-24
+        task: "Zone A AE low-fidelity validator loop — dispatch -> AE validates -> recursive refinement until output passes -> passes to hi-fi DT"
+        owner: rakshit
+        due: 2026-07-02
+        kr: "OBJ-1 KR2"
+        status: not_started
+
+      - id: T-25
+        task: "Zone A interfaces — Decision engine + Operator UI: output format defined, basic rendering working"
+        owner: manish
+        due: 2026-07-04
+        kr: "OBJ-1 KR2"
+        status: not_started
+        notes: "Manish owns design. Three audience views: exec, operator, tenant."
+
+      - id: T-26
+        task: "Zone A interfaces — Tenant surface: flex-tier opt-in, savings attribution display wired to AE output"
+        owner: manish
+        due: 2026-07-04
+        kr: "OBJ-1 KR2"
+        status: not_started
+
+  post_sprint:
+    dates: "2026-07-05 to 2026-07-31"
+    focus: "Hi-fi DT integration + internal simulation complete — TRL 4->5 gate"
+    tasks:
+      - id: T-27
+        task: "Hi-fi digital twin (PSCAD/RSCAD) integrated — AE loop dispatch proposals passed to DT for EMT-level validation (coordinate with Mostafa at U-Calgary)"
+        owner: rakshit  # + Mostafa external
+        due: 2026-07-15
+        kr: "OBJ-1 KR5"
+        status: in_progress
+        notes: "Mostafa owns PSCAD/RSCAD side. Rakshit owns integration seam. Hasti will pick this up once onboarded."
+
+      - id: T-28
+        task: "Internal simulation — 50 MW simulated facility (TX) running full stack end-to-end, all eval gates passing"
+        owner: nishant
+        due: 2026-07-25
+        kr: "OBJ-1 KR7"
+        status: in_progress
+
+      - id: T-29
+        task: "TRL 4->5 gate review — internal sim results reviewed and signed off by Mujtaba + Manish, system cleared for Humber-BCTI data connection"
+        owner: mujtaba
+        due: 2026-07-31
+        kr: "OBJ-1 KR7"
+        status: not_started

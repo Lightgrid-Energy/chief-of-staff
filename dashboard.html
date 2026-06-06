@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lightgrid — Chief of Staff</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0f1117; --bg2: #171b26; --bg3: #1e2333;
+    --border: #2a2f45; --border2: #363d57;
+    --text: #e8eaf0; --text2: #8890a8; --text3: #555e7a;
+    --accent: #c8372d; --accent2: #e85d52;
+    --green: #3ecf8e; --yellow: #f5c518; --orange: #ff8c42;
+    --red: #ff4d4d; --blue: #0ea5e9; --teal: #059669; --purple: #7c3aed;
+  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  /* TOPBAR */
+  .topbar { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0 28px; height: 56px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+  .topbar-left { display: flex; align-items: center; gap: 14px; }
+  .logo { font-size: 15px; font-weight: 800; letter-spacing: -0.3px; color: var(--accent2); }
+  .logo span { color: var(--text); font-weight: 400; }
+  .divider-v { width: 1px; height: 20px; background: var(--border2); }
+  .page-title { font-size: 13px; color: var(--text2); font-weight: 500; }
+  .badge-date { font-size: 11px; color: var(--text2); background: var(--bg3); border: 1px solid var(--border); padding: 3px 10px; border-radius: 6px; }
+  .topbar-tabs { display: flex; gap: 2px; }
+  .tab-btn { padding: 6px 14px; border-radius: 6px; border: none; background: transparent; color: var(--text2); font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
+  .tab-btn:hover { background: var(--bg3); color: var(--text); }
+  .tab-btn.active { background: var(--bg3); color: var(--text); border: 1px solid var(--border2); }
+
+  /* LAYOUT */
+  .layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 56px); }
+  .sidebar { background: var(--bg2); border-right: 1px solid var(--border); padding: 20px 0; position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto; }
+  .sidebar-section { padding: 0 16px; margin-bottom: 24px; }
+  .sidebar-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 10px; padding: 0 4px; }
+  .nav-btn { display: flex; align-items: center; gap: 10px; width: 100%; padding: 8px 10px; border-radius: 8px; border: 1px solid transparent; background: transparent; color: var(--text2); cursor: pointer; font-size: 13px; font-weight: 500; text-align: left; transition: all 0.15s; margin-bottom: 2px; }
+  .nav-btn:hover { background: var(--bg3); color: var(--text); }
+  .nav-btn.active { background: var(--bg3); color: var(--text); border-color: var(--border2); }
+  .nav-icon { font-size: 14px; width: 20px; text-align: center; }
+  .nav-count { margin-left: auto; font-size: 10px; background: var(--accent); color: white; border-radius: 99px; padding: 1px 7px; font-weight: 700; }
+  .nav-count.muted { background: var(--bg); border: 1px solid var(--border); color: var(--text3); }
+
+  /* MAIN */
+  .main { padding: 24px 28px; overflow-y: auto; }
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* STATS ROW */
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+  .stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .stat-label { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .stat-value { font-size: 24px; font-weight: 800; line-height: 1; }
+  .stat-sub { font-size: 11px; color: var(--text2); margin-top: 4px; }
+  .c-red{color:var(--red);} .c-orange{color:var(--orange);} .c-yellow{color:var(--yellow);} .c-green{color:var(--green);} .c-blue{color:var(--blue);}
+
+  /* SECTION HEADER */
+  .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; margin-top: 4px; }
+  .section-title { font-size: 11px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* CARDS */
+  .cards-grid { display: grid; gap: 10px; margin-bottom: 28px; }
+  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; transition: border-color 0.15s; }
+  .card:hover { border-color: var(--border2); }
+  .card.tier1 { border-color: rgba(255,77,77,0.35); background: rgba(255,77,77,0.03); }
+  .card.tier2 { border-color: rgba(245,197,24,0.2); }
+  .card.upcoming { border-color: rgba(14,165,233,0.25); background: rgba(14,165,233,0.03); }
+
+  /* MEETING CARD */
+  .meeting-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 16px; }
+  .meeting-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .meeting-name { font-size: 16px; font-weight: 700; color: var(--text); }
+  .meeting-meta { font-size: 12px; color: var(--text2); margin-top: 2px; }
+  .meeting-time-badge { font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 8px; background: rgba(14,165,233,0.15); color: var(--blue); border: 1px solid rgba(14,165,233,0.3); }
+  .meeting-body { padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .meeting-section { }
+  .ms-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); margin-bottom: 10px; }
+  .ms-content { font-size: 13px; color: var(--text2); line-height: 1.7; }
+  .outcome-list { display: flex; flex-direction: column; gap: 6px; }
+  .outcome-item { display: flex; align-items: flex-start; gap: 8px; padding: 8px 12px; background: var(--bg3); border-radius: 8px; font-size: 12px; color: var(--text2); line-height: 1.5; }
+  .outcome-num { font-size: 11px; font-weight: 800; color: var(--blue); flex-shrink: 0; width: 16px; padding-top: 1px; }
+  .watchout-list { display: flex; flex-direction: column; gap: 6px; }
+  .watchout-item { display: flex; align-items: flex-start; gap: 8px; padding: 8px 12px; background: rgba(255,140,66,0.08); border: 1px solid rgba(255,140,66,0.2); border-radius: 8px; font-size: 12px; color: var(--text2); }
+  .wo-icon { color: var(--orange); flex-shrink: 0; }
+  .talk-track { display: flex; flex-direction: column; gap: 8px; }
+  .talk-item { padding: 10px 12px; background: var(--bg3); border-left: 3px solid var(--blue); border-radius: 0 8px 8px 0; font-size: 12px; color: var(--text2); line-height: 1.6; font-style: italic; }
+  .person-card { display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg3); border-radius: 10px; margin-bottom: 10px; }
+  .person-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: white; flex-shrink: 0; background: var(--blue); }
+  .person-name { font-size: 14px; font-weight: 600; color: var(--text); }
+  .person-title { font-size: 11px; color: var(--text2); margin-top: 2px; }
+  .person-phone { font-size: 11px; color: var(--text3); margin-top: 2px; }
+
+  /* EMAIL CARDS */
+  .email-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 10px; transition: border-color 0.15s; }
+  .email-card:hover { border-color: var(--border2); }
+  .email-card.t1 { border-color: rgba(255,77,77,0.35); }
+  .email-card.t2 { border-color: rgba(245,197,24,0.2); }
+  .email-card.t3 { opacity: 0.5; }
+  .email-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+  .email-from { font-size: 13px; font-weight: 600; color: var(--text); }
+  .email-subject { font-size: 12px; color: var(--text2); margin-bottom: 6px; }
+  .email-snippet { font-size: 12px; color: var(--text3); margin-bottom: 10px; line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .email-draft { background: var(--bg3); border: 1px solid var(--border2); border-radius: 8px; padding: 10px 14px; font-size: 12px; color: var(--text2); line-height: 1.6; margin-bottom: 8px; white-space: pre-wrap; }
+  .email-actions { display: flex; gap: 8px; }
+  .btn { padding: 5px 14px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; border: 1px solid; transition: all 0.15s; }
+  .btn-send { background: rgba(62,207,142,0.15); color: var(--green); border-color: rgba(62,207,142,0.3); }
+  .btn-send:hover { background: rgba(62,207,142,0.25); }
+  .btn-edit { background: transparent; color: var(--text2); border-color: var(--border2); }
+  .btn-edit:hover { background: var(--bg3); color: var(--text); }
+  .btn-archive { background: transparent; color: var(--text3); border-color: var(--border); }
+  .btn-archive:hover { color: var(--red); border-color: rgba(255,77,77,0.4); }
+  .tier-badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 99px; flex-shrink: 0; }
+  .tb-1 { background: rgba(255,77,77,0.15); color: var(--red); border: 1px solid rgba(255,77,77,0.3); }
+  .tb-2 { background: rgba(245,197,24,0.1); color: var(--yellow); border: 1px solid rgba(245,197,24,0.25); }
+  .tb-3 { background: var(--bg3); color: var(--text3); border: 1px solid var(--border); }
+
+  /* TASKS */
+  .task-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; transition: border-color 0.15s; }
+  .task-item:hover { border-color: var(--border2); }
+  .task-item.overdue { border-color: rgba(255,77,77,0.35); }
+  .task-item.done { opacity: 0.4; }
+  .task-check { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--border2); flex-shrink: 0; margin-top: 2px; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: center; }
+  .task-check:hover { border-color: var(--green); }
+  .task-check.checked { background: var(--green); border-color: var(--green); }
+  .task-check.checked::after { content: '✓'; font-size: 10px; color: white; font-weight: 800; }
+  .task-body { flex: 1; }
+  .task-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .task-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .task-due { font-size: 11px; color: var(--text3); }
+  .task-due.overdue { color: var(--red); font-weight: 600; }
+  .task-p { font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 4px; }
+  .p1 { background: rgba(255,77,77,0.12); color: var(--red); }
+  .p2 { background: rgba(245,197,24,0.1); color: var(--yellow); }
+  .p3 { background: var(--bg3); color: var(--text3); }
+  .task-goal { font-size: 10px; color: var(--text3); }
+
+  /* GOALS */
+  .goal-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin-bottom: 12px; }
+  .goal-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+  .goal-title { font-size: 14px; font-weight: 700; color: var(--text); }
+  .goal-priority { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 6px; background: rgba(14,165,233,0.1); color: var(--blue); border: 1px solid rgba(14,165,233,0.2); }
+  .kr-list { display: flex; flex-direction: column; gap: 6px; }
+  .kr-item { display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: var(--bg3); border-radius: 8px; }
+  .kr-bar-wrap { flex: 1; }
+  .kr-label { font-size: 12px; color: var(--text2); margin-bottom: 5px; }
+  .kr-track { height: 4px; background: var(--bg); border-radius: 99px; overflow: hidden; }
+  .kr-fill { height: 100%; border-radius: 99px; }
+  .kr-meta { display: flex; justify-content: space-between; margin-top: 3px; }
+  .kr-due { font-size: 10px; color: var(--text3); }
+  .kr-pct { font-size: 10px; font-weight: 700; }
+
+  /* PULSE */
+  .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--yellow); animation: pulse 2s infinite; flex-shrink: 0; display: inline-block; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+  /* EDITABLE */
+  [contenteditable] { outline: none; }
+  [contenteditable]:focus { background: rgba(255,255,255,0.03); border-radius: 4px; }
+
+  .edit-hint { font-size: 10px; color: var(--text3); text-align: right; margin-bottom: 12px; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">Lightgrid <span>Energy</span></div>
+    <div class="divider-v"></div>
+    <div class="page-title">Chief of Staff</div>
+  </div>
+  <div class="topbar-tabs">
+    <button class="tab-btn active" onclick="showPage('today')">Today</button>
+    <button class="tab-btn" onclick="showPage('inbox')">Inbox</button>
+    <button class="tab-btn" onclick="showPage('meetings')">Meetings</button>
+    <button class="tab-btn" onclick="showPage('tasks')">Tasks</button>
+    <button class="tab-btn" onclick="showPage('goals')">Goals</button>
+  </div>
+  <div class="badge-date" id="dateDisplay"></div>
+</div>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Navigate</div>
+      <button class="nav-btn active" onclick="showPage('today')"><span class="nav-icon">⚡</span>Today<span class="nav-count">3</span></button>
+      <button class="nav-btn" onclick="showPage('inbox')"><span class="nav-icon">📬</span>Inbox<span class="nav-count">2</span></button>
+      <button class="nav-btn" onclick="showPage('meetings')"><span class="nav-icon">🗓</span>Meetings<span class="nav-count muted">2</span></button>
+      <button class="nav-btn" onclick="showPage('tasks')"><span class="nav-icon">✅</span>Tasks<span class="nav-count muted">5</span></button>
+      <button class="nav-btn" onclick="showPage('goals')"><span class="nav-icon">🎯</span>Goals<span class="nav-count muted">3</span></button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Status</div>
+      <div style="padding: 12px; background: var(--bg3); border-radius: 10px; border: 1px solid var(--border);">
+        <div style="font-size:10px;color:var(--text3);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.08em;">Inboxes</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--green);"></div>Gmail (personal)
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--green);"></div>Gmail (2nd)
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--yellow);"></div>Granola
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text3);">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--border2);"></div>Calendar (soon)
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text3);">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--border2);"></div>Outlook (soon)
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- TODAY PAGE -->
+    <div class="page active" id="page-today">
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-label">Act Now</div>
+          <div class="stat-value c-red">2</div>
+          <div class="stat-sub">Tier 1 emails</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Meetings Today</div>
+          <div class="stat-value c-blue">1</div>
+          <div class="stat-sub">Krish — 9:45am EDT</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Tomorrow</div>
+          <div class="stat-value c-yellow">1</div>
+          <div class="stat-sub">Tom Blum — 4pm EDT</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Tasks Due</div>
+          <div class="stat-value c-orange">2</div>
+          <div class="stat-sub">today + overdue</div>
+        </div>
+      </div>
+
+      <div class="section-header"><div class="section-title"><span class="pulse"></span> Immediate — Act Now</div></div>
+      <div class="cards-grid">
+
+        <div class="card tier1">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px;">
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                <span class="tier-badge tb-1">TIER 1</span>
+                <span style="font-size:11px;color:var(--text3);">Gmail · May 21</span>
+              </div>
+              <div style="font-size:14px;font-weight:600;color:var(--text);">Scott Howard — LightGrid + Revenue Engine</div>
+              <div style="font-size:12px;color:var(--text3);margin-top:3px;">13 days unanswered. Nathan told him "will review with MK."</div>
+            </div>
+          </div>
+          <div class="email-draft" contenteditable="true">Scott — apologies for the slow follow-up, been heads-down on product.
+
+We're not in a position to take on new engagements right now but I don't want to leave this hanging. The Sales-Sleuth concept is interesting — open to a quick demo on one target account when we're closer to a proper go-to-market push, likely Q3.
+
+Will loop back then.
+
+Mujtaba</div>
+          <div class="email-actions">
+            <button class="btn btn-send" onclick="markSent(this)">Send ✓</button>
+            <button class="btn btn-archive">Archive</button>
+          </div>
+        </div>
+
+        <div class="card tier1">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px;">
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                <span class="tier-badge tb-1">FLAG</span>
+                <span style="font-size:11px;color:var(--text3);">Gmail · Jun 2</span>
+              </div>
+              <div style="font-size:14px;font-weight:600;color:var(--text);">Noor Khan — Lightgrid Energy 2025 Financials</div>
+              <div style="font-size:12px;color:var(--text3);margin-top:3px;">Sent financials to Rahim. Key decision: capitalize ~$50K R&D spend vs expense it. Affects how investors read your books.</div>
+            </div>
+          </div>
+          <div style="padding:10px 14px;background:rgba(245,197,24,0.08);border:1px solid rgba(245,197,24,0.2);border-radius:8px;font-size:12px;color:var(--text2);line-height:1.6;">
+            ⚠ Review with Rahim before he responds. Capitalizing $50K looks better on the balance sheet for investors (higher assets, lower losses) but is aggressive at this stage. Ask Rahim what he recommends before approving.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="section-header" style="margin-top:8px;"><div class="section-title">Today's Meeting</div></div>
+      <div class="card upcoming" style="margin-bottom:28px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+          <div style="font-size:14px;font-weight:700;color:var(--text);">Krish Patel — LGE Onboarding</div>
+          <div style="font-size:12px;font-weight:700;color:var(--blue);background:rgba(14,165,233,0.12);padding:4px 12px;border-radius:6px;border:1px solid rgba(14,165,233,0.25);">Today 9:45am EDT</div>
+        </div>
+        <div style="font-size:12px;color:var(--text2);">New hire onboarding. Set up by Nathan. <a href="https://meet.google.com/kej-hwkg-pqk" target="_blank" style="color:var(--blue);text-decoration:none;">Join Meet →</a></div>
+      </div>
+
+      <div class="section-header"><div class="section-title">Tomorrow</div></div>
+      <div class="card upcoming">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+          <div style="font-size:14px;font-weight:700;color:var(--text);">Tom Blum — Lightgrid x Tom</div>
+          <div style="font-size:12px;font-weight:700;color:var(--blue);background:rgba(14,165,233,0.12);padding:4px 12px;border-radius:6px;border:1px solid rgba(14,165,233,0.25);">Jun 4 · 4pm EDT · 30 min</div>
+        </div>
+        <div style="font-size:12px;color:var(--text2);margin-bottom:8px;">New York Angels · Follow-up from May 18 pitch. He didn't invest but stayed engaged — that's the signal. Go in asking for intros, not a check.</div>
+        <button class="btn btn-edit" onclick="showPage('meetings')" style="font-size:11px;">View full prep brief →</button>
+      </div>
+    </div>
+
+    <!-- INBOX PAGE -->
+    <div class="page" id="page-inbox">
+      <div class="edit-hint">💡 Click any draft to edit before sending</div>
+      <div class="section-header"><div class="section-title">🔴 Tier 1 — Act Now</div></div>
+
+      <div class="email-card t1">
+        <div class="email-header">
+          <div>
+            <div class="email-from">Scott Howard &lt;scottj.howard@gmail.com&gt;</div>
+            <div class="email-subject">Re: LightGrid + Revenue Engine</div>
+            <div class="email-snippet">Hi, fellas. Any movement on this?</div>
+          </div>
+          <span class="tier-badge tb-1">T1</span>
+        </div>
+        <div class="email-draft" contenteditable="true">Scott — apologies for the slow follow-up, been heads-down on product.
+
+We're not in a position to take on new engagements right now but I don't want to leave this hanging. The Sales-Sleuth concept is interesting — open to a quick demo on one target account when we're closer to a proper go-to-market push, likely Q3.
+
+Will loop back then.
+
+Mujtaba</div>
+        <div class="email-actions">
+          <button class="btn btn-send" onclick="markSent(this)">Send ✓</button>
+          <button class="btn btn-edit">Edit</button>
+          <button class="btn btn-archive">Archive</button>
+        </div>
+      </div>
+
+      <div class="section-header" style="margin-top:20px;"><div class="section-title">🟡 Tier 2 — Today</div></div>
+
+      <div class="email-card t2">
+        <div class="email-header">
+          <div>
+            <div class="email-from">Noor Khan &lt;noork2024@gmail.com&gt;</div>
+            <div class="email-subject">Lightgrid Energy 2025 Financials</div>
+            <div class="email-snippet">TB, P&L, BS, AP Aging attached. Wants to capitalize ~$50K R&D spend.</div>
+          </div>
+          <span class="tier-badge tb-2">T2</span>
+        </div>
+        <div style="padding:10px 14px;background:rgba(245,197,24,0.06);border:1px solid rgba(245,197,24,0.15);border-radius:8px;font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:8px;">
+          FYI only — this was sent to Rahim. Your action: review with Rahim before he responds on the $50K capitalization decision.
+        </div>
+        <div class="email-actions">
+          <button class="btn btn-archive">Archive</button>
+        </div>
+      </div>
+
+      <div class="section-header" style="margin-top:20px;"><div class="section-title">⚪ Tier 3 — Archived</div></div>
+      <div style="padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;font-size:12px;color:var(--text3);">
+        17 items archived — calendar notifications (Narro DD, IAF meeting, Spur, Pat Doyle, Benton, Lenny x2, Pierre, Pres Touchbase, App Touchbase), Dealum password change, 1 scam (BlackRock phishing), Porter Airlines, LinkedIn x2, Tactiq x2.
+      </div>
+    </div>
+
+    <!-- MEETINGS PAGE -->
+    <div class="page" id="page-meetings">
+      <div class="meeting-card">
+        <div class="meeting-header">
+          <div>
+            <div class="meeting-name">Lightgrid × Tom Blum</div>
+            <div class="meeting-meta">New York Angels · 917-769-9547 · tblum@yahoo.com</div>
+          </div>
+          <div class="meeting-time-badge">Thu Jun 4 · 4:00–4:30pm EDT</div>
+        </div>
+        <div style="padding:16px 20px;border-bottom:1px solid var(--border);">
+          <div class="person-card">
+            <div class="person-avatar">TB</div>
+            <div>
+              <div class="person-name">Thomas Blum</div>
+              <div class="person-title">New York Angels · Cleantech mentor · Active investor</div>
+              <div class="person-phone">917-769-9547 · tblum@yahoo.com</div>
+            </div>
+          </div>
+          <div style="font-size:12px;color:var(--text2);line-height:1.7;padding:10px 14px;background:var(--bg3);border-radius:8px;">
+            Met on May 18 (NY Angels pitch). Gave candid feedback — called you "Friends & Family stage." Didn't invest but stayed engaged (positive signal). Knows the energy/compute space well. Active investor in Feedback Solutions. Connected across Toronto cleantech ecosystem.
+          </div>
+        </div>
+        <div class="meeting-body">
+          <div>
+            <div class="ms-title">Your Outcomes</div>
+            <div class="outcome-list">
+              <div class="outcome-item"><span class="outcome-num">1</span>Warm intros to 2–3 angels who can write $25–100K</div>
+              <div class="outcome-item"><span class="outcome-num">2</span>Intro to Carter Li at Swtch Energy (acqui-hire/partnership angle)</div>
+              <div class="outcome-item"><span class="outcome-num">3</span>Test advisory conversation — he's already mentoring for free</div>
+            </div>
+
+            <div class="ms-title" style="margin-top:16px;">Talking Points</div>
+            <div class="talk-track">
+              <div class="talk-item" contenteditable="true">"We followed up on the Swtch Energy idea — Carter Li does load balancing for EVs in apartments, we do it for data centers. Feels complementary not competitive."</div>
+              <div class="talk-item" contenteditable="true">"At $225K F&F + $100K strategic committed. Looking to close with 2–3 more at $25–100K. You mentioned sympathetic angels in your circle?"</div>
+              <div class="talk-item" contenteditable="true">"You gave us the most candid feedback we've gotten. Would an advisory arrangement make sense?"</div>
+            </div>
+          </div>
+          <div>
+            <div class="ms-title">Watch-outs</div>
+            <div class="watchout-list">
+              <div class="watchout-item"><span class="wo-icon">⚠</span>He already said he's not investing — don't ask again, you'll lose trust</div>
+              <div class="watchout-item"><span class="wo-icon">⚠</span>Don't oversell traction you don't have — he'll see through it</div>
+              <div class="watchout-item"><span class="wo-icon">⚠</span>He's a connector, not a check writer — work that angle</div>
+            </div>
+
+            <div class="ms-title" style="margin-top:16px;">His Leads from Last Time</div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="padding:8px 12px;background:var(--bg3);border-radius:8px;font-size:12px;color:var(--text2);">🏢 <strong style="color:var(--text);">Swtch Energy</strong> — Carter Li. EV load balancing → data centers. Best intro to pursue.</div>
+              <div style="padding:8px 12px;background:var(--bg3);border-radius:8px;font-size:12px;color:var(--text2);">🚀 <strong style="color:var(--text);">TandemLaunch</strong> — Toronto startup foundry. His #1 rec.</div>
+              <div style="padding:8px 12px;background:var(--bg3);border-radius:8px;font-size:12px;color:var(--text2);">⚡ <strong style="color:var(--text);">Cleantech Open</strong> — mentors + pitch practice. No funding.</div>
+            </div>
+
+            <div style="margin-top:16px;">
+              <a href="https://meet.google.com/kej-hwkg-pqk" target="_blank" style="display:inline-block;padding:8px 16px;background:rgba(14,165,233,0.15);color:var(--blue);border:1px solid rgba(14,165,233,0.3);border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;">Join Google Meet →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Krish card -->
+      <div class="meeting-card">
+        <div class="meeting-header">
+          <div>
+            <div class="meeting-name">Krish Patel — LGE Onboarding</div>
+            <div class="meeting-meta">Internal · Set up by Nathan Odotei</div>
+          </div>
+          <div class="meeting-time-badge">Today · 9:45–10:30am EDT</div>
+        </div>
+        <div style="padding:16px 20px;font-size:12px;color:var(--text2);">
+          New hire onboarding session. <a href="https://meet.google.com/kej-hwkg-pqk" target="_blank" style="color:var(--blue);">Join Meet →</a>
+          <div style="margin-top:10px;padding:10px 14px;background:var(--bg3);border-radius:8px;">Add notes here about what Krish is joining to work on and what you want to cover in onboarding.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TASKS PAGE -->
+    <div class="page" id="page-tasks">
+      <div class="stats-row" style="grid-template-columns:repeat(3,1fr);">
+        <div class="stat-card"><div class="stat-label">Overdue</div><div class="stat-value c-red">1</div><div class="stat-sub">TASK-006 — rotate token</div></div>
+        <div class="stat-card"><div class="stat-label">Due This Week</div><div class="stat-value c-yellow">3</div><div class="stat-sub">Gmail, Calendar, VS Code</div></div>
+        <div class="stat-card"><div class="stat-label">Complete</div><div class="stat-value c-green">2</div><div class="stat-sub">GitHub + Gmail MCP</div></div>
+      </div>
+
+      <div class="section-header"><div class="section-title">🔴 Overdue</div></div>
+      <div class="task-item overdue">
+        <div class="task-check" onclick="toggleCheck(this)"></div>
+        <div class="task-body">
+          <div class="task-title">TASK-006 — Rotate GitHub token (exposed in chat)</div>
+          <div class="task-meta">
+            <span class="task-due overdue">Due: Jun 2 — OVERDUE</span>
+            <span class="task-p p1">P1</span>
+            <span class="task-goal">OBJ-3</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header" style="margin-top:16px;"><div class="section-title">🟡 Due This Week</div></div>
+      <div class="task-item">
+        <div class="task-check" onclick="toggleCheck(this)"></div>
+        <div class="task-body">
+          <div class="task-title">TASK-003 — Connect Google Calendar MCP</div>
+          <div class="task-meta"><span class="task-due">Due: Jun 5</span><span class="task-p p1">P1</span><span class="task-goal">OBJ-1</span></div>
+        </div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="toggleCheck(this)"></div>
+        <div class="task-body">
+          <div class="task-title">TASK-007 — Install Claude Code extension in VS Code</div>
+          <div class="task-meta"><span class="task-due">Due: Jun 3</span><span class="task-p p2">P2</span><span class="task-goal">OBJ-3</span></div>
+        </div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="toggleCheck(this)"></div>
+        <div class="task-body">
+          <div class="task-title">TASK-004 — Fill in CLAUDE.md personal details</div>
+          <div class="task-meta"><span class="task-due">Due: Jun 7</span><span class="task-p p2">P2</span><span class="task-goal">OBJ-1</span></div>
+        </div>
+      </div>
+
+      <div class="section-header" style="margin-top:16px;"><div class="section-title">📅 Later</div></div>
+      <div class="task-item">
+        <div class="task-check" onclick="toggleCheck(this)"></div>
+        <div class="task-body">
+          <div class="task-title">TASK-005 — Define Lightgrid v1 product spec</div>
+          <div class="task-meta"><span class="task-due">Due: Jun 15</span><span class="task-p p1">P1</span><span class="task-goal">OBJ-1</span></div>
+        </div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="toggleCheck(this)"></div>
+        <div class="task-body">
+          <div class="task-title">TASK-008 — Connect Granola MCP (debug)</div>
+          <div class="task-meta"><span class="task-due">Due: Jun 7</span><span class="task-p p2">P2</span><span class="task-goal">OBJ-1</span></div>
+        </div>
+      </div>
+
+      <div class="section-header" style="margin-top:16px;"><div class="section-title">✅ Complete</div></div>
+      <div class="task-item done">
+        <div class="task-check checked" onclick="toggleCheck(this)"></div>
+        <div class="task-body">
+          <div class="task-title">TASK-001 — GitHub setup + push chief-of-staff repo</div>
+          <div class="task-meta"><span class="task-due">Completed Jun 2</span><span class="task-p p1">P1</span></div>
+        </div>
+      </div>
+      <div class="task-item done">
+        <div class="task-check checked" onclick="toggleCheck(this)"></div>
+        <div class="task-body">
+          <div class="task-title">TASK-002 — Connect Gmail MCP</div>
+          <div class="task-meta"><span class="task-due">Completed Jun 3</span><span class="task-p p1">P1</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GOALS PAGE -->
+    <div class="page" id="page-goals">
+      <div style="font-size:13px;color:var(--text2);margin-bottom:20px;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;">
+        Q2 2026 · Last updated Jun 3 · <strong style="color:var(--text);">3 objectives</strong> · Click any key result to edit
+      </div>
+
+      <div class="goal-card">
+        <div class="goal-header">
+          <div>
+            <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">OBJ-1 · Priority 1</div>
+            <div class="goal-title" contenteditable="true">Ship Lightgrid v1 product to first paying data center customers</div>
+          </div>
+          <span class="goal-priority">P1</span>
+        </div>
+        <div class="kr-list">
+          <div class="kr-item">
+            <div class="kr-bar-wrap">
+              <div class="kr-label" contenteditable="true">Define and lock v1 product spec</div>
+              <div class="kr-track"><div class="kr-fill" style="width:10%;background:var(--orange);"></div></div>
+              <div class="kr-meta"><span class="kr-due">Due Jun 15</span><span class="kr-pct c-orange">10%</span></div>
+            </div>
+          </div>
+          <div class="kr-item">
+            <div class="kr-bar-wrap">
+              <div class="kr-label" contenteditable="true">Build MVP of core dispatch optimization engine</div>
+              <div class="kr-track"><div class="kr-fill" style="width:0%;background:var(--red);"></div></div>
+              <div class="kr-meta"><span class="kr-due">Due Jul 15</span><span class="kr-pct c-red">0%</span></div>
+            </div>
+          </div>
+          <div class="kr-item">
+            <div class="kr-bar-wrap">
+              <div class="kr-label" contenteditable="true">Sign first pilot agreement with a data center operator</div>
+              <div class="kr-track"><div class="kr-fill" style="width:0%;background:var(--red);"></div></div>
+              <div class="kr-meta"><span class="kr-due">Due Aug 31</span><span class="kr-pct c-red">0%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="goal-card">
+        <div class="goal-header">
+          <div>
+            <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">OBJ-2 · Priority 2</div>
+            <div class="goal-title" contenteditable="true">Build strategic partnerships with renewable energy developers</div>
+          </div>
+          <span class="goal-priority">P2</span>
+        </div>
+        <div class="kr-list">
+          <div class="kr-item">
+            <div class="kr-bar-wrap">
+              <div class="kr-label" contenteditable="true">Identify top 10 target partners in energy flexibility space</div>
+              <div class="kr-track"><div class="kr-fill" style="width:0%;background:var(--red);"></div></div>
+              <div class="kr-meta"><span class="kr-due">Due Jun 20</span><span class="kr-pct c-red">0%</span></div>
+            </div>
+          </div>
+          <div class="kr-item">
+            <div class="kr-bar-wrap">
+              <div class="kr-label" contenteditable="true">Have first substantive conversation with 3 potential partners</div>
+              <div class="kr-track"><div class="kr-fill" style="width:0%;background:var(--red);"></div></div>
+              <div class="kr-meta"><span class="kr-due">Due Jul 31</span><span class="kr-pct c-red">0%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="goal-card">
+        <div class="goal-header">
+          <div>
+            <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">OBJ-3 · Priority 3</div>
+            <div class="goal-title" contenteditable="true">Establish GitHub org and technical foundation for Lightgrid</div>
+          </div>
+          <span class="goal-priority">P3</span>
+        </div>
+        <div class="kr-list">
+          <div class="kr-item">
+            <div class="kr-bar-wrap">
+              <div class="kr-label" contenteditable="true">Lightgrid-Energy GitHub org set up with first repo</div>
+              <div class="kr-track"><div class="kr-fill" style="width:90%;background:var(--green);"></div></div>
+              <div class="kr-meta"><span class="kr-due">Due Jun 5</span><span class="kr-pct c-green">90%</span></div>
+            </div>
+          </div>
+          <div class="kr-item">
+            <div class="kr-bar-wrap">
+              <div class="kr-label" contenteditable="true">Core architecture documented and agreed</div>
+              <div class="kr-track"><div class="kr-fill" style="width:0%;background:var(--red);"></div></div>
+              <div class="kr-meta"><span class="kr-due">Due Jun 20</span><span class="kr-pct c-red">0%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+document.getElementById('dateDisplay').textContent = new Date().toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric', year:'numeric' });
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b => { if (b.textContent.toLowerCase() === id || b.getAttribute('onclick')?.includes(id)) b.classList.add('active'); });
+  document.querySelectorAll('.nav-btn').forEach(b => { if (b.getAttribute('onclick')?.includes(id)) b.classList.add('active'); });
+}
+
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+  el.closest('.task-item').classList.toggle('done');
+}
+
+function markSent(btn) {
+  const card = btn.closest('.email-card, .card');
+  btn.textContent = '✓ Sent';
+  btn.style.background = 'rgba(62,207,142,0.25)';
+  btn.disabled = true;
+  card.style.opacity = '0.5';
+}
+</script>
+</body>
+</html>
