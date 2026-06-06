@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lightgrid — Command Center</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:#0f1117; --bg2:#171b26; --bg3:#1e2333; --bg4:#242840;
+  --border:#2a2f45; --border2:#363d57;
+  --text:#e8eaf0; --text2:#8890a8; --text3:#555e7a;
+  --accent:#c8372d; --accent2:#e85d52;
+  --green:#3ecf8e; --yellow:#f5c518; --orange:#ff8c42;
+  --red:#ff4d4d; --blue:#0ea5e9; --teal:#059669; --purple:#7c3aed;
+  --indigo:#4f46e5;
+}
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; }
+
+/* ── TOPBAR ── */
+.topbar { background:var(--bg2); border-bottom:1px solid var(--border); padding:0 24px; height:52px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:200; }
+.logo { font-size:15px; font-weight:800; color:var(--accent2); letter-spacing:-0.3px; }
+.logo span { color:var(--text); font-weight:400; }
+.nav-tabs { display:flex; gap:2px; }
+.tab { padding:5px 13px; border-radius:6px; border:none; background:transparent; color:var(--text2); font-size:12px; font-weight:500; cursor:pointer; transition:all .15s; white-space:nowrap; }
+.tab:hover { background:var(--bg3); color:var(--text); }
+.tab.active { background:var(--bg3); color:var(--text); border:1px solid var(--border2); }
+.tab .badge { display:inline-block; margin-left:5px; font-size:9px; font-weight:800; padding:1px 5px; border-radius:99px; background:var(--accent); color:#fff; vertical-align:middle; }
+.tab .badge.muted { background:var(--bg); border:1px solid var(--border); color:var(--text3); }
+.topbar-right { font-size:11px; color:var(--text2); background:var(--bg3); border:1px solid var(--border); padding:3px 10px; border-radius:6px; }
+
+/* ── LAYOUT ── */
+.page { display:none; padding:24px 28px; max-width:1400px; margin:0 auto; }
+.page.active { display:block; }
+
+/* ── GRID HELPERS ── */
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+.grid-5 { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+
+/* ── CARDS ── */
+.card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:16px 18px; transition:border-color .15s; }
+.card:hover { border-color:var(--border2); }
+.card.red { border-color:rgba(255,77,77,.35); background:rgba(255,77,77,.03); }
+.card.yellow { border-color:rgba(245,197,24,.25); }
+.card.blue { border-color:rgba(14,165,233,.25); background:rgba(14,165,233,.03); }
+.card.green { border-color:rgba(62,207,142,.2); background:rgba(62,207,142,.03); }
+
+/* ── STAT CARDS ── */
+.stat { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+.stat-label { font-size:10px; color:var(--text3); text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px; }
+.stat-val { font-size:26px; font-weight:800; line-height:1; }
+.stat-sub { font-size:11px; color:var(--text2); margin-top:4px; }
+.c-red{color:var(--red)} .c-orange{color:var(--orange)} .c-yellow{color:var(--yellow)} .c-green{color:var(--green)} .c-blue{color:var(--blue)} .c-purple{color:var(--purple)}
+
+/* ── SECTION HEADER ── */
+.sh { display:flex; align-items:center; justify-content:space-between; margin:20px 0 12px; }
+.sh-title { font-size:11px; font-weight:700; color:var(--text2); text-transform:uppercase; letter-spacing:.1em; display:flex; align-items:center; gap:8px; }
+.pulse { width:7px; height:7px; border-radius:50%; background:var(--yellow); animation:pulse 2s infinite; flex-shrink:0; display:inline-block; }
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ── TAGS / BADGES ── */
+.tag { font-size:10px; font-weight:700; padding:2px 8px; border-radius:99px; border:1px solid; }
+.tag-red { color:var(--red); border-color:rgba(255,77,77,.4); background:rgba(255,77,77,.1); }
+.tag-yellow { color:var(--yellow); border-color:rgba(245,197,24,.3); background:rgba(245,197,24,.08); }
+.tag-blue { color:var(--blue); border-color:rgba(14,165,233,.3); background:rgba(14,165,233,.1); }
+.tag-green { color:var(--green); border-color:rgba(62,207,142,.3); background:rgba(62,207,142,.1); }
+.tag-gray { color:var(--text3); border-color:var(--border); background:transparent; }
+
+/* ── PROGRESS BARS ── */
+.bar-wrap { width:100%; height:5px; background:var(--bg3); border-radius:99px; overflow:hidden; }
+.bar-fill { height:100%; border-radius:99px; transition:width .6s ease; }
+
+/* ── BUTTONS ── */
+.btn { padding:5px 14px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; border:1px solid; transition:all .15s; }
+.btn-green { background:rgba(62,207,142,.15); color:var(--green); border-color:rgba(62,207,142,.3); }
+.btn-green:hover { background:rgba(62,207,142,.25); }
+.btn-ghost { background:transparent; color:var(--text2); border-color:var(--border2); }
+.btn-ghost:hover { background:var(--bg3); color:var(--text); }
+.btn-red { background:rgba(255,77,77,.1); color:var(--red); border-color:rgba(255,77,77,.3); }
+
+/* ── EMAIL DRAFT ── */
+.draft { background:var(--bg3); border:1px solid var(--border2); border-radius:8px; padding:10px 14px; font-size:12px; color:var(--text2); line-height:1.6; white-space:pre-wrap; outline:none; }
+.draft:focus { border-color:var(--blue); }
+
+/* ── ACTION ROW ── */
+.action-row { display:flex; gap:8px; margin-top:8px; }
+
+/* ── SVG CHARTS ── */
+.chart-wrap { display:flex; flex-direction:column; align-items:center; }
+.chart-label { font-size:11px; color:var(--text2); margin-top:8px; text-align:center; }
+
+/* ── FUNNEL ── */
+.funnel-stage { position:relative; margin-bottom:3px; }
+.funnel-bar { height:36px; border-radius:6px; display:flex; align-items:center; padding:0 14px; font-size:12px; font-weight:600; color:var(--text); transition:width .6s ease; }
+.funnel-meta { font-size:11px; color:var(--text3); margin-left:10px; font-weight:400; }
+
+/* ── TIMELINE / GANTT ── */
+.gantt-wrap { overflow-x:auto; }
+.gantt-row { display:flex; align-items:center; gap:0; margin-bottom:8px; min-height:34px; }
+.gantt-label { width:160px; flex-shrink:0; font-size:12px; color:var(--text2); padding-right:12px; line-height:1.3; }
+.gantt-track { flex:1; background:var(--bg3); border-radius:6px; height:26px; position:relative; min-width:400px; }
+.gantt-bar { position:absolute; height:100%; border-radius:6px; display:flex; align-items:center; padding:0 8px; font-size:10px; font-weight:700; color:white; white-space:nowrap; overflow:hidden; }
+.gantt-deadline { position:absolute; top:-4px; bottom:-4px; width:2px; background:var(--red); border-radius:2px; }
+.gantt-today { position:absolute; top:-8px; bottom:-8px; width:2px; background:var(--yellow); border-radius:2px; }
+.gantt-header { display:flex; align-items:center; gap:0; margin-bottom:10px; }
+.gantt-header-label { width:160px; flex-shrink:0; font-size:10px; color:var(--text3); text-transform:uppercase; }
+.gantt-header-track { flex:1; display:flex; min-width:400px; }
+.gantt-date-tick { flex:1; font-size:10px; color:var(--text3); text-align:center; border-left:1px dashed var(--border); padding:2px 0; }
+
+/* ── CALENDAR ── */
+.cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:6px; }
+.cal-day { background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:8px; min-height:80px; }
+.cal-day.today { border-color:var(--blue); background:rgba(14,165,233,.05); }
+.cal-day-header { font-size:10px; color:var(--text3); margin-bottom:4px; }
+.cal-day-num { font-size:16px; font-weight:800; color:var(--text); margin-bottom:6px; }
+.cal-event { font-size:10px; padding:3px 6px; border-radius:4px; margin-bottom:3px; line-height:1.3; }
+.cal-event.red { background:rgba(255,77,77,.15); color:var(--red); }
+.cal-event.blue { background:rgba(14,165,233,.15); color:var(--blue); }
+.cal-event.green { background:rgba(62,207,142,.15); color:var(--green); }
+.cal-event.yellow { background:rgba(245,197,24,.12); color:var(--yellow); }
+.cal-event.purple { background:rgba(124,58,237,.15); color:var(--purple); }
+
+/* ── INVESTOR CARD ── */
+.inv-card { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:12px 16px; }
+.inv-name { font-size:13px; font-weight:700; color:var(--text); margin-bottom:2px; }
+.inv-org { font-size:11px; color:var(--text2); margin-bottom:8px; }
+.inv-stage { display:inline-flex; align-items:center; gap:6px; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; }
+
+/* ── RADIAL PROGRESS ── */
+.radial-wrap { display:flex; flex-direction:column; align-items:center; gap:6px; }
+.radial-label { font-size:11px; color:var(--text2); text-align:center; max-width:80px; line-height:1.3; }
+.radial-pct { font-size:13px; font-weight:800; }
+
+/* ── TASKS ── */
+.task-row { display:flex; align-items:flex-start; gap:12px; padding:10px 14px; background:var(--bg2); border:1px solid var(--border); border-radius:9px; margin-bottom:6px; }
+.task-row:hover { border-color:var(--border2); }
+.task-row.overdue { border-color:rgba(255,77,77,.35); }
+.task-row.done { opacity:.4; }
+.chk { width:17px; height:17px; border-radius:50%; border:2px solid var(--border2); flex-shrink:0; margin-top:2px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .15s; }
+.chk:hover { border-color:var(--green); }
+.chk.on { background:var(--green); border-color:var(--green); }
+.chk.on::after { content:'✓'; font-size:9px; color:#fff; font-weight:800; }
+.task-body { flex:1; }
+.task-title { font-size:13px; font-weight:600; color:var(--text); margin-bottom:3px; }
+.task-meta { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.task-due { font-size:11px; color:var(--text3); }
+.task-due.late { color:var(--red); font-weight:600; }
+.p1{font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;background:rgba(255,77,77,.12);color:var(--red);}
+.p2{font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;background:rgba(245,197,24,.1);color:var(--yellow);}
+.p3{font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;background:var(--bg3);color:var(--text3);}
+
+/* ── R&D EMBEDDED ── */
+.rd-topbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+.rd-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:16px; }
+.rd-stat { background:var(--bg2); border:1px solid var(--border); border-radius:9px; padding:12px 14px; }
+.team-btn { display:flex; align-items:center; gap:8px; width:100%; padding:7px 10px; border-radius:7px; border:1px solid transparent; background:transparent; color:var(--text2); cursor:pointer; font-size:12px; font-weight:500; text-align:left; transition:all .15s; margin-bottom:2px; }
+.team-btn:hover, .team-btn.active { background:var(--bg3); color:var(--text); border-color:var(--border2); }
+.av { width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; color:#fff; flex-shrink:0; }
+.tc { margin-left:auto; font-size:10px; background:var(--bg); border:1px solid var(--border); border-radius:99px; padding:1px 6px; color:var(--text3); }
+.item-card { background:var(--bg2); border:1px solid var(--border); border-radius:11px; padding:14px 16px; transition:border-color .15s; margin-bottom:8px; }
+.item-card:hover { border-color:var(--border2); }
+.item-card.critical-card { border-color:rgba(255,77,77,.4); background:rgba(255,77,77,.04); }
+.item-card.priority-card { border-color:rgba(245,197,24,.2); }
+.card-header { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; cursor:pointer; }
+.card-title-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.card-name { font-size:13px; font-weight:600; color:var(--text); }
+.card-pct { font-size:20px; font-weight:800; flex-shrink:0; }
+.tag-critical{color:var(--red);border-color:rgba(255,77,77,.4);background:rgba(255,77,77,.1);}
+.tag-priority{color:var(--yellow);border-color:rgba(245,197,24,.3);background:rgba(245,197,24,.08);}
+.tag-other{color:var(--text3);border-color:var(--border);background:transparent;}
+.card-body { display:grid; grid-template-columns:1fr 180px; gap:14px; align-items:center; margin-top:10px; }
+.card-desc { font-size:12px; color:var(--text2); margin-bottom:8px; line-height:1.5; }
+.card-detail { display:none; margin-top:12px; padding-top:12px; border-top:1px solid var(--border); }
+.card-detail.open { display:block; }
+.detail-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.detail-section-title { font-size:10px; color:var(--text3); text-transform:uppercase; letter-spacing:.08em; margin-bottom:7px; font-weight:700; }
+.milestone-list { display:flex; flex-direction:column; gap:5px; }
+.milestone-item { display:flex; align-items:center; gap:8px; font-size:11px; color:var(--text2); padding:6px 9px; background:var(--bg3); border-radius:6px; }
+.milestone-item .mi-date { font-size:10px; color:var(--text3); margin-left:auto; white-space:nowrap; }
+.mi-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.mi-done{background:var(--green)} .mi-next{background:var(--yellow)} .mi-future{background:var(--border2)}
+.owner-chip { display:flex; align-items:center; gap:4px; padding:2px 7px 2px 4px; background:var(--bg3); border:1px solid var(--border); border-radius:99px; font-size:11px; color:var(--text2); }
+.owner-chip .dot { width:15px; height:15px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:8px; font-weight:800; color:#fff; }
+.owners-row { display:flex; align-items:center; gap:4px; flex-wrap:wrap; justify-content:flex-end; }
+.owners-label { font-size:10px; color:var(--text3); }
+.vt-btn { padding:3px 9px; border-radius:5px; border:1px solid var(--border); background:transparent; color:var(--text2); font-size:11px; cursor:pointer; transition:all .15s; }
+.vt-btn.active { background:var(--bg3); color:var(--text); border-color:var(--border2); }
+.status-btn { display:flex; align-items:center; gap:7px; width:100%; padding:6px 9px; border-radius:7px; border:none; background:transparent; color:var(--text2); cursor:pointer; font-size:12px; text-align:left; transition:all .15s; margin-bottom:2px; }
+.status-btn:hover,.status-btn.active { background:var(--bg3); color:var(--text); }
+.status-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.rd-layout { display:grid; grid-template-columns:200px 1fr; gap:0; min-height:400px; }
+.rd-sidebar { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:14px 0; margin-right:16px; }
+.rd-sidebar-section { padding:0 14px; margin-bottom:18px; }
+.sidebar-label { font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text3); margin-bottom:8px; padding:0 4px; }
+.progress-ring-wrap { display:flex; flex-direction:column; align-items:center; padding:12px; background:var(--bg3); border-radius:9px; border:1px solid var(--border); margin:0 12px 16px; }
+.ring-label { font-size:10px; color:var(--text3); text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px; }
+.ring-num { font-size:22px; font-weight:800; color:var(--text); }
+.ring-sub { font-size:10px; color:var(--text3); margin-top:2px; }
+.next-up-panel { background:var(--bg2); border:1px solid var(--border); border-radius:11px; padding:14px 16px; margin-bottom:16px; }
+.next-up-title { font-size:11px; font-weight:700; color:var(--text2); text-transform:uppercase; letter-spacing:.08em; margin-bottom:12px; display:flex; align-items:center; gap:7px; }
+.next-up-list { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.next-up-item { background:var(--bg3); border:1px solid var(--border); border-radius:7px; padding:10px 12px; }
+.nu-date{font-size:10px;color:var(--text3);margin-bottom:3px;} .nu-name{font-size:12px;font-weight:600;color:var(--text);margin-bottom:4px;} .nu-task{font-size:11px;color:var(--text2);margin-bottom:6px;line-height:1.4;} .nu-owners{display:flex;gap:3px;} .nu-owner{width:19px;height:19px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800;color:#fff;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:5px;height:5px} ::-webkit-scrollbar-track{background:transparent} ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+[contenteditable]{outline:none} [contenteditable]:focus{background:rgba(255,255,255,.03);border-radius:4px;}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="logo">Lightgrid <span>Energy</span></div>
+    <div style="width:1px;height:20px;background:var(--border2);"></div>
+    <div style="font-size:12px;color:var(--text2);">Command Center</div>
+  </div>
+  <div class="nav-tabs">
+    <button class="tab active" onclick="show('today')">⚡ Today<span class="badge">4</span></button>
+    <button class="tab" onclick="show('inbox')">📬 Inbox<span class="badge">3</span></button>
+    <button class="tab" onclick="show('fundraising')">💰 Fundraising</button>
+    <button class="tab" onclick="show('calendar')">📅 Calendar</button>
+    <button class="tab" onclick="show('grants')">🏛 Grants</button>
+    <button class="tab" onclick="show('tasks')">✅ Tasks</button>
+    <button class="tab" onclick="show('goals')">🎯 Goals</button>
+    <button class="tab" onclick="show('rd')">🔬 R&amp;D</button>
+  </div>
+  <div class="topbar-right" id="clock">–</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ TODAY ══ -->
+<div class="page active" id="page-today">
+  <div class="grid-4" style="margin-bottom:20px;">
+    <div class="stat"><div class="stat-label">Act Now</div><div class="stat-val c-red">6</div><div class="stat-sub">urgent items</div></div>
+    <div class="stat"><div class="stat-label">Round Close</div><div class="stat-val c-orange">9</div><div class="stat-sub">days to Jun 15</div></div>
+    <div class="stat"><div class="stat-label">Committed</div><div class="stat-val c-green">$325K</div><div class="stat-sub">of ~$500K target</div></div>
+    <div class="stat"><div class="stat-label">CIRIF Deadline</div><div class="stat-val c-red">4d</div><div class="stat-sub">June 10 — gated on TMU chair</div></div>
+  </div>
+
+  <!-- Round Progress Bar -->
+  <div class="card" style="margin-bottom:16px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+      <div style="font-size:13px;font-weight:700;color:var(--text);">Pre-Seed Round Progress</div>
+      <div style="font-size:12px;color:var(--text2);">$325K committed · targeting ~$500K · close Jun 15</div>
+    </div>
+    <div style="position:relative;height:28px;background:var(--bg3);border-radius:8px;overflow:hidden;">
+      <div style="width:65%;height:100%;background:linear-gradient(90deg,var(--green),#2ab876);border-radius:8px;display:flex;align-items:center;padding-left:12px;font-size:11px;font-weight:700;color:#fff;">$325K F&F + Strategic</div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10px;color:var(--text3);">
+      <span>$0</span><span style="color:var(--green);font-weight:700;">65% to target</span><span>$500K</span>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
+      <div style="padding:4px 10px;background:rgba(62,207,142,.1);border:1px solid rgba(62,207,142,.2);border-radius:6px;font-size:11px;color:var(--green);">✓ $225K Friends &amp; Family</div>
+      <div style="padding:4px 10px;background:rgba(62,207,142,.1);border:1px solid rgba(62,207,142,.2);border-radius:6px;font-size:11px;color:var(--green);">✓ $100K Strategic Investor</div>
+      <div style="padding:4px 10px;background:rgba(14,165,233,.1);border:1px solid rgba(14,165,233,.2);border-radius:6px;font-size:11px;color:var(--blue);">🔄 IAF (MaRS) — active DD</div>
+      <div style="padding:4px 10px;background:rgba(14,165,233,.1);border:1px solid rgba(14,165,233,.2);border-radius:6px;font-size:11px;color:var(--blue);">🔄 The Narro — NDA signed</div>
+      <div style="padding:4px 10px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);border-radius:6px;font-size:11px;color:var(--purple);">⏳ BDC Seed VF — met Jun 1</div>
+    </div>
+  </div>
+
+  <div class="sh"><div class="sh-title"><span class="pulse"></span>ACT NOW — Jun 6 · You're on the train to Montreal (back Jun 11)</div></div>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;">
+
+    <div class="card red">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
+        <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span class="tag tag-red">🔥 DUE MON NOON</span><span style="font-size:11px;color:var(--text3);">Jun 8 deadline</span></div>
+          <div style="font-size:14px;font-weight:700;color:var(--text);">Altitude Accelerator — Pitch Deck</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:3px;">Richard + Rutuja need finalized deck by Monday Jun 8, noon. PPT + PDF. IRP presentation Jun 11 at Brampton City Hall (10 min). Founders & Funders Jun 16 on stage.</div>
+        </div>
+      </div>
+      <div style="padding:10px 14px;background:rgba(245,197,24,.06);border:1px solid rgba(245,197,24,.15);border-radius:8px;font-size:12px;color:var(--text2);">
+        Send to: <strong>richard.nonso@altitudeaccelerator.ca</strong> + <strong>rutuja.jori@altitudeaccelerator.ca</strong> — PPT and PDF format required.
+      </div>
+    </div>
+
+    <div class="card red">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
+        <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span class="tag tag-red">🔥 3 WEEKS UNANSWERED</span></div>
+          <div style="font-size:14px;font-weight:700;color:var(--text);">Emma Todd (MMH Group) — Advisor Agreement Feedback</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:3px;">Sarah Stone followed up Jun 5 — still no reply. Emma has specific clause feedback on the advisor agreement. This advisor is going cold. Respond today.</div>
+        </div>
+      </div>
+      <div class="draft" contenteditable="true">Emma / Sarah — apologies for the delay, it's been a hectic few weeks.
+
+We've reviewed your feedback on the agreement points and want to work through them with you. Can we find 30 min early next week to align on the outstanding clauses? I'm back in Toronto Jun 11.
+
+Mujtaba</div>
+      <div class="action-row"><button class="btn btn-green" onclick="sent(this)">Send ✓</button><button class="btn btn-ghost">Edit</button></div>
+    </div>
+
+    <div class="card red">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
+        <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span class="tag tag-red">DD ACTIVE</span></div>
+          <div style="font-size:14px;font-weight:700;color:var(--text);">The Narro — Post-DD Follow-Up</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:3px;">NDA signed + DD call Jun 2 with Winston Edwards. Nothing sent since. Strike while warm — they may want to meet other Narro partners next.</div>
+        </div>
+      </div>
+      <div class="draft" contenteditable="true">Winston — thanks again for the time on Tuesday. Really enjoyed walking through the business with you.
+
+Happy to connect with the rest of the Narro team whenever works. In the meantime, let me know if there's anything from the data room you'd like us to pull together.
+
+Mujtaba</div>
+      <div class="action-row"><button class="btn btn-green" onclick="sent(this)">Send ✓</button><button class="btn btn-ghost">Edit</button></div>
+    </div>
+
+    <div class="card yellow">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
+        <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span class="tag tag-yellow">CONFIRMED</span></div>
+          <div style="font-size:14px;font-weight:700;color:var(--text);">Tam Kemabonta — Wed Jun 10, 12pm MST (online)</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:3px;">Kemabonta Ventures confirmed for deck session. You're in Montreal — this is online, works. Nathan initiated. Send confirmation + calendar invite.</div>
+        </div>
+      </div>
+      <div class="draft" contenteditable="true">Tam — confirmed, Wednesday June 10 at 12pm MST works perfectly. I'll send a calendar invite now. Looking forward to walking through the deck with you.
+
+Mujtaba</div>
+      <div class="action-row"><button class="btn btn-green" onclick="sent(this)">Send ✓</button></div>
+    </div>
+
+    <div class="card yellow">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
+        <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span class="tag tag-red">4 DAYS</span></div>
+          <div style="font-size:14px;font-weight:700;color:var(--text);">CIRIF Grant — Confirm Research Chair (Due Jun 10)</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:3px;">Tarig (Arctech) needs: separate PPT per project + confirm Canada Impact+ Research Chair at TMU (Mathusha). Individual companies can't apply directly.</div>
+        </div>
+      </div>
+      <div class="draft" contenteditable="true">Mathusha / Tarig — quick check: is the Canada Impact+ Research Chair in place at TMU? That's the gating requirement for CIRIF (due Jun 10). Let me know ASAP so Arctech can start the Project Planning Toolkit.
+
+Mujtaba</div>
+      <div class="action-row"><button class="btn btn-green" onclick="sent(this)">Send ✓</button></div>
+    </div>
+
+    <div class="card yellow">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
+        <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span class="tag tag-red">OVERDUE</span></div>
+          <div style="font-size:14px;font-weight:700;color:var(--text);">YSpace — Book May Check-In (2nd reminder received)</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:3px;">Hamed asked twice. Also: book office hours with Igor Cunha (OCI) and Mayuran Yogarajah (Index Exchange CTO) — limited slots, book now.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sh"><div class="sh-title">📅 This Week</div></div>
+  <div class="grid-2">
+    <div class="card blue">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <div style="font-size:14px;font-weight:700;">Train to Montreal</div>
+        <span class="tag tag-blue">TODAY 3:38–9:25pm</span>
+      </div>
+      <div style="font-size:12px;color:var(--text2);">Hotel Chrome Montreal. Staying Jun 6–11. Good time to close async items from train.</div>
+    </div>
+    <div class="card blue">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <div style="font-size:14px;font-weight:700;">Tam Kemabonta — Deck Session</div>
+        <span class="tag tag-blue">WED JUN 10 · 12pm MST</span>
+      </div>
+      <div style="font-size:12px;color:var(--text2);">Kemabonta Ventures. Online. Nathan initiated. Confirm + send invite.</div>
+    </div>
+    <div class="card red">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <div style="font-size:14px;font-weight:700;">Altitude IRP — 10 min Presentation</div>
+        <span class="tag tag-red">THU JUN 11 · Brampton City Hall</span>
+      </div>
+      <div style="font-size:12px;color:var(--text2);">Arrive back from Montreal Jun 11. Presentation same day. Deck must be sent by Mon Jun 8 noon.</div>
+    </div>
+    <div class="card yellow">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <div style="font-size:14px;font-weight:700;">Next AI — Blockchains & Agentic Commerce</div>
+        <span class="tag tag-yellow">TUE JUN 9 · 1–3pm ET</span>
+      </div>
+      <div style="font-size:12px;color:var(--text2);">Required. Zoom. Prof. Scott Kominers (HBS, a16z crypto).</div>
+    </div>
+  </div>
+
+  <div class="sh" style="margin-top:16px;"><div class="sh-title">⚠️ Flags</div></div>
+  <div style="display:flex;flex-direction:column;gap:6px;">
+    <div style="display:flex;gap:10px;padding:10px 14px;background:var(--bg2);border:1px solid rgba(255,77,77,.2);border-radius:9px;font-size:12px;color:var(--text2);">
+      <span style="color:var(--red);">🔴</span><span><strong style="color:var(--text);">Data room not investor-ready:</strong> Cap table TBD, whitepaper incomplete, no demo video, no case study. Narro + IAF are in DD now.</span>
+    </div>
+    <div style="display:flex;gap:10px;padding:10px 14px;background:var(--bg2);border:1px solid rgba(255,140,66,.2);border-radius:9px;font-size:12px;color:var(--text2);">
+      <span style="color:var(--orange);">⚠</span><span><strong style="color:var(--text);">Nathan + Manish pay unresolved:</strong> Active tension since May 18. Nathan entering investor-facing work unpaid. You need to make a call.</span>
+    </div>
+    <div style="display:flex;gap:10px;padding:10px 14px;background:var(--bg2);border:1px solid rgba(255,140,66,.2);border-radius:9px;font-size:12px;color:var(--text2);">
+      <span style="color:var(--orange);">⚠</span><span><strong style="color:var(--text);">Round close pressure:</strong> Nathan told IAF + others you close ~June 15. 9 days. Cap table and whitepaper are the two biggest blockers.</span>
+    </div>
+    <div style="display:flex;gap:10px;padding:10px 14px;background:var(--bg2);border:1px solid rgba(255,140,66,.2);border-radius:9px;font-size:12px;color:var(--text2);">
+      <span style="color:var(--orange);">⚠</span><span><strong style="color:var(--text);">Next AI BIZ Assignment #2:</strong> Was due May 29. Likely overdue — check with Alexandra McGregor.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ INBOX ══ -->
+<div class="page" id="page-inbox">
+  <div style="font-size:12px;color:var(--text3);margin-bottom:16px;">💡 Click any draft to edit · <strong style="color:var(--text);">Never send without reviewing</strong></div>
+
+  <div class="sh"><div class="sh-title" style="color:var(--red);">🔴 Tier 1 — Act Now</div></div>
+
+  <div style="background:var(--bg2);border:1px solid rgba(255,77,77,.35);border-radius:12px;padding:14px 18px;margin-bottom:10px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+      <div><div style="font-size:13px;font-weight:600;color:var(--text);">Scott Howard</div><div style="font-size:12px;color:var(--text2);">Re: LightGrid + Revenue Engine · 13 days unanswered</div></div>
+      <span class="tag tag-red">T1</span>
+    </div>
+    <div class="draft" contenteditable="true">Scott — apologies for the slow follow-up, been heads-down on product.
+
+We're not in a position to take on new engagements right now but I don't want to leave this hanging. The Sales-Sleuth concept is interesting — open to a quick demo on one target account when we're closer to a proper go-to-market push, likely Q3.
+
+Will loop back then.
+
+Mujtaba</div>
+    <div class="action-row"><button class="btn btn-green" onclick="sent(this)">Send ✓</button><button class="btn btn-ghost">Edit</button><button class="btn btn-red">Archive</button></div>
+  </div>
+
+  <div style="background:var(--bg2);border:1px solid rgba(255,77,77,.35);border-radius:12px;padding:14px 18px;margin-bottom:10px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+      <div><div style="font-size:13px;font-weight:600;color:var(--text);">Gerro Prinsloo (AlumaPower)</div><div style="font-size:12px;color:var(--text2);">Scope of Work - Sarnia · received overnight</div></div>
+      <span class="tag tag-red">URGENT</span>
+    </div>
+    <div class="draft" contenteditable="true">Gerro — thanks for pulling this together. Reviewing now. Structure looks right. Will confirm our deliverables (IT rack specs, commissioning timeline) and send full response by [date].
+
+Mujtaba</div>
+    <div class="action-row"><button class="btn btn-green" onclick="sent(this)">Send ✓</button></div>
+  </div>
+
+  <div class="sh" style="margin-top:20px;"><div class="sh-title" style="color:var(--yellow);">🟡 Tier 2 — Today</div></div>
+
+  <div style="background:var(--bg2);border:1px solid rgba(245,197,24,.2);border-radius:12px;padding:14px 18px;margin-bottom:10px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+      <div><div style="font-size:13px;font-weight:600;color:var(--text);">Noor Khan</div><div style="font-size:12px;color:var(--text2);">Lightgrid Energy 2025 Financials · $50K R&D capitalization decision</div></div>
+      <span class="tag tag-yellow">T2</span>
+    </div>
+    <div style="padding:10px 14px;background:rgba(245,197,24,.06);border:1px solid rgba(245,197,24,.15);border-radius:8px;font-size:12px;color:var(--text2);">
+      FYI — sent to Rahim. Your action: align with Rahim on capitalization decision before he responds. Capitalizing looks better on investor balance sheet (higher assets) but is aggressive pre-revenue.
+    </div>
+    <div class="action-row"><button class="btn btn-red">Archive</button></div>
+  </div>
+
+  <div style="background:var(--bg2);border:1px solid rgba(245,197,24,.2);border-radius:12px;padding:14px 18px;margin-bottom:10px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+      <div><div style="font-size:13px;font-weight:600;color:var(--text);">Tam Kemabonta (Kemabonta Ventures)</div><div style="font-size:12px;color:var(--text2);">Available Friday 12pm ET for deck session · CONFLICTS with FedDev</div></div>
+      <span class="tag tag-yellow">SCHEDULE</span>
+    </div>
+    <div class="draft" contenteditable="true">Tam — great, Friday works. One conflict at 12pm to sort — can we do 1pm or 2pm instead? Happy to make it work.
+
+Mujtaba</div>
+    <div class="action-row"><button class="btn btn-green" onclick="sent(this)">Send ✓</button></div>
+  </div>
+
+  <div class="sh" style="margin-top:20px;"><div class="sh-title" style="color:var(--text3);">⚪ Archived</div></div>
+  <div style="padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;font-size:12px;color:var(--text3);">
+    ~60 items archived — calendar notifications, LinkedIn, newsletters (PitchBook, Z Fellows, Edgecom, Catalyst, Altitude), Granola onboarding, Google security alerts, payment receipts, Toronto Climate Week updates, 1 phishing scam (BlackRock).
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ FUNDRAISING ══ -->
+<div class="page" id="page-fundraising">
+  <div class="grid-2" style="margin-bottom:24px;">
+
+    <!-- Donut Chart: Round Progress -->
+    <div class="card">
+      <div class="sh-title" style="margin-bottom:16px;">Round Progress</div>
+      <div style="display:flex;align-items:center;gap:24px;">
+        <div style="flex-shrink:0;">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#1e2333" stroke-width="16"/>
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#3ecf8e" stroke-width="16"
+              stroke-dasharray="204 314" stroke-dashoffset="78" stroke-linecap="round"/>
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#0ea5e9" stroke-width="16"
+              stroke-dasharray="63 314" stroke-dashoffset="-126" stroke-linecap="round" opacity=".6"/>
+            <text x="60" y="56" text-anchor="middle" fill="#e8eaf0" font-size="16" font-weight="800">$325K</text>
+            <text x="60" y="72" text-anchor="middle" fill="#555e7a" font-size="10">committed</text>
+          </svg>
+        </div>
+        <div style="flex:1;">
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;"><div style="width:10px;height:10px;border-radius:2px;background:var(--green);"></div><span style="color:var(--text2);">$225K — Friends &amp; Family</span></div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;"><div style="width:10px;height:10px;border-radius:2px;background:var(--blue);"></div><span style="color:var(--text2);">$100K — Strategic Investor</span></div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;"><div style="width:10px;height:10px;border-radius:2px;background:var(--border2);"></div><span style="color:var(--text3);">~$175K — targeting to close</span></div>
+            <div style="margin-top:4px;padding:8px 10px;background:var(--bg3);border-radius:6px;font-size:11px;color:var(--text2);">Target close: <strong style="color:var(--yellow);">June 15</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Investor Pipeline Funnel -->
+    <div class="card">
+      <div class="sh-title" style="margin-bottom:14px;">Investor Pipeline</div>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <div><div class="funnel-bar" style="width:100%;background:rgba(62,207,142,.2);border:1px solid rgba(62,207,142,.25);">✓ Committed<span class="funnel-meta">2 · $325K</span></div></div>
+        <div><div class="funnel-bar" style="width:85%;background:rgba(14,165,233,.2);border:1px solid rgba(14,165,233,.25);">🔄 Due Diligence<span class="funnel-meta">2 · Narro + IAF</span></div></div>
+        <div><div class="funnel-bar" style="width:65%;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.2);">⏳ First Meeting Done<span class="funnel-meta">3 · BDC, Tom Blum, Tam</span></div></div>
+        <div><div class="funnel-bar" style="width:45%;background:rgba(245,197,24,.1);border:1px solid rgba(245,197,24,.15);">📨 Outreach Active<span class="funnel-meta">5+</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sh"><div class="sh-title">Active Investors — Detail</div></div>
+  <div style="display:flex;flex-direction:column;gap:8px;">
+
+    <div class="inv-card" style="border-color:rgba(62,207,142,.25);">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+        <div>
+          <div class="inv-name">MaRS IAF — Robbie Marks + Isaac</div>
+          <div class="inv-org">Investment Director · rmarks@marsiaf.com · 416-435-7595</div>
+        </div>
+        <span class="inv-stage" style="background:rgba(14,165,233,.12);color:var(--blue);border:1px solid rgba(14,165,233,.25);">🔄 Active DD</span>
+      </div>
+      <div style="font-size:12px;color:var(--text2);margin-top:8px;padding:8px 12px;background:var(--bg3);border-radius:7px;line-height:1.6;">
+        Met Jun 1. Nathan told them $300K pilot approved + round closing ~June 15. Asked to do DD before June 17 IAF presentation. <strong style="color:var(--yellow);">Action: confirm DD package ready + what Jun 1 meeting concluded.</strong>
+      </div>
+    </div>
+
+    <div class="inv-card" style="border-color:rgba(14,165,233,.25);">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+        <div>
+          <div class="inv-name">The Narro — Winston Edwards</div>
+          <div class="inv-org">winston@thenarro.com</div>
+        </div>
+        <span class="inv-stage" style="background:rgba(14,165,233,.12);color:var(--blue);border:1px solid rgba(14,165,233,.25);">🔄 Post-DD</span>
+      </div>
+      <div style="font-size:12px;color:var(--text2);margin-top:8px;padding:8px 12px;background:var(--bg3);border-radius:7px;line-height:1.6;">
+        NDA signed Jun 2. DD call happened Jun 2 (4pm). Nathan thanked Winston + asked about meeting other Narro partners. <strong style="color:var(--yellow);">Action: follow up on what Narro needs next.</strong>
+      </div>
+    </div>
+
+    <div class="inv-card" style="border-color:rgba(124,58,237,.2);">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+        <div>
+          <div class="inv-name">BDC Seed Venture Fund — Dinar Ahmed</div>
+          <div class="inv-org">Dinar.AHMED@bdc.ca · 416-402-3978</div>
+        </div>
+        <span class="inv-stage" style="background:rgba(124,58,237,.12);color:var(--purple);border:1px solid rgba(124,58,237,.2);">⏳ Post-Meeting</span>
+      </div>
+      <div style="font-size:12px;color:var(--text2);margin-top:8px;padding:8px 12px;background:var(--bg3);border-radius:7px;line-height:1.6;">
+        Met Jun 1 at 1:30pm. No follow-up email visible. <strong style="color:var(--yellow);">Action: send follow-up to Dinar summarizing conversation + next steps. Don't let this go cold.</strong>
+      </div>
+    </div>
+
+    <div class="inv-card" style="border-color:rgba(124,58,237,.25);">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+        <div>
+          <div class="inv-name">Tam Kemabonta — Kemabonta Ventures</div>
+          <div class="inv-org">tam@kemabontaventures.com · Nathan introduced</div>
+        </div>
+        <span class="inv-stage" style="background:rgba(124,58,237,.12);color:var(--purple);border:1px solid rgba(124,58,237,.2);">📅 Wed Jun 10 · 12pm MST</span>
+      </div>
+      <div style="font-size:12px;color:var(--text2);margin-top:8px;padding:8px 12px;background:var(--bg3);border-radius:7px;line-height:1.6;">
+        Confirmed for deck session. Online — you're in Montreal, this works. Send confirmation + calendar invite today. <strong style="color:var(--yellow);">Action: send confirm reply + Cal invite.</strong>
+      </div>
+    </div>
+
+    <div class="inv-card">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+        <div>
+          <div class="inv-name">Tom Blum — New York Angels</div>
+          <div class="inv-org">tblum@yahoo.com · 917-769-9547</div>
+        </div>
+        <span class="inv-stage" style="background:rgba(100,100,100,.1);color:var(--text3);border:1px solid rgba(100,100,100,.2);">✓ Met Jun 4</span>
+      </div>
+      <div style="font-size:12px;color:var(--text2);margin-top:8px;padding:8px 12px;background:var(--bg3);border-radius:7px;">
+        Jun 4 call done. Not investing — connector only. Ask for intros + Carter Li (Swtch Energy) follow-up.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ CALENDAR ══ -->
+<div class="page" id="page-calendar">
+  <div class="sh"><div class="sh-title">Week of Jun 6–12, 2026 · You're in Montreal Jun 6–11</div></div>
+  <div class="cal-grid" style="margin-bottom:28px;">
+    <div class="cal-day today">
+      <div class="cal-day-header">SAT</div>
+      <div class="cal-day-num" style="color:var(--blue);">6</div>
+      <div class="cal-event blue">3:38pm Train departs TO</div>
+      <div class="cal-event yellow">Next AI SPEED session</div>
+      <div class="cal-event red">Altitude deck — start drafting</div>
+    </div>
+    <div class="cal-day">
+      <div class="cal-day-header">SUN</div>
+      <div class="cal-day-num">7</div>
+      <div class="cal-event green">Montreal</div>
+    </div>
+    <div class="cal-day" style="border-color:rgba(255,77,77,.3);">
+      <div class="cal-day-header">MON</div>
+      <div class="cal-day-num" style="color:var(--red);">8</div>
+      <div class="cal-event red">⚠ Altitude deck DUE noon</div>
+      <div class="cal-event blue">Angela Davoud call (AM)</div>
+      <div class="cal-event red">Emma Todd — reply due</div>
+    </div>
+    <div class="cal-day">
+      <div class="cal-day-header">TUE</div>
+      <div class="cal-day-num">9</div>
+      <div class="cal-event blue">1–3pm Next AI: Scott Kominers</div>
+      <div class="cal-event red">Nathan+Manish pay — decide</div>
+    </div>
+    <div class="cal-day">
+      <div class="cal-day-header">WED</div>
+      <div class="cal-day-num">10</div>
+      <div class="cal-event purple">12pm MST Tam Kemabonta</div>
+      <div class="cal-event red">CIRIF deadline</div>
+    </div>
+    <div class="cal-day" style="border-color:rgba(62,207,142,.3);">
+      <div class="cal-day-header">THU</div>
+      <div class="cal-day-num">11</div>
+      <div class="cal-event green">Back from Montreal</div>
+      <div class="cal-event red">Altitude IRP — Brampton City Hall</div>
+    </div>
+    <div class="cal-day">
+      <div class="cal-day-header">FRI</div>
+      <div class="cal-day-num">12</div>
+      <div class="cal-event yellow">Fin. Feasibility 1-pager due</div>
+    </div>
+  </div>
+
+  <!-- Tom Blum Prep Brief -->
+  <div style="background:var(--bg2);border:1px solid rgba(14,165,233,.25);border-radius:14px;overflow:hidden;margin-bottom:24px;">
+    <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-size:16px;font-weight:800;color:var(--text);">Prep Brief — Tom Blum</div>
+        <div style="font-size:12px;color:var(--text2);margin-top:2px;">New York Angels · tblum@yahoo.com · 917-769-9547</div>
+      </div>
+      <div style="font-size:12px;font-weight:700;padding:6px 14px;border-radius:8px;background:rgba(14,165,233,.15);color:var(--blue);border:1px solid rgba(14,165,233,.3);">Thu Jun 4 · 4:00–4:30pm EDT</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+      <div style="padding:18px 20px;border-right:1px solid var(--border);">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:10px;">Your Outcomes</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="display:flex;gap:8px;padding:8px 12px;background:var(--bg3);border-radius:8px;font-size:12px;color:var(--text2);"><span style="color:var(--blue);font-weight:800;flex-shrink:0;">1</span>Warm intros to 2–3 angels who can write $25–100K</div>
+          <div style="display:flex;gap:8px;padding:8px 12px;background:var(--bg3);border-radius:8px;font-size:12px;color:var(--text2);"><span style="color:var(--blue);font-weight:800;flex-shrink:0;">2</span>Intro to Carter Li — Swtch Energy (load balancing → data centers)</div>
+          <div style="display:flex;gap:8px;padding:8px 12px;background:var(--bg3);border-radius:8px;font-size:12px;color:var(--text2);"><span style="color:var(--blue);font-weight:800;flex-shrink:0;">3</span>Test advisory conversation — he's mentoring for free already</div>
+        </div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin:14px 0 10px;">Talking Points</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="padding:9px 12px;background:var(--bg3);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;font-size:12px;color:var(--text2);font-style:italic;" contenteditable="true">"Followed up on Swtch Energy — Carter does EV load balancing in apartments, we do data centers. Complementary not competitive."</div>
+          <div style="padding:9px 12px;background:var(--bg3);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;font-size:12px;color:var(--text2);font-style:italic;" contenteditable="true">"At $325K committed. Looking to close with 2–3 more at $25–100K. You mentioned sympathetic angels?"</div>
+        </div>
+      </div>
+      <div style="padding:18px 20px;">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:10px;">Watch-Outs</div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px;">
+          <div style="display:flex;gap:8px;padding:8px 12px;background:rgba(255,140,66,.06);border:1px solid rgba(255,140,66,.2);border-radius:8px;font-size:12px;color:var(--text2);"><span style="color:var(--orange);">⚠</span>He already said no to investing — don't ask again</div>
+          <div style="display:flex;gap:8px;padding:8px 12px;background:rgba(255,140,66,.06);border:1px solid rgba(255,140,66,.2);border-radius:8px;font-size:12px;color:var(--text2);"><span style="color:var(--orange);">⚠</span>Don't oversell traction — he'll see through it</div>
+          <div style="display:flex;gap:8px;padding:8px 12px;background:rgba(255,140,66,.06);border:1px solid rgba(255,140,66,.2);border-radius:8px;font-size:12px;color:var(--text2);"><span style="color:var(--orange);">⚠</span>He's a connector — work that angle hard</div>
+        </div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:10px;">His Leads to Reference</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="padding:8px 12px;background:var(--bg3);border-radius:8px;font-size:12px;color:var(--text2);">🏢 <strong style="color:var(--text);">Swtch Energy</strong> — Carter Li · Best lead</div>
+          <div style="padding:8px 12px;background:var(--bg3);border-radius:8px;font-size:12px;color:var(--text2);">🚀 <strong style="color:var(--text);">TandemLaunch</strong> — Toronto startup foundry</div>
+          <div style="padding:8px 12px;background:var(--bg3);border-radius:8px;font-size:12px;color:var(--text2);">⚡ <strong style="color:var(--text);">Cleantech Open</strong> — mentors, no funding</div>
+        </div>
+        <a href="https://meet.google.com/kej-hwkg-pqk" target="_blank" style="display:inline-block;margin-top:12px;padding:7px 14px;background:rgba(14,165,233,.15);color:var(--blue);border:1px solid rgba(14,165,233,.3);border-radius:7px;font-size:12px;font-weight:700;text-decoration:none;">Join Google Meet →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ GRANTS ══ -->
+<div class="page" id="page-grants">
+  <div class="grid-3" style="margin-bottom:20px;">
+    <div class="stat"><div class="stat-label">CIRIF</div><div class="stat-val c-red">Jun 10</div><div class="stat-sub">7 days — gated on research chair</div></div>
+    <div class="stat"><div class="stat-label">Pitch Deck (Altitude)</div><div class="stat-val c-orange">Jun 5</div><div class="stat-sub">Tomorrow EOD</div></div>
+    <div class="stat"><div class="stat-label">IRAP</div><div class="stat-val c-yellow">Rolling</div><div class="stat-sub">Need 2 FTE internships first</div></div>
+  </div>
+
+  <div class="sh"><div class="sh-title">Grant &amp; Deadline Timeline — June 2026</div></div>
+  <div class="card" style="margin-bottom:20px;overflow-x:auto;">
+    <div class="gantt-header">
+      <div class="gantt-header-label"></div>
+      <div class="gantt-header-track">
+        <div class="gantt-date-tick">Jun 3</div>
+        <div class="gantt-date-tick">Jun 5</div>
+        <div class="gantt-date-tick">Jun 8</div>
+        <div class="gantt-date-tick">Jun 10</div>
+        <div class="gantt-date-tick">Jun 12</div>
+        <div class="gantt-date-tick">Jun 15</div>
+        <div class="gantt-date-tick">Jun 17</div>
+        <div class="gantt-date-tick">Jun 20</div>
+      </div>
+    </div>
+
+    <div class="gantt-row">
+      <div class="gantt-label">CIRIF Grant</div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="left:0%;width:28%;background:rgba(255,77,77,.5);">CIRIF — Jun 10 🔥</div>
+        <div class="gantt-deadline" style="left:28%;"></div>
+        <div class="gantt-today" style="left:0%;"></div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">Altitude Pitch Deck</div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="left:0%;width:10%;background:rgba(255,140,66,.5);">Deck due</div>
+        <div class="gantt-deadline" style="left:10%;"></div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">Round Close</div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="left:0%;width:57%;background:rgba(62,207,142,.3);">Active fundraising</div>
+        <div class="gantt-deadline" style="left:57%;background:var(--green);"></div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">IAF Presentation</div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="left:62%;width:10%;background:rgba(14,165,233,.4);">IAF Jun 17</div>
+        <div class="gantt-deadline" style="left:72%;background:var(--blue);"></div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">Altitude IRP</div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="left:41%;width:8%;background:rgba(124,58,237,.4);">IRP Jun 11</div>
+      </div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">IRAP + Clean Foundation</div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="left:0%;width:100%;background:rgba(255,197,24,.15);border:1px dashed rgba(245,197,24,.3);color:var(--yellow);">In progress — need job descriptions sent to Arctech</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:16px;margin-top:14px;font-size:11px;color:var(--text3);">
+      <span><span style="color:var(--red);">━</span> Hard deadline</span>
+      <span><span style="color:var(--yellow);">━</span> Today</span>
+      <span><span style="color:var(--green);">━</span> Target</span>
+    </div>
+  </div>
+
+  <div class="sh"><div class="sh-title">Grant Details</div></div>
+  <div style="display:flex;flex-direction:column;gap:10px;">
+
+    <div class="card red">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+        <div><div style="font-size:14px;font-weight:700;">CIRIF — Canada Impact+ Infrastructure Research Fund</div><div style="font-size:12px;color:var(--text3);margin-top:2px;">Arctech Accelerate (Tarig) · Due June 10</div></div>
+        <span class="tag tag-red">7 DAYS</span>
+      </div>
+      <div style="font-size:12px;color:var(--text2);line-height:1.7;padding:10px 14px;background:var(--bg3);border-radius:8px;">
+        <strong style="color:var(--text);">Gating requirement:</strong> University/college with Canada Impact+ Research Chair must be lead applicant. Lightgrid cannot apply directly.<br>
+        <strong style="color:var(--yellow);">Action today:</strong> Confirm with Mathusha (TMU — mathusha.sivasundara@torontomu.ca) that research chair is in place.<br>
+        Estimated probability: 10–20%. High upside if positioned correctly.
+      </div>
+    </div>
+
+    <div class="card yellow">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+        <div><div style="font-size:14px;font-weight:700;">IRAP — Clean Tech Stream</div><div style="font-size:12px;color:var(--text3);margin-top:2px;">Rolling intake · Arctech managing</div></div>
+        <span class="tag tag-yellow">PRIORITY</span>
+      </div>
+      <div style="font-size:12px;color:var(--text2);line-height:1.7;padding:10px 14px;background:var(--bg3);border-radius:8px;">
+        Requires 2 FTEs. Need to submit job descriptions for:<br>
+        1. <strong>Clean Foundation Green Jobs</strong> (cleanfoundation.ca/green-jobs)<br>
+        2. <strong>EHRC Discovering Potential</strong> — you have a female participant eligible<br>
+        <strong style="color:var(--yellow);">Action:</strong> Send job descriptions to Tarig (arctech). Nathan already confirmed.
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="font-size:14px;font-weight:700;margin-bottom:6px;">FedDev Ontario — Friday 12pm EDT</div>
+      <div style="font-size:12px;color:var(--text2);">Eddie Bissoon wants to match Lightgrid to "the right funding program." Meeting Friday. Nathan confirmed — Eddie to send invite. <strong style="color:var(--red);">⚠ Conflicts with Tam Kemabonta at same time.</strong></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ TASKS ══ -->
+<div class="page" id="page-tasks">
+  <div class="grid-3" style="margin-bottom:20px;">
+    <div class="stat"><div class="stat-label">Overdue</div><div class="stat-val c-red">1</div><div class="stat-sub">GitHub token rotation</div></div>
+    <div class="stat"><div class="stat-label">Due This Week</div><div class="stat-val c-yellow">4</div><div class="stat-sub">Deck, CIRIF, Calendar, CLAUDE.md</div></div>
+    <div class="stat"><div class="stat-label">Complete</div><div class="stat-val c-green">2</div><div class="stat-sub">GitHub + Gmail MCP</div></div>
+  </div>
+
+  <div class="sh"><div class="sh-title" style="color:var(--red);">🔴 Overdue</div></div>
+  <div class="task-row overdue">
+    <div class="chk" onclick="chk(this)"></div>
+    <div class="task-body">
+      <div class="task-title">TASK-006 — Rotate GitHub token (exposed in chat)</div>
+      <div class="task-meta"><span class="task-due late">Jun 2 — OVERDUE</span><span class="p1">P1</span><span style="font-size:10px;color:var(--text3);">OBJ-3</span></div>
+    </div>
+  </div>
+
+  <div class="sh" style="margin-top:16px;"><div class="sh-title" style="color:var(--yellow);">🟡 This Week</div></div>
+  <div class="task-row">
+    <div class="chk" onclick="chk(this)"></div>
+    <div class="task-body">
+      <div class="task-title">TASK-NEW — Send pitch deck to Altitude Accelerator (Richard)</div>
+      <div class="task-meta"><span class="task-due">Due: Jun 5 EOD</span><span class="p1">P1</span><span style="font-size:10px;color:var(--text3);">OBJ-1</span></div>
+    </div>
+  </div>
+  <div class="task-row">
+    <div class="chk" onclick="chk(this)"></div>
+    <div class="task-body">
+      <div class="task-title">TASK-NEW — Confirm CIRIF research chair with Mathusha (TMU)</div>
+      <div class="task-meta"><span class="task-due late">Due: Today (CIRIF Jun 10)</span><span class="p1">P1</span></div>
+    </div>
+  </div>
+  <div class="task-row">
+    <div class="chk" onclick="chk(this)"></div>
+    <div class="task-body">
+      <div class="task-title">TASK-NEW — Finalize + send Lenny's agreement</div>
+      <div class="task-meta"><span class="task-due">Due: Today</span><span class="p1">P1</span></div>
+    </div>
+  </div>
+  <div class="task-row">
+    <div class="chk" onclick="chk(this)"></div>
+    <div class="task-body">
+      <div class="task-title">TASK-NEW — Respond to Gerro (AlumaPower) Sarnia SOW</div>
+      <div class="task-meta"><span class="task-due">Due: Today</span><span class="p1">P1</span></div>
+    </div>
+  </div>
+  <div class="task-row">
+    <div class="chk" onclick="chk(this)"></div>
+    <div class="task-body">
+      <div class="task-title">TASK-NEW — Fix Friday double-booking (FedDev + Tam, both 12pm)</div>
+      <div class="task-meta"><span class="task-due">Due: Today</span><span class="p2">P2</span></div>
+    </div>
+  </div>
+  <div class="task-row">
+    <div class="chk" onclick="chk(this)"></div>
+    <div class="task-body">
+      <div class="task-title">TASK-003 — Connect Google Calendar MCP</div>
+      <div class="task-meta"><span class="task-due">Due: Jun 5</span><span class="p1">P1</span><span style="font-size:10px;color:var(--text3);">OBJ-1</span></div>
+    </div>
+  </div>
+  <div class="task-row">
+    <div class="chk" onclick="chk(this)"></div>
+    <div class="task-body">
+      <div class="task-title">TASK-004 — Fill in CLAUDE.md personal details (team, timezone, writing style)</div>
+      <div class="task-meta"><span class="task-due">Due: Jun 7</span><span class="p2">P2</span></div>
+    </div>
+  </div>
+
+  <div class="sh" style="margin-top:16px;"><div class="sh-title">📅 Later</div></div>
+  <div class="task-row">
+    <div class="chk" onclick="chk(this)"></div>
+    <div class="task-body">
+      <div class="task-title">TASK-005 — Define Lightgrid v1 product spec</div>
+      <div class="task-meta"><span class="task-due">Due: Jun 15</span><span class="p1">P1</span><span style="font-size:10px;color:var(--text3);">OBJ-1</span></div>
+    </div>
+  </div>
+  <div class="task-row">
+    <div class="chk" onclick="chk(this)"></div>
+    <div class="task-body">
+      <div class="task-title">TASK-008 — Fix Granola MCP (debug proxy)</div>
+      <div class="task-meta"><span class="task-due">Due: Jun 7</span><span class="p2">P2</span></div>
+    </div>
+  </div>
+
+  <div class="sh" style="margin-top:16px;"><div class="sh-title">✅ Complete</div></div>
+  <div class="task-row done"><div class="chk on" onclick="chk(this)"></div><div class="task-body"><div class="task-title">TASK-001 — GitHub setup + push chief-of-staff repo</div><div class="task-meta"><span class="task-due">Completed Jun 2</span></div></div></div>
+  <div class="task-row done"><div class="chk on" onclick="chk(this)"></div><div class="task-body"><div class="task-title">TASK-002 — Connect Gmail MCP</div><div class="task-meta"><span class="task-due">Completed Jun 3</span></div></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ GOALS ══ -->
+<div class="page" id="page-goals">
+  <div class="grid-3" style="margin-bottom:24px;align-items:start;">
+
+    <!-- Radial for each OBJ -->
+    <div class="card" style="text-align:center;">
+      <div style="font-size:10px;color:var(--text3);text-transform:uppercase;margin-bottom:12px;">OBJ-1 · P1</div>
+      <svg width="110" height="110" viewBox="0 0 110 110" style="display:block;margin:0 auto;">
+        <circle cx="55" cy="55" r="45" fill="none" stroke="#1e2333" stroke-width="10"/>
+        <circle cx="55" cy="55" r="45" fill="none" stroke="#ff8c42" stroke-width="10"
+          stroke-dasharray="28 283" stroke-dashoffset="70" stroke-linecap="round"/>
+        <text x="55" y="51" text-anchor="middle" fill="#e8eaf0" font-size="18" font-weight="800">10%</text>
+        <text x="55" y="66" text-anchor="middle" fill="#555e7a" font-size="9">avg progress</text>
+      </svg>
+      <div style="font-size:12px;font-weight:600;color:var(--text);margin-top:10px;" contenteditable="true">Ship v1 to first paying data center</div>
+    </div>
+
+    <div class="card" style="text-align:center;">
+      <div style="font-size:10px;color:var(--text3);text-transform:uppercase;margin-bottom:12px;">OBJ-2 · P2</div>
+      <svg width="110" height="110" viewBox="0 0 110 110" style="display:block;margin:0 auto;">
+        <circle cx="55" cy="55" r="45" fill="none" stroke="#1e2333" stroke-width="10"/>
+        <circle cx="55" cy="55" r="45" fill="none" stroke="#ff4d4d" stroke-width="10"
+          stroke-dasharray="0 283" stroke-dashoffset="70" stroke-linecap="round"/>
+        <text x="55" y="51" text-anchor="middle" fill="#e8eaf0" font-size="18" font-weight="800">0%</text>
+        <text x="55" y="66" text-anchor="middle" fill="#555e7a" font-size="9">avg progress</text>
+      </svg>
+      <div style="font-size:12px;font-weight:600;color:var(--text);margin-top:10px;" contenteditable="true">Strategic partnerships with renewable developers</div>
+    </div>
+
+    <div class="card" style="text-align:center;">
+      <div style="font-size:10px;color:var(--text3);text-transform:uppercase;margin-bottom:12px;">OBJ-3 · P3</div>
+      <svg width="110" height="110" viewBox="0 0 110 110" style="display:block;margin:0 auto;">
+        <circle cx="55" cy="55" r="45" fill="none" stroke="#1e2333" stroke-width="10"/>
+        <circle cx="55" cy="55" r="45" fill="none" stroke="#3ecf8e" stroke-width="10"
+          stroke-dasharray="127 283" stroke-dashoffset="70" stroke-linecap="round"/>
+        <text x="55" y="51" text-anchor="middle" fill="#e8eaf0" font-size="18" font-weight="800">45%</text>
+        <text x="55" y="66" text-anchor="middle" fill="#555e7a" font-size="9">avg progress</text>
+      </svg>
+      <div style="font-size:12px;font-weight:600;color:var(--text);margin-top:10px;" contenteditable="true">GitHub org + technical foundation</div>
+    </div>
+  </div>
+
+  <!-- OBJ detail cards -->
+  <div style="display:flex;flex-direction:column;gap:14px;">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+        <div><div style="font-size:11px;color:var(--text3);margin-bottom:3px;">OBJ-1 · Priority 1</div><div style="font-size:14px;font-weight:700;" contenteditable="true">Ship Lightgrid v1 product to first paying data center customers</div></div>
+        <span class="tag tag-yellow">P1</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="padding:10px 14px;background:var(--bg3);border-radius:8px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text2);" contenteditable="true">Define and lock v1 product spec</span><span style="font-size:11px;font-weight:700;color:var(--orange);">10%</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:var(--orange);"></div></div>
+          <div style="font-size:10px;color:var(--text3);margin-top:4px;">Due Jun 15</div>
+        </div>
+        <div style="padding:10px 14px;background:var(--bg3);border-radius:8px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text2);" contenteditable="true">Build MVP dispatch optimization engine</span><span style="font-size:11px;font-weight:700;color:var(--red);">0%</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:var(--red);"></div></div>
+          <div style="font-size:10px;color:var(--text3);margin-top:4px;">Due Jul 15</div>
+        </div>
+        <div style="padding:10px 14px;background:var(--bg3);border-radius:8px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text2);" contenteditable="true">Sign first pilot agreement with data center operator</span><span style="font-size:11px;font-weight:700;color:var(--orange);">15%</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:15%;background:var(--orange);"></div></div>
+          <div style="font-size:10px;color:var(--text3);margin-top:4px;">Due Aug 31 · AlumaPower SOW in progress</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+        <div><div style="font-size:11px;color:var(--text3);margin-bottom:3px;">OBJ-3 · Priority 3</div><div style="font-size:14px;font-weight:700;" contenteditable="true">Establish GitHub org and technical foundation</div></div>
+        <span class="tag tag-blue">P3</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="padding:10px 14px;background:var(--bg3);border-radius:8px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text2);">GitHub org + first repo</span><span style="font-size:11px;font-weight:700;color:var(--green);">90%</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:90%;background:var(--green);"></div></div>
+        </div>
+        <div style="padding:10px 14px;background:var(--bg3);border-radius:8px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text2);">Chief of Staff system live</span><span style="font-size:11px;font-weight:700;color:var(--green);">85%</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:85%;background:var(--green);"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ R&D ══ -->
+<div class="page" id="page-rd">
+  <div class="rd-stats">
+    <div class="rd-stat"><div class="stat-label">Critical Gaps</div><div class="stat-val c-red">3</div><div class="stat-sub">at 0%</div></div>
+    <div class="rd-stat"><div class="stat-label">Pre-Lab Items</div><div class="stat-val c-yellow">7</div><div class="stat-sub">need completion</div></div>
+    <div class="rd-stat"><div class="stat-label">Active Owners</div><div class="stat-val c-blue">4</div><div class="stat-sub">assigned</div></div>
+    <div class="rd-stat"><div class="stat-label">Unowned</div><div class="stat-val c-orange">1</div><div class="stat-sub">Promoted Models</div></div>
+  </div>
+
+  <div class="next-up-panel">
+    <div class="next-up-title"><div class="pulse"></div>Next Up — Immediate Priorities</div>
+    <div class="next-up-list">
+      <div class="next-up-item"><div class="nu-date">Tilak — ASAP</div><div class="nu-name">Internal Simulation Doc</div><div class="nu-task">Review academic + competitor case studies. Draft facility spec + workloads.</div><div class="nu-owners"><div class="nu-owner" style="background:#d97706;">T</div></div></div>
+      <div class="next-up-item"><div class="nu-date">Tilak — ASAP</div><div class="nu-name">Data Audit + Master Tag List</div><div class="nu-task">Inventory all data sources. Build tracker + compressed file for Mostafa.</div><div class="nu-owners"><div class="nu-owner" style="background:#d97706;">T</div></div></div>
+      <div class="next-up-item"><div class="nu-date">Tilak — ASAP</div><div class="nu-name">OPC UA Documentation</div><div class="nu-task">Document PLC → OPC UA → Historian stack. Build vs buy rec.</div><div class="nu-owners"><div class="nu-owner" style="background:#d97706;">T</div></div></div>
+      <div class="next-up-item"><div class="nu-date">Nishant — ASAP</div><div class="nu-name">Classification Layer</div><div class="nu-task">Stand up base architecture. Define input schema from Data Layer output.</div><div class="nu-owners"><div class="nu-owner" style="background:#7c3aed;">N</div></div></div>
+      <div class="next-up-item"><div class="nu-date">Nishant + Tilak</div><div class="nu-name">Historian Connector Validation</div><div class="nu-task">Tilak validates data completeness. Test sampling rates + GB volume projections.</div><div class="nu-owners"><div class="nu-owner" style="background:#7c3aed;">N</div><div class="nu-owner" style="background:#d97706;">T</div></div></div>
+      <div class="next-up-item"><div class="nu-date">All — Near-term</div><div class="nu-name">Promoted Models — Assign Owner</div><div class="nu-task">No owner yet. Unblocked once Classification + Evaluator hit 70%+.</div><div class="nu-owners"><div class="nu-owner" style="background:#555;">?</div></div></div>
+    </div>
+  </div>
+
+  <div class="rd-layout">
+    <div class="rd-sidebar">
+      <div class="progress-ring-wrap">
+        <div class="ring-label">Avg Completion</div>
+        <div class="ring-num" id="overallPct">–</div>
+        <div class="ring-sub">across visible items</div>
+        <div style="width:100%;margin-top:10px;"><div class="bar-wrap" style="height:6px;"><div class="bar-fill" id="overallBar" style="background:var(--yellow);width:0%;"></div></div></div>
+      </div>
+      <div class="rd-sidebar-section">
+        <div class="sidebar-label">Owner</div>
+        <button class="team-btn active" data-member="all" onclick="fm('all')"><div class="av" style="background:var(--border2);font-size:8px;">ALL</div>All<span class="tc" id="count-all">11</span></button>
+        <button class="team-btn" data-member="Nishant" onclick="fm('Nishant')"><div class="av" style="background:#7c3aed;">N</div>Nishant<span class="tc" id="count-Nishant">0</span></button>
+        <button class="team-btn" data-member="Rockshit" onclick="fm('Rockshit')"><div class="av" style="background:#0ea5e9;">R</div>Rockshit<span class="tc" id="count-Rockshit">0</span></button>
+        <button class="team-btn" data-member="Mani" onclick="fm('Mani')"><div class="av" style="background:#059669;">M</div>Mani<span class="tc" id="count-Mani">0</span></button>
+        <button class="team-btn" data-member="Tilak" onclick="fm('Tilak')"><div class="av" style="background:#d97706;">T</div>Tilak<span class="tc" id="count-Tilak">0</span></button>
+        <button class="team-btn" data-member="Mostafa" onclick="fm('Mostafa')"><div class="av" style="background:#0d9488;">Mo</div>Mostafa<span class="tc" id="count-Mostafa">0</span></button>
+      </div>
+      <div class="rd-sidebar-section">
+        <div class="sidebar-label">Status</div>
+        <button class="status-btn active" data-status="all" onclick="fs('all')"><div class="status-dot" style="background:var(--text3);"></div>All</button>
+        <button class="status-btn" data-status="critical" onclick="fs('critical')"><div class="status-dot" style="background:var(--red);"></div>Critical (0%)</button>
+        <button class="status-btn" data-status="at-risk" onclick="fs('at-risk')"><div class="status-dot" style="background:var(--orange);"></div>At Risk</button>
+        <button class="status-btn" data-status="in-progress" onclick="fs('in-progress')"><div class="status-dot" style="background:var(--yellow);"></div>In Progress</button>
+        <button class="status-btn" data-status="on-track" onclick="fs('on-track')"><div class="status-dot" style="background:var(--green);"></div>On Track</button>
+      </div>
+      <div class="rd-sidebar-section">
+        <div class="sidebar-label">Scope</div>
+        <button class="status-btn active" data-scope="all" onclick="fsc('all')"><div class="status-dot" style="background:var(--text3);"></div>All</button>
+        <button class="status-btn" data-scope="prelab" onclick="fsc('prelab')"><div class="status-dot" style="background:var(--accent2);"></div>Pre-Lab Only</button>
+      </div>
+    </div>
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+        <div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.08em;" id="rdSectionTitle">All Components</div>
+        <div style="display:flex;gap:4px;"><button class="vt-btn active" onclick="sv('expanded')">Expanded</button><button class="vt-btn" onclick="sv('compact')">Compact</button></div>
+      </div>
+      <div id="rdCards"></div>
+      <div id="rdEmpty" style="text-align:center;padding:40px;color:var(--text3);font-size:13px;display:none;">No components match this filter.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── PAGE NAV ──
+function show(id) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.querySelectorAll('.tab').forEach(t=>{if(t.getAttribute('onclick')?.includes("'"+id+"'"))t.classList.add('active');});
+}
+
+// ── CLOCK ──
+function tick(){const n=new Date();document.getElementById('clock').textContent=n.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})+' '+n.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});}
+tick();setInterval(tick,30000);
+
+// ── SEND/CHECK ──
+function sent(btn){const c=btn.closest('[style*="background"],.card');btn.textContent='✓ Sent';btn.disabled=true;btn.style.background='rgba(62,207,142,.25)';if(c)c.style.opacity='.5';}
+function chk(el){el.classList.toggle('on');el.closest('.task-row').classList.toggle('done');}
+
+// ── R&D TRACKER ──
+const COLORS={Nishant:'#7c3aed',Rockshit:'#0ea5e9',Mani:'#059669',Tilak:'#d97706',MK:'#c8372d',Mostafa:'#0d9488'};
+const components=[
+  {id:'sim',name:'Internal Simulation / Case Study',pct:10,prelab:true,priority:'priority',type:'research',desc:'First simulated case study shown to customers. Defines facility type, size, assets, workloads. Comparison vs competitors.',owners:['Tilak'],milestones:[{label:'Review academic papers + competitor case studies',status:'next'},{label:'Define facility: type, size, asset stack',status:'next'},{label:'Define workload types and sources',status:'future'},{label:'Comparison table: Lightgrid vs competitors',status:'future'},{label:'Word doc finalized',status:'future'}]},
+  {id:'audit',name:'Data Audit & Specifications',pct:30,prelab:true,priority:'priority',type:'research',desc:'Full audit of all data sources. Output: doc + tracker + compressed file + Master Tag List. Critical for Sarnia.',owners:['Tilak'],milestones:[{label:'Inventory all current data sources',status:'done'},{label:'Draft change management tracker',status:'next'},{label:'Compressed data file for Mostafa',status:'next'},{label:'Master Tag List — draft taxonomy',status:'next'},{label:'All specs locked',status:'future'}]},
+  {id:'trl',name:"Mostafa's Work Structure (TRL)",pct:10,prelab:false,priority:'priority',type:'research',desc:"Package Dr. Farrokhabadi's EMT/PSCAD work as key validation. Define thesis goals + short-term direction.",owners:['Tilak','Mostafa'],milestones:[{label:'Review peer/competitor validation approaches',status:'next'},{label:"Map Mostafa's work to TRL framework",status:'next'},{label:'Draft paper or structured story element',status:'future'},{label:'Package finalized',status:'future'}]},
+  {id:'hist',name:'Historian Connector',pct:60,prelab:true,priority:'priority',type:'software',desc:'Tested on Sarnia/Aluma. Tilak validates connector. Test sampling rates and volumes.',owners:['Nishant','Tilak'],milestones:[{label:'Initial Sarnia test (Nishant)',status:'done'},{label:'Generalize connector logic',status:'next'},{label:'Tilak: validate data completeness',status:'next'},{label:'Sampling rate tests',status:'next'},{label:'Volume projections (GB/day)',status:'future'}]},
+  {id:'opcua',name:'OPC UA Documentation',pct:5,prelab:true,priority:'critical',type:'research',desc:'Full stack: assets → PLC → OPC UA → Historian. Industry alternatives, build vs buy rec.',owners:['Tilak'],milestones:[{label:'Explain OPC UA stack internally',status:'next'},{label:'Document PLC → OPC UA → Historian',status:'next'},{label:'Research industry alternatives',status:'next'},{label:'Build vs buy recommendation',status:'future'}]},
+  {id:'class',name:'Classification / Attribution Layer',pct:0,prelab:true,priority:'critical',type:'software',desc:'Core attribution logic. Not started — key blocker.',owners:['Nishant'],milestones:[{label:'Define input schema from Data Layer',status:'next'},{label:'Stand up base architecture',status:'next'},{label:'Initial classification model v0.1',status:'future'},{label:'Integrated with Evaluator',status:'future'}]},
+  {id:'promo',name:'Promoted Models',pct:0,prelab:true,priority:'critical',type:'software',desc:'No viable models yet. Depends on Classification + Evaluator. Needs owner.',owners:[],milestones:[{label:'Assign owner',status:'next'},{label:'First candidate model defined',status:'future'},{label:'Validated through Evaluator',status:'future'}]},
+  {id:'eval',name:'Evaluator',pct:40,prelab:true,priority:'priority',type:'software',desc:'Accuracy and performance evaluation pipeline. Partially built.',owners:['Rockshit'],milestones:[{label:'Basic eval loop built',status:'done'},{label:'Expand test coverage',status:'next'},{label:'Integrate Classification output',status:'future'}]},
+  {id:'iface',name:'Interfaces',pct:50,prelab:true,priority:'priority',type:'software',desc:'User-facing interfaces. Mid-progress. Must be demo-ready.',owners:['Mani'],milestones:[{label:'Core scaffolding',status:'done'},{label:'Data Layer integration',status:'next'},{label:'Real-time display',status:'future'}]},
+  {id:'data',name:'Data Layer',pct:90,prelab:false,priority:'other',type:'software',desc:'Near-complete.',owners:[],milestones:[{label:'Schema finalized',status:'done'},{label:'Pipeline tested',status:'done'},{label:'Final hardening pass',status:'next'}]},
+  {id:'pre',name:'Preprocessing',pct:80,prelab:false,priority:'other',type:'software',desc:'Mostly complete.',owners:[],milestones:[{label:'Core transforms built',status:'done'},{label:'Edge case handling',status:'next'}]},
+  {id:'opt',name:'Optimization Engine',pct:70,prelab:false,priority:'other',type:'software',desc:'Functional for limited tests.',owners:[],milestones:[{label:'Core solver implemented',status:'done'},{label:'Limited test validation',status:'done'},{label:'Scale testing',status:'future'}]},
+  {id:'add',name:'Additional Tracks',pct:30,prelab:false,priority:'other',type:'software',desc:'Low priority until pre-lab resolved.',owners:[],milestones:[{label:'Scoped',status:'done'},{label:'Initial prototyping',status:'future'}]},
+];
+
+let rdF={member:'all',status:'all',scope:'all'};let rdV='expanded';
+
+function bc(p){return p===0?'var(--red)':p<50?'var(--orange)':p<80?'var(--yellow)':'var(--green)';}
+function pc(p){return p===0?'c-red':p<50?'c-orange':p<80?'c-yellow':'c-green';}
+function oc(name){const c=COLORS[name]||'#888';return`<div class="owner-chip"><div class="dot" style="background:${c};">${name[0]}</div>${name}</div>`;}
+
+function renderRD(){
+  const el=document.getElementById('rdCards');el.innerHTML='';let vis=0;
+  components.forEach(c=>{
+    const mm=rdF.member==='all'||c.owners.includes(rdF.member);
+    const sm=rdF.status==='all'||(rdF.status==='critical'&&c.pct===0)||(rdF.status==='at-risk'&&c.pct>0&&c.pct<50)||(rdF.status==='in-progress'&&c.pct>=50&&c.pct<80)||(rdF.status==='on-track'&&c.pct>=80);
+    const scm=rdF.scope==='all'||(rdF.scope==='prelab'&&c.prelab);
+    if(!mm||!sm||!scm)return;vis++;
+    const cls=c.priority==='critical'?'critical-card':c.priority==='priority'?'priority-card':'';
+    const tag=c.priority==='critical'?'<span class="tag tag-critical">CRITICAL</span>':c.prelab?'<span class="tag tag-priority">PRE-LAB</span>':'<span class="tag tag-other">Component</span>';
+    const oh=c.owners.length?c.owners.map(oc).join(''):'<div class="owner-chip"><div class="dot" style="background:#555;">?</div>Unowned</div>';
+    const mh=c.milestones.map(m=>`<div class="milestone-item"><div class="mi-dot ${m.status==='done'?'mi-done':m.status==='next'?'mi-next':'mi-future'}"></div>${m.label}<div class="mi-date">${m.status==='done'?'✓':m.status==='next'?'→ Next':'○'}</div></div>`).join('');
+    const warn=!c.owners.length?'<div style="margin-top:8px;padding:7px 10px;background:rgba(255,77,77,.1);border:1px solid rgba(255,77,77,.3);border-radius:6px;font-size:11px;color:var(--red);">⚠ No owner</div>':'';
+    const bs=rdV==='compact'?'style="display:none;"':'';
+    const d=document.createElement('div');d.className=`item-card ${cls}`;
+    d.innerHTML=`<div class="card-header" onclick="tgl('${c.id}')"><div class="card-title-row"><div class="card-name">${c.name}</div>${tag}</div><div class="card-pct ${pc(c.pct)}">${c.pct}%</div></div><div class="card-body" ${bs}><div><div class="card-desc">${c.desc}</div><div class="bar-wrap"><div class="bar-fill" style="width:${c.pct}%;background:${bc(c.pct)};"></div></div></div><div class="owners-row"><span class="owners-label">Owner&nbsp;</span>${oh}</div></div><div class="card-detail" id="rd-${c.id}"><div class="detail-grid"><div><div class="detail-section-title">Milestones</div><div class="milestone-list">${mh}</div></div><div><div class="detail-section-title">Notes</div><div style="font-size:12px;color:var(--text2);line-height:1.6;">${c.desc}</div>${warn}</div></div></div>`;
+    el.appendChild(d);
+  });
+  document.getElementById('rdEmpty').style.display=vis===0?'block':'none';
+  updOv();
+}
+
+function tgl(id){document.getElementById('rd-'+id).classList.toggle('open');}
+function updOv(){
+  const items=components.filter(c=>(rdF.scope==='all'||c.prelab)&&(rdF.member==='all'||c.owners.includes(rdF.member)));
+  if(!items.length)return;
+  const avg=Math.round(items.reduce((s,c)=>s+c.pct,0)/items.length);
+  document.getElementById('overallPct').textContent=avg+'%';
+  document.getElementById('overallBar').style.width=avg+'%';
+  document.getElementById('overallBar').style.background=bc(avg);
+}
+function fm(m){rdF.member=m;document.querySelectorAll('.team-btn').forEach(b=>b.classList.toggle('active',b.dataset.member===m));renderRD();}
+function fs(s){rdF.status=s;document.querySelectorAll('.status-btn[data-status]').forEach(b=>b.classList.toggle('active',b.dataset.status===s));renderRD();}
+function fsc(s){rdF.scope=s;document.querySelectorAll('.status-btn[data-scope]').forEach(b=>b.classList.toggle('active',b.dataset.scope===s));renderRD();}
+function sv(mode){rdV=mode;document.querySelectorAll('.vt-btn').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase()===mode));renderRD();}
+function updCounts(){['all','Nishant','Rockshit','Mani','Tilak','Mostafa'].forEach(m=>{const n=m==='all'?components.length:components.filter(c=>c.owners.includes(m)).length;const e=document.getElementById('count-'+m);if(e)e.textContent=n;});}
+
+updCounts();renderRD();
+</script>
+</body>
+</html>
