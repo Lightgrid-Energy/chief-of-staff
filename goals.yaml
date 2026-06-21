@@ -1,5 +1,5 @@
-quarter: Q2-2026
-last_updated: 2026-06-02
+quarter: Q2-Q3-2026
+last_updated: 2026-06-06
 owner: Mujtaba Khan
 
 # ---------------------------------------------------------------
@@ -9,65 +9,198 @@ owner: Mujtaba Khan
 # Update quarterly, review weekly.
 # ---------------------------------------------------------------
 
+# ---------------------------------------------------------------
+# TEAM
+# ---------------------------------------------------------------
+team:
+  - name: Mujtaba Khan
+    role: "Founder & CEO — project owner, PM, partnerships"
+  - name: Manish Chauhan
+    role: "CPTO — architecture, design, technical lead"
+  - name: Rakshit Mishra
+    role: "Lead Developer — geo+time shift models, Zone A opt engine (part-time)"
+  - name: Nishant Raghuvanshi
+    role: "ML Engineer / DevOps — MLOps, pipelines, GCP, Zone B"
+  - name: Tilak
+    role: "Analyst — data, evaluation framework, testing"
+  - name: Hasti
+    role: "ML Researcher — not yet joined, next hire"
+
+# ---------------------------------------------------------------
+# SPRINT
+# ---------------------------------------------------------------
+active_sprint: "sprint-01-prelab"
+sprint_file: "sprints/sprint-01-prelab.yaml"
+sprint_goal: "Zones A+B production-ready for first lab deployment"
+sprint_end: 2026-06-28
+
+# ---------------------------------------------------------------
+# OBJECTIVES
+# ---------------------------------------------------------------
+
 objectives:
 
   - id: OBJ-1
-    title: "Ship Lightgrid v1 product to first paying data center customers"
+    title: "Complete prelab sprint — Zones A+B production-ready for lab deployment"
     priority: 1
     description: >
-      Build and ship the core flexibility software product — multi-renewable
-      dispatch and demand response orchestration for data centers. Get to
-      at least one signed pilot/paid contract.
+      Get Zone A (internal cloud software: data pipeline, classifier, evaluation framework,
+      optimization engine with geo+time RL pathways, rescheduler, accountability engine,
+      AE validator loop, hi-fi DT integration) and Zone B (cloud-to-physical: historian
+      connector, OPC UA layer, PLC handshake, GCP telemetry return) fully production-ready
+      before any lab deployment. TRL gate: 4->5 via internal simulation (50 MW TX facility).
+      29 sprint tasks defined in sprint-01-prelab.yaml mapped to team owners.
     key_results:
-      - kr: "Define and lock v1 product spec"
-        due: 2026-06-15
+      - kr: "Team responsibility map complete — named owner for every Zone A and Zone B component"
+        due: 2026-06-12
+        progress: 0.2
+        status: in_progress
+        notes: "Sprint file created with all 29 tasks assigned. Formal sign-off with Manish pending."
+
+      - kr: "Zone A complete — data pipeline, classifier, eval framework, geo+time RL pathways all passing eval gates"
+        due: 2026-06-25
+        progress: 0.2
+        status: in_progress
+        notes: "Rakshit owns geo+time RL (in progress). Nishant owns pipelines. Tilak owns eval framework."
+
+      - kr: "Zone B complete — historian connector, OPC UA layer, and GCP telemetry return path operational"
+        due: 2026-06-25
         progress: 0.1
         status: in_progress
-      - kr: "Build MVP of core dispatch optimization engine"
+        notes: "Nishant owns all Zone B components."
+
+      - kr: "Zone A <-> Zone B interface contract and data schema locked — end-to-end integration test passing"
+        due: 2026-06-28
+        progress: 0.0
+        status: not_started
+        notes: "Manish owns contract. Tilak owns integration test (T-22 — hard gate)."
+
+      - kr: "Hi-fi digital twin (PSCAD/RSCAD) integrated and validating dispatch decisions (Mostafa / U-Calgary)"
         due: 2026-07-15
+        progress: 0.1
+        status: in_progress
+        notes: "Mostafa owns PSCAD/RSCAD. Rakshit owns integration seam. Hasti will pick up once onboarded."
+
+      - kr: "Internal simulation complete — 50 MW simulated facility (TX), TRL 4->5 gate passed"
+        due: 2026-07-31
+        progress: 0.1
+        status: in_progress
+        notes: "Nishant owns simulation build. Mujtaba + Manish sign off TRL gate (T-29)."
+
+      - kr: "Lab onboarding checklist and customer qualification criteria finalized"
+        due: 2026-06-15
         progress: 0.0
         status: not_started
-      - kr: "Sign first pilot agreement with a data center operator"
-        due: 2026-08-31
-        progress: 0.0
-        status: not_started
+        notes: "Mujtaba owns. Manish reviews for technical completeness. Sprint task T-05/T-07."
 
   - id: OBJ-2
-    title: "Build strategic partnerships with renewable energy developers"
+    title: "Execute TRL progression across all 5 lab/partner stages"
     priority: 2
     description: >
-      Establish 2-3 relationships with renewable developers or grid operators
-      who could become integration partners or early customers.
+      Six-stage TRL progression from internal simulation to full pan-Canadian stack.
+      Sequence: Internal sim (TRL 4->5) -> U Calgary EMT + Humber-BCTI parallel (TRL 5) ->
+      Aluma Power HIL lab (TRL 6) -> Spur commercial pilot Ottawa/Waterloo (TRL 7) ->
+      U of T final validation (TRL 7->8). Humber-BCTI is a parallel data collection
+      track feeding stages 2-4, not a validation stage.
+    labs:
+      spur: "Commercial pilot — Ottawa/Waterloo live DC — first revenue site (TRL 7)"
+      u_calgary: "EMT modeling — PSCAD/RSCAD, 7-month delivery, Mostafa leads (TRL 5)"
+      humber_bcti: "Compute access + test workloads + data collection — parallel track, feeds stages 2-4"
+      aluma_power: "HIL Lab Sarnia — solar+BESS+LDES, Tranches A+B (TRL 6)"
+      u_of_t: "Final validation — Tranches C+D, pan-Canadian spine (TRL 7->8)"
     key_results:
-      - kr: "Identify top 10 target partners in energy flexibility space"
-        due: 2026-06-20
-        progress: 0.0
-        status: not_started
-      - kr: "Have first substantive conversation with 3 potential partners"
+      - kr: "Sign Spur commercial pilot agreement (Ottawa/Waterloo live DC) — priority revenue gate"
+        due: 2026-06-30
+        progress: 0.4
+        status: in_progress
+
+      - kr: "Sign U of Calgary agreement — begin 7-month EMT modeling (PSCAD/RSCAD, TRL 5)"
+        due: 2026-07-01
+        progress: 0.2
+        status: in_progress
+
+      - kr: "Humber-BCTI connected — compute access + test workloads + data collection live (feeds stages 2-4)"
         due: 2026-07-31
         progress: 0.0
         status: not_started
 
+      - kr: "Sign Aluma Power HIL Lab agreement (Sarnia, solar+BESS+LDES, Tranches A+B, TRL 6)"
+        due: 2026-10-01
+        progress: 0.0
+        status: not_started
+
+      - kr: "U Calgary EMT modeling delivered (7 months) + Aluma Power Tranches A+B complete"
+        due: 2027-01-31
+        progress: 0.0
+        status: not_started
+
+      - kr: "Spur commercial pilot live — first revenue, TRL 7"
+        due: 2027-02-01
+        progress: 0.0
+        status: not_started
+
+      - kr: "Sign U of T Final Validation Lab (Tranches C+D, pan-Canadian spine, TRL 7->8)"
+        due: 2027-04-01
+        progress: 0.0
+        status: not_started
+
+      - kr: "U of T full-stack validation complete — TRL 8"
+        due: 2028-01-31
+        progress: 0.0
+        status: not_started
+
   - id: OBJ-3
-    title: "Establish GitHub org and technical foundation for Lightgrid"
+    title: "Build team execution infrastructure and chief-of-staff operating system"
     priority: 3
     description: >
-      Set up the engineering foundation — repos, architecture decisions,
-      and initial codebase that can grow with the company.
+      Establish the operational backbone that keeps Lightgrid hitting timelines:
+      team responsibility clarity, staff accountability (hours, deliverables, blockers),
+      PM cadence across all active projects, and the chief-of-staff system that multiplies
+      Mujtaba's effective output — inbox triage, contacts, channel management, documentation.
+    completed_as_of_2026_06_06:
+      - "Gmail MCP connected — token at ~/.claude/gmail-token.json"
+      - "Google Calendar MCP connected — token at ~/.claude/calendar-token.json"
+      - "CLAUDE.md updated — team, MCP status, sprint reference, team management section"
+      - "contacts/ directory created — Manish, Rakshit, Nishant, Tilak, Mostafa"
+      - "goals.yaml defined — OBJ-1/2/3 with KRs, team, sprint reference"
+      - "sprint-01-prelab.yaml created — 29 tasks, assigned to team, mapped to KRs"
+      - "my-tasks.yaml updated — current state, completed tasks marked"
     key_results:
-      - kr: "Lightgrid-Energy GitHub org set up with first repo"
-        due: 2026-06-05
-        progress: 0.8
-        status: in_progress
-      - kr: "Core architecture documented and agreed"
+      - kr: "Chief-of-staff system live — inbox triage, contacts, and staff channels integrated (Gmail, Calendar, WhatsApp)"
         due: 2026-06-20
+        progress: 0.7
+        status: in_progress
+        notes: "Gmail + Calendar connected. Contacts created. WhatsApp and Granola MCP still pending."
+
+      - kr: "Staff accountability framework operational — hours, deliverables, and blockers tracked weekly per team member"
+        due: 2026-06-20
+        progress: 0.3
+        status: in_progress
+        notes: "Sprint file has all tasks assigned. Weekly check-in cadence not yet established."
+
+      - kr: "All active projects documented with timelines, owners, and weekly check-in cadence"
+        due: 2026-06-20
+        progress: 0.6
+        status: in_progress
+        notes: "Goals, sprint, architecture, labs, team all documented. Weekly cadence not yet running."
+
+      - kr: "Inbox velocity sustained — Tier 1 same-day, Tier 2 within 24hrs, for 4 consecutive weeks"
+        due: 2026-07-15
+        progress: 0.0
+        status: not_started
+
+      - kr: "Granola MCP connected — meeting transcripts auto-enriching contacts"
+        due: 2026-06-13
         progress: 0.0
         status: not_started
 
 # ---------------------------------------------------------------
-# PERSONAL GOALS (optional — add what matters to you)
+# PERSONAL GOALS
 # ---------------------------------------------------------------
 personal:
   - "Stay close to family and personal relationships — don't let company consume everything"
   - "Weekly deep work blocks — protect calendar ruthlessly"
   - "Stay physically active — energy for the long game"
+  - "Start a garden"
+  - "Start cooking and meal prepping — own your fuel"
+  - "Quit the substances — clean slate, long game"
