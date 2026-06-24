@@ -463,128 +463,307 @@ Mujtaba</div>
 
 <!-- ═══════════════════════════════════════════════════════ FUNDRAISING ══ -->
 <div class="page" id="page-fundraising">
-  <div class="grid-2" style="margin-bottom:24px;">
 
-    <!-- Donut Chart: Round Progress -->
-    <div class="card">
-      <div class="sh-title" style="margin-bottom:16px;">Round Progress</div>
-      <div style="display:flex;align-items:center;gap:24px;">
-        <div style="flex-shrink:0;">
-          <svg width="120" height="120" viewBox="0 0 120 120">
-            <circle cx="60" cy="60" r="50" fill="none" stroke="#1e2333" stroke-width="16"/>
-            <circle cx="60" cy="60" r="50" fill="none" stroke="#3ecf8e" stroke-width="16"
-              stroke-dasharray="204 314" stroke-dashoffset="78" stroke-linecap="round"/>
-            <circle cx="60" cy="60" r="50" fill="none" stroke="#0ea5e9" stroke-width="16"
-              stroke-dasharray="63 314" stroke-dashoffset="-126" stroke-linecap="round" opacity=".6"/>
-            <text x="60" y="56" text-anchor="middle" fill="#e8eaf0" font-size="16" font-weight="800">$325K</text>
-            <text x="60" y="72" text-anchor="middle" fill="#555e7a" font-size="10">committed</text>
-          </svg>
-        </div>
-        <div style="flex:1;">
-          <div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="display:flex;align-items:center;gap:8px;font-size:12px;"><div style="width:10px;height:10px;border-radius:2px;background:var(--green);"></div><span style="color:var(--text2);">$225K — Friends &amp; Family</span></div>
-            <div style="display:flex;align-items:center;gap:8px;font-size:12px;"><div style="width:10px;height:10px;border-radius:2px;background:var(--blue);"></div><span style="color:var(--text2);">$100K — Strategic Investor</span></div>
-            <div style="display:flex;align-items:center;gap:8px;font-size:12px;"><div style="width:10px;height:10px;border-radius:2px;background:var(--border2);"></div><span style="color:var(--text3);">~$175K — targeting to close</span></div>
-            <div style="margin-top:4px;padding:8px 10px;background:var(--bg3);border-radius:6px;font-size:11px;color:var(--text2);">Target close: <strong style="color:var(--yellow);">June 15</strong></div>
-          </div>
-        </div>
-      </div>
+  <!-- STATS ROW -->
+  <div class="grid-4" style="margin-bottom:16px;">
+    <div class="stat"><div class="stat-label">Round Target</div><div class="stat-val c-green">$0.55–$0.86M</div><div class="stat-sub">pre-seed · equity</div></div>
+    <div class="stat"><div class="stat-label">Committed</div><div class="stat-val c-blue">$100K</div><div class="stat-sub">SunnySide TS issued</div></div>
+    <div class="stat"><div class="stat-label">Active Pipeline</div><div class="stat-val c-yellow">3–4 convos</div><div class="stat-sub">BDC · Narro · SunnySide · Maplebridge</div></div>
+    <div class="stat"><div class="stat-label">Gap to Min</div><div class="stat-val c-red">~$450K</div><div class="stat-sub">need to close before runway expires</div></div>
+  </div>
+
+  <!-- ROUND PROGRESS BAR -->
+  <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:14px 18px;margin-bottom:18px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+      <span style="font-size:12px;font-weight:700;color:var(--text);">Round Progress — $0.86M target</span>
+      <span style="font-size:11px;color:var(--text3);">Min close: $0.55M</span>
     </div>
-
-    <!-- Investor Pipeline Funnel -->
-    <div class="card">
-      <div class="sh-title" style="margin-bottom:14px;">Investor Pipeline</div>
-      <div style="display:flex;flex-direction:column;gap:4px;">
-        <div><div class="funnel-bar" style="width:100%;background:rgba(62,207,142,.2);border:1px solid rgba(62,207,142,.25);">✓ Committed<span class="funnel-meta">2 · $325K</span></div></div>
-        <div><div class="funnel-bar" style="width:85%;background:rgba(14,165,233,.2);border:1px solid rgba(14,165,233,.25);">🔄 Due Diligence<span class="funnel-meta">2 · Narro + IAF</span></div></div>
-        <div><div class="funnel-bar" style="width:65%;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.2);">⏳ First Meeting Done<span class="funnel-meta">3 · BDC, Tom Blum, Tam</span></div></div>
-        <div><div class="funnel-bar" style="width:45%;background:rgba(245,197,24,.1);border:1px solid rgba(245,197,24,.15);">📨 Outreach Active<span class="funnel-meta">5+</span></div></div>
-      </div>
+    <div style="background:#1e2333;border-radius:6px;height:10px;overflow:hidden;position:relative;">
+      <div style="position:absolute;left:0;top:0;height:100%;width:11.6%;background:#3ecf8e;border-radius:6px 0 0 6px;"></div>
+      <div style="position:absolute;left:11.6%;top:0;height:100%;width:3%;background:#0ea5e9;opacity:.7;"></div>
+      <div style="position:absolute;left:63.9%;top:0;height:1px;top:50%;border-left:2px dashed #f5c518;height:100%;"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10px;color:var(--text3);">
+      <span style="color:#3ecf8e;">$100K committed (SunnySide)</span>
+      <span style="color:#f5c518;">$0.55M min ←</span>
+      <span>$0.86M</span>
     </div>
   </div>
 
-  <div class="sh"><div class="sh-title">Active Investors — Detail</div></div>
-  <div style="display:flex;flex-direction:column;gap:8px;">
+  <!-- ACTIVE CONVERSATIONS -->
+  <div class="sh"><div class="sh-title" style="color:var(--red);">Active Conversations — Jun 2026</div></div>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;">
 
-    <div class="inv-card" style="border-color:rgba(62,207,142,.25);">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+    <!-- SUNNYSIDE -->
+    <div style="border:1px solid rgba(62,207,142,.35);border-radius:10px;overflow:hidden;background:#0f1117;">
+      <div style="padding:10px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(62,207,142,.2);">
         <div>
-          <div class="inv-name">MaRS IAF — Robbie Marks + Isaac</div>
-          <div class="inv-org">Investment Director · rmarks@marsiaf.com · 416-435-7595</div>
+          <span style="font-size:13px;font-weight:700;color:#f1f5f9;">SunnySide Ventures</span>
+          <span style="font-size:11px;color:#8890a8;margin-left:10px;">Yuri Navarro · ynavarro@sunnysideinc.ca · Ottawa</span>
         </div>
-        <span class="inv-stage" style="background:rgba(14,165,233,.12);color:var(--blue);border:1px solid rgba(14,165,233,.25);">🔄 Active DD</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:11px;font-weight:700;color:#3ecf8e;">$100K</span>
+          <span style="font-size:10px;font-weight:700;background:rgba(62,207,142,.12);color:#3ecf8e;border:1px solid rgba(62,207,142,.3);padding:3px 8px;border-radius:4px;">TERM SHEET ISSUED — 60%</span>
+        </div>
       </div>
-      <div style="font-size:12px;color:var(--text2);margin-top:8px;padding:8px 12px;background:var(--bg3);border-radius:7px;line-height:1.6;">
-        Met Jun 1. Nathan told them $300K pilot approved + round closing ~June 15. Asked to do DD before June 17 IAF presentation. <strong style="color:var(--yellow);">Action: confirm DD package ready + what Jun 1 meeting concluded.</strong>
+      <div style="display:grid;grid-template-columns:100px 1fr;font-size:11px;">
+        <div style="padding:5px 14px;background:#1e2333;color:#f1f5f9;font-weight:600;border-bottom:1px solid #2a2f45;">Status</div><div style="padding:5px 10px;background:#1e2333;color:#8890a8;border-bottom:1px solid #2a2f45;">Draft term sheet issued. Most advanced conversation — closest to close. $100K check.</div>
+        <div style="padding:5px 14px;background:#242840;color:#f1f5f9;font-weight:600;border-bottom:1px solid #2a2f45;">Type</div><div style="padding:5px 10px;background:#242840;color:#8890a8;border-bottom:1px solid #2a2f45;">VC / Strategic · Canada (Ottawa) · strategic fit as Spur-adjacent investor</div>
+        <div style="padding:5px 14px;background:#1e2333;color:#f5c518;font-weight:700;">Action</div><div style="padding:5px 10px;background:#1e2333;color:#f5c518;">Verify signed/closed status with Yuri. Do not let this drift — term sheet without a signed close is not money.</div>
       </div>
     </div>
 
-    <div class="inv-card" style="border-color:rgba(14,165,233,.25);">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+    <!-- BDC -->
+    <div style="border:1px solid rgba(14,165,233,.35);border-radius:10px;overflow:hidden;background:#0f1117;">
+      <div style="padding:10px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(14,165,233,.2);">
         <div>
-          <div class="inv-name">The Narro — Winston Edwards</div>
-          <div class="inv-org">winston@thenarro.com</div>
+          <span style="font-size:13px;font-weight:700;color:#f1f5f9;">BDC Seed Fund</span>
+          <span style="font-size:11px;color:#8890a8;margin-left:10px;">Alroy Almeida · Dinar Ahmed · Anna Ciprick · Canada</span>
         </div>
-        <span class="inv-stage" style="background:rgba(14,165,233,.12);color:var(--blue);border:1px solid rgba(14,165,233,.25);">🔄 Post-DD</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:11px;font-weight:700;color:#0ea5e9;">$1–2M median</span>
+          <span style="font-size:10px;font-weight:700;background:rgba(14,165,233,.12);color:#0ea5e9;border:1px solid rgba(14,165,233,.3);padding:3px 8px;border-radius:4px;">ACTIVE DD — 50%</span>
+        </div>
       </div>
-      <div style="font-size:12px;color:var(--text2);margin-top:8px;padding:8px 12px;background:var(--bg3);border-radius:7px;line-height:1.6;">
-        NDA signed Jun 2. DD call happened Jun 2 (4pm). Nathan thanked Winston + asked about meeting other Narro partners. <strong style="color:var(--yellow);">Action: follow up on what Narro needs next.</strong>
+      <div style="display:grid;grid-template-columns:100px 1fr;font-size:11px;">
+        <div style="padding:5px 14px;background:#1e2333;color:#f1f5f9;font-weight:600;border-bottom:1px solid #2a2f45;">Status</div><div style="padding:5px 10px;background:#1e2333;color:#8890a8;border-bottom:1px solid #2a2f45;">Multiple calls held including MaRS whiteboard session Jun 17. Prefers to lead. Active diligence ongoing.</div>
+        <div style="padding:5px 14px;background:#242840;color:#f1f5f9;font-weight:600;border-bottom:1px solid #2a2f45;">Type</div><div style="padding:5px 10px;background:#242840;color:#8890a8;border-bottom:1px solid #2a2f45;">VC (Institutional) · National · $1–2M pre-seed/seed · prefers leading the round</div>
+        <div style="padding:5px 14px;background:#1e2333;color:#f5c518;font-weight:700;">Action</div><div style="padding:5px 10px;background:#1e2333;color:#f5c518;">Follow up with Alroy post-MaRS whiteboard Jun 17. Push for what they need to move from DD to term sheet.</div>
       </div>
     </div>
 
-    <div class="inv-card" style="border-color:rgba(124,58,237,.2);">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+    <!-- NARRO -->
+    <div style="border:1px solid rgba(124,58,237,.35);border-radius:10px;overflow:hidden;background:#0f1117;">
+      <div style="padding:10px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(124,58,237,.2);">
         <div>
-          <div class="inv-name">BDC Seed Venture Fund — Dinar Ahmed</div>
-          <div class="inv-org">Dinar.AHMED@bdc.ca · 416-402-3978</div>
+          <span style="font-size:13px;font-weight:700;color:#f1f5f9;">Narro Ventures</span>
+          <span style="font-size:11px;color:#8890a8;margin-left:10px;">Winston Edwards · Canada</span>
         </div>
-        <span class="inv-stage" style="background:rgba(124,58,237,.12);color:var(--purple);border:1px solid rgba(124,58,237,.2);">⏳ Post-Meeting</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:11px;font-weight:700;color:#7c3aed;">TBD</span>
+          <span style="font-size:10px;font-weight:700;background:rgba(124,58,237,.12);color:#7c3aed;border:1px solid rgba(124,58,237,.3);padding:3px 8px;border-radius:4px;">ACTIVE DD — 60%</span>
+        </div>
       </div>
-      <div style="font-size:12px;color:var(--text2);margin-top:8px;padding:8px 12px;background:var(--bg3);border-radius:7px;line-height:1.6;">
-        Met Jun 1 at 1:30pm. No follow-up email visible. <strong style="color:var(--yellow);">Action: send follow-up to Dinar summarizing conversation + next steps. Don't let this go cold.</strong>
+      <div style="display:grid;grid-template-columns:100px 1fr;font-size:11px;">
+        <div style="padding:5px 14px;background:#1e2333;color:#f1f5f9;font-weight:600;border-bottom:1px solid #2a2f45;">Status</div><div style="padding:5px 10px;background:#1e2333;color:#8890a8;border-bottom:1px solid #2a2f45;">NDA signed. 30 DD questions received and in progress. Active diligence — highest probability of closing after SunnySide.</div>
+        <div style="padding:5px 14px;background:#242840;color:#f1f5f9;font-weight:600;border-bottom:1px solid #2a2f45;">Type</div><div style="padding:5px 10px;background:#242840;color:#8890a8;border-bottom:1px solid #2a2f45;">VC · Canada · NDA signed Jun 2</div>
+        <div style="padding:5px 14px;background:#1e2333;color:#f5c518;font-weight:700;">Action</div><div style="padding:5px 10px;background:#1e2333;color:#f5c518;">Complete DD question responses. Push Winston on timeline to IC. Pinged Jun 23 — follow up this week.</div>
       </div>
     </div>
 
-    <div class="inv-card" style="border-color:rgba(124,58,237,.25);">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+    <!-- MAPLEBRIDGE -->
+    <div style="border:1px solid rgba(245,197,24,.3);border-radius:10px;overflow:hidden;background:#0f1117;">
+      <div style="padding:10px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(245,197,24,.2);">
         <div>
-          <div class="inv-name">Tam Kemabonta — Kemabonta Ventures</div>
-          <div class="inv-org">tam@kemabontaventures.com · Nathan introduced</div>
+          <span style="font-size:13px;font-weight:700;color:#f1f5f9;">Maplebridge</span>
+          <span style="font-size:11px;color:#8890a8;margin-left:10px;">Contact TBC — recent intro</span>
         </div>
-        <span class="inv-stage" style="background:rgba(124,58,237,.12);color:var(--purple);border:1px solid rgba(124,58,237,.2);">📅 Wed Jun 10 · 12pm MST</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:10px;font-weight:700;background:rgba(245,197,24,.1);color:#f5c518;border:1px solid rgba(245,197,24,.25);padding:3px 8px;border-radius:4px;">IN CONVERSATION</span>
+        </div>
       </div>
-      <div style="font-size:12px;color:var(--text2);margin-top:8px;padding:8px 12px;background:var(--bg3);border-radius:7px;line-height:1.6;">
-        Confirmed for deck session. Online — you're in Montreal, this works. Send confirmation + calendar invite today. <strong style="color:var(--yellow);">Action: send confirm reply + Cal invite.</strong>
+      <div style="display:grid;grid-template-columns:100px 1fr;font-size:11px;">
+        <div style="padding:5px 14px;background:#1e2333;color:#f1f5f9;font-weight:600;border-bottom:1px solid #2a2f45;">Status</div><div style="padding:5px 10px;background:#1e2333;color:#8890a8;border-bottom:1px solid #2a2f45;">Recent conversation — add contact name, check size, and last touchpoint here.</div>
+        <div style="padding:5px 14px;background:#242840;color:#f5c518;font-weight:700;">Action</div><div style="padding:5px 10px;background:#242840;color:#f5c518;">Update with contact info + current stage. Don't let it get cold between sessions.</div>
       </div>
     </div>
 
-    <div class="inv-card" style="border-color:rgba(255,77,77,.35);">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+    <!-- PROPEL -->
+    <div style="border:1px solid rgba(100,100,120,.25);border-radius:10px;overflow:hidden;background:#0f1117;">
+      <div style="padding:10px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(100,100,120,.2);">
         <div>
-          <div class="inv-name">Toyota Ventures — Lisa Coca + David Sokolic</div>
-          <div class="inv-org">lisa@toyota.ventures · katie.kloska@toyotaventures.com</div>
+          <span style="font-size:13px;font-weight:700;color:#f1f5f9;">Propel Impact Capital</span>
+          <span style="font-size:11px;color:#8890a8;margin-left:10px;">Canada · Alice Rys intro</span>
         </div>
-        <span class="inv-stage" style="background:rgba(255,77,77,.12);color:var(--red);border:1px solid rgba(255,77,77,.25);">🔥 Wed Jun 10 · 1pm EDT</span>
+        <span style="font-size:10px;font-weight:700;background:rgba(100,100,120,.12);color:#8890a8;border:1px solid rgba(100,100,120,.25);padding:3px 8px;border-radius:4px;">IN CONVERSATION</span>
       </div>
-      <div style="font-size:12px;color:var(--text2);margin-top:8px;padding:8px 12px;background:var(--bg3);border-radius:7px;line-height:1.6;">
-        Toyota Ventures VC — energy + mobility focus. First meeting in 4 days. <strong style="color:var(--red);">Prep this now.</strong> Have deck ready, know their portfolio, lead with grid + DC thesis. You're in Montreal — this is online.
-      </div>
-    </div>
-
-    <div class="inv-card">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;">
-        <div>
-          <div class="inv-name">Tom Blum — New York Angels</div>
-          <div class="inv-org">tblum@yahoo.com · 917-769-9547</div>
-        </div>
-        <span class="inv-stage" style="background:rgba(100,100,100,.1);color:var(--text3);border:1px solid rgba(100,100,100,.2);">✓ Met Jun 4</span>
-      </div>
-      <div style="font-size:12px;color:var(--text2);margin-top:8px;padding:8px 12px;background:var(--bg3);border-radius:7px;">
-        Jun 4 call done. Not investing — connector only. Ask for intros + Carter Li (Swtch Energy) follow-up.
+      <div style="display:grid;grid-template-columns:100px 1fr;font-size:11px;">
+        <div style="padding:5px 14px;background:#1e2333;color:#f1f5f9;font-weight:600;border-bottom:1px solid #2a2f45;">Status</div><div style="padding:5px 10px;background:#1e2333;color:#8890a8;border-bottom:1px solid #2a2f45;">Intro'd by Alice Rys. Impact/VC fund. Early stage. Follow-up sent — awaiting reply.</div>
+        <div style="padding:5px 14px;background:#242840;color:#f5c518;font-weight:700;">Action</div><div style="padding:5px 10px;background:#242840;color:#f5c518;">Confirm contact name, check size, and whether fit exists (impact mandate may or may not align).</div>
       </div>
     </div>
 
   </div>
+
+  <!-- FULL PIPELINE TABLE -->
+  <div class="sh"><div class="sh-title">Full Investor Pipeline — Source of Truth</div></div>
+  <div style="overflow-x:auto;margin-bottom:20px;">
+    <table style="width:100%;border-collapse:collapse;font-size:10.5px;">
+      <thead>
+        <tr style="background:#1a1a1a;color:#aaa;text-align:left;">
+          <th style="padding:7px 10px;font-weight:600;border-bottom:1px solid #333;white-space:nowrap;">Firm / Investor</th>
+          <th style="padding:7px 10px;font-weight:600;border-bottom:1px solid #333;">Type</th>
+          <th style="padding:7px 10px;font-weight:600;border-bottom:1px solid #333;">Contact</th>
+          <th style="padding:7px 10px;font-weight:600;border-bottom:1px solid #333;">Check Size</th>
+          <th style="padding:7px 10px;font-weight:600;border-bottom:1px solid #333;">Status</th>
+          <th style="padding:7px 10px;font-weight:600;border-bottom:1px solid #333;">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- TERM SHEET -->
+        <tr style="background:#0a2e1e;">
+          <td style="padding:6px 10px;color:#3ecf8e;font-weight:700;border-bottom:1px solid #222;">SunnySide Ventures</td>
+          <td style="padding:6px 10px;color:#3ecf8e;border-bottom:1px solid #222;">VC / Strategic</td>
+          <td style="padding:6px 10px;color:#3ecf8e;border-bottom:1px solid #222;">Yuri Navarro</td>
+          <td style="padding:6px 10px;color:#3ecf8e;font-weight:700;border-bottom:1px solid #222;">$100K</td>
+          <td style="padding:6px 10px;border-bottom:1px solid #222;"><span style="background:rgba(62,207,142,.15);color:#3ecf8e;padding:2px 7px;border-radius:3px;font-weight:700;font-size:10px;">TERM SHEET</span></td>
+          <td style="padding:6px 10px;color:#3ecf8e;border-bottom:1px solid #222;">Most advanced — verify signed close with Yuri</td>
+        </tr>
+        <!-- ACTIVE DD -->
+        <tr style="background:#141414;">
+          <td style="padding:6px 10px;color:#f1f5f9;font-weight:600;border-bottom:1px solid #222;">BDC Seed Fund</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">VC (Institutional)</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">Alroy Almeida · Dinar Ahmed</td>
+          <td style="padding:6px 10px;color:#0ea5e9;font-weight:600;border-bottom:1px solid #222;">$1–2M median</td>
+          <td style="padding:6px 10px;border-bottom:1px solid #222;"><span style="background:rgba(14,165,233,.12);color:#0ea5e9;padding:2px 7px;border-radius:3px;font-weight:700;font-size:10px;">ACTIVE DD 50%</span></td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">Multiple calls · MaRS whiteboard Jun 17 · prefers to lead</td>
+        </tr>
+        <tr style="background:#1a1a1a;">
+          <td style="padding:6px 10px;color:#f1f5f9;font-weight:600;border-bottom:1px solid #222;">Narro Ventures</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">VC</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">Winston Edwards</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">TBD</td>
+          <td style="padding:6px 10px;border-bottom:1px solid #222;"><span style="background:rgba(124,58,237,.12);color:#7c3aed;padding:2px 7px;border-radius:3px;font-weight:700;font-size:10px;">ACTIVE DD 60%</span></td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">NDA signed · 30 DD Qs in progress · pinged Jun 23</td>
+        </tr>
+        <tr style="background:#141414;">
+          <td style="padding:6px 10px;color:#f1f5f9;font-weight:600;border-bottom:1px solid #222;">Maplebridge</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">TBC</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">TBC</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">TBC</td>
+          <td style="padding:6px 10px;border-bottom:1px solid #222;"><span style="background:rgba(245,197,24,.1);color:#f5c518;padding:2px 7px;border-radius:3px;font-weight:700;font-size:10px;">IN CONVO</span></td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">Recent — needs contact name + stage update</td>
+        </tr>
+        <!-- IN CONVERSATION -->
+        <tr style="background:#1a1a1a;">
+          <td style="padding:6px 10px;color:#f1f5f9;font-weight:600;border-bottom:1px solid #222;">Propel Impact Capital</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">Impact / VC</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">TBC</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">TBC</td>
+          <td style="padding:6px 10px;border-bottom:1px solid #222;"><span style="background:rgba(100,100,120,.12);color:#8890a8;padding:2px 7px;border-radius:3px;font-weight:700;font-size:10px;">IN CONVO</span></td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">Alice Rys intro · awaiting reply</td>
+        </tr>
+        <tr style="background:#141414;">
+          <td style="padding:6px 10px;color:#f1f5f9;font-weight:600;border-bottom:1px solid #222;">Sharif / Spur Innovation</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">Customer / Strategic</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">Sharif Virani</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">$50–100K</td>
+          <td style="padding:6px 10px;border-bottom:1px solid #222;"><span style="background:rgba(100,100,120,.12);color:#8890a8;padding:2px 7px;border-radius:3px;font-weight:700;font-size:10px;">IN CONVO</span></td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">Pilot + investment path · Friday meeting booked</td>
+        </tr>
+        <tr style="background:#1a1a1a;">
+          <td style="padding:6px 10px;color:#f1f5f9;font-weight:600;border-bottom:1px solid #222;">SOSV</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">VC</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">Ji Ke</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">Pre-seed multi-stage</td>
+          <td style="padding:6px 10px;border-bottom:1px solid #222;"><span style="background:rgba(100,100,120,.12);color:#8890a8;padding:2px 7px;border-radius:3px;font-weight:700;font-size:10px;">AWAITING REPLY</span></td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">$1.5B AUM · direct convo confirmed · intro'd Alice Rys</td>
+        </tr>
+        <tr style="background:#141414;">
+          <td style="padding:6px 10px;color:#f1f5f9;font-weight:600;border-bottom:1px solid #222;">ArcTern Ventures</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">VC (Climate)</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">TBC</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">TBC</td>
+          <td style="padding:6px 10px;border-bottom:1px solid #222;"><span style="background:rgba(100,100,120,.12);color:#8890a8;padding:2px 7px;border-radius:3px;font-weight:700;font-size:10px;">AWAITING REPLY</span></td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">Alice Rys intro · cleantech / climate thesis fit</td>
+        </tr>
+        <tr style="background:#1a1a1a;">
+          <td style="padding:6px 10px;color:#f1f5f9;font-weight:600;border-bottom:1px solid #222;">BoxOne Ventures</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">VC</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">Felicity</td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">$250–500K</td>
+          <td style="padding:6px 10px;border-bottom:1px solid #222;"><span style="background:rgba(100,100,120,.12);color:#8890a8;padding:2px 7px;border-radius:3px;font-weight:700;font-size:10px;">AWAITING REPLY</span></td>
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;">Alice Rys intro · follow-up sent, no reply</td>
+        </tr>
+        <!-- RE-ENGAGE LATER -->
+        <tr style="background:#141414;">
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;font-style:italic;">Powerhouse Ventures</td>
+          <td style="padding:6px 10px;color:#555e7a;border-bottom:1px solid #222;">VC</td>
+          <td style="padding:6px 10px;color:#555e7a;border-bottom:1px solid #222;">Gabe, Mira</td>
+          <td style="padding:6px 10px;color:#555e7a;border-bottom:1px solid #222;">$500K–$2M</td>
+          <td style="padding:6px 10px;border-bottom:1px solid #222;"><span style="background:rgba(60,60,80,.2);color:#555e7a;padding:2px 7px;border-radius:3px;font-weight:700;font-size:10px;">RE-ENGAGE Q3</span></td>
+          <td style="padding:6px 10px;color:#555e7a;border-bottom:1px solid #222;">Fund II $75M · decarbonizing grid/energy thesis fit · rescheduled</td>
+        </tr>
+        <tr style="background:#1a1a1a;">
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;font-style:italic;">ENEOS Japan CVC</td>
+          <td style="padding:6px 10px;color:#555e7a;border-bottom:1px solid #222;">CVC / Strategic</td>
+          <td style="padding:6px 10px;color:#555e7a;border-bottom:1px solid #222;">Hirotaka</td>
+          <td style="padding:6px 10px;color:#555e7a;border-bottom:1px solid #222;">$3–5M lead</td>
+          <td style="padding:6px 10px;border-bottom:1px solid #222;"><span style="background:rgba(60,60,80,.2);color:#555e7a;padding:2px 7px;border-radius:3px;font-weight:700;font-size:10px;">RE-ENGAGE Q3</span></td>
+          <td style="padding:6px 10px;color:#555e7a;border-bottom:1px solid #222;">Strategic investor + JV/R&D discussion · Series A size</td>
+        </tr>
+        <tr style="background:#141414;">
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;font-style:italic;">Green-Sky Ventures</td>
+          <td style="padding:6px 10px;color:#555e7a;border-bottom:1px solid #222;">VC</td>
+          <td style="padding:6px 10px;color:#555e7a;border-bottom:1px solid #222;">Justin</td>
+          <td style="padding:6px 10px;color:#555e7a;border-bottom:1px solid #222;">Lead/co-lead</td>
+          <td style="padding:6px 10px;border-bottom:1px solid #222;"><span style="background:rgba(60,60,80,.2);color:#555e7a;padding:2px 7px;border-radius:3px;font-weight:700;font-size:10px;">RE-ENGAGE Q3</span></td>
+          <td style="padding:6px 10px;color:#555e7a;border-bottom:1px solid #222;">2 of 4 Canadian cap table spots locked · re-engage when round firms up</td>
+        </tr>
+        <tr style="background:#1a1a1a;">
+          <td style="padding:6px 10px;color:#8890a8;border-bottom:1px solid #222;font-style:italic;">Fusion Fund</td>
+          <td style="padding:6px 10px;color:#555e7a;border-bottom:1px solid #222;">VC</td>
+          <td style="padding:6px 10px;color:#555e7a;border-bottom:1px solid #222;">Ryan Taylor</td>
+          <td style="padding:6px 10px;color:#555e7a;border-bottom:1px solid #222;">$500K–$3M</td>
+          <td style="padding:6px 10px;border-bottom:1px solid #222;"><span style="background:rgba(60,60,80,.2);color:#555e7a;padding:2px 7px;border-radius:3px;font-weight:700;font-size:10px;">RE-ENGAGE Q3</span></td>
+          <td style="padding:6px 10px;color:#555e7a;border-bottom:1px solid #222;">Deck shared · rescheduled meeting pending</td>
+        </tr>
+        <!-- PASSED -->
+        <tr style="background:#141414;opacity:.55;">
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">Toyota Ventures</td>
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">CVC</td>
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">Katie Kloska</td>
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">$500K–$5M</td>
+          <td style="padding:5px 10px;border-bottom:1px solid #1a1a1a;"><span style="background:rgba(255,77,77,.08);color:#ff4d4d;padding:2px 6px;border-radius:3px;font-weight:700;font-size:9px;">CLOSED PASSED</span></td>
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">Not a fit — closed out Jun 2026</td>
+        </tr>
+        <tr style="background:#1a1a1a;opacity:.55;">
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">Panache Ventures</td>
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">VC</td>
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">Prashant, Sarah</td>
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">$250–500K</td>
+          <td style="padding:5px 10px;border-bottom:1px solid #1a1a1a;"><span style="background:rgba(255,77,77,.08);color:#ff4d4d;padding:2px 6px;border-radius:3px;font-weight:700;font-size:9px;">CLOSED PASSED</span></td>
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;"></td>
+        </tr>
+        <tr style="background:#141414;opacity:.55;">
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">Golden Ventures</td>
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">VC</td>
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">Nick</td>
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">$500K–$1M</td>
+          <td style="padding:5px 10px;border-bottom:1px solid #1a1a1a;"><span style="background:rgba(255,77,77,.08);color:#ff4d4d;padding:2px 6px;border-radius:3px;font-weight:700;font-size:9px;">CLOSED PASSED</span></td>
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">Met at event · too early was response</td>
+        </tr>
+        <tr style="background:#1a1a1a;opacity:.55;">
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">Energy Impact Partners</td>
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">VC</td>
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">—</td>
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">$4.5B AUM</td>
+          <td style="padding:5px 10px;border-bottom:1px solid #1a1a1a;"><span style="background:rgba(255,77,77,.08);color:#ff4d4d;padding:2px 6px;border-radius:3px;font-weight:700;font-size:9px;">CLOSED PASSED</span></td>
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">Energy/impact · direct convo confirmed</td>
+        </tr>
+        <tr style="background:#141414;opacity:.55;">
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">New York Angels</td>
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">Angel Network</td>
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">Tom Blum</td>
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">$250K–$1.5M</td>
+          <td style="padding:5px 10px;border-bottom:1px solid #1a1a1a;"><span style="background:rgba(255,77,77,.08);color:#ff4d4d;padding:2px 6px;border-radius:3px;font-weight:700;font-size:9px;">CLOSED PASSED</span></td>
+          <td style="padding:5px 10px;color:#555e7a;border-bottom:1px solid #1a1a1a;font-size:10px;">Very negative meeting — not pursuing</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- COLD TARGETS WORTH WARMING -->
+  <div class="sh"><div class="sh-title" style="color:var(--text3);">Cold Targets — Not Yet Contacted (Thesis Fit)</div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:20px;">
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:11px;"><div style="color:#f1f5f9;font-weight:600;margin-bottom:2px;">Buoyant Ventures</div><div style="color:#8890a8;">Chicago · Climate tech: energy, grid, mobility, built env · $81M</div></div>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:11px;"><div style="color:#f1f5f9;font-weight:600;margin-bottom:2px;">ABB Ventures</div><div style="color:#8890a8;">Zurich · Energy transition, IIoT, distributed energy · $400M</div></div>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:11px;"><div style="color:#f1f5f9;font-weight:600;margin-bottom:2px;">MCJ</div><div style="color:#8890a8;">Boston · Clean energy, industrial transformation, infra · $116M</div></div>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:11px;"><div style="color:#f1f5f9;font-weight:600;margin-bottom:2px;">468 Capital</div><div style="color:#8890a8;">Berlin · Energy transition, climate, AI, infra · $46M</div></div>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:11px;"><div style="color:#f1f5f9;font-weight:600;margin-bottom:2px;">Wittington Ventures</div><div style="color:#8890a8;">Canada · Early-stage deep tech climate · Zeeshan Ali</div></div>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:11px;"><div style="color:#f1f5f9;font-weight:600;margin-bottom:2px;">Virta Ventures</div><div style="color:#8890a8;">SF · Decarbonization: energy, mobility, agriculture · $10M</div></div>
+  </div>
+
 </div>
 
 <!-- ═══════════════════════════════════════════════════════ CALENDAR ══ -->
