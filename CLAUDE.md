@@ -139,11 +139,15 @@ Key themes:
 
 ### Leadership Team
 
-<!-- CUSTOMIZE: Add your actual team -->
 | Name | Role | Notes |
 |------|------|-------|
-| Mujtaba Khan | Founder & CEO | Product, strategy, partnerships |
-| [Add team members] | | |
+| Mujtaba Khan | Founder & CEO | Product, strategy, partnerships, ultimate PM |
+| Manish Chauhan | CPTO | Architecture, design, technical lead, co-executive |
+| Rakshit Mishra | Lead Developer | Geo+time shift models, Zone A opt engine — part-time |
+| Nishant Raghuvanshi | ML Engineer / DevOps | MLOps pipelines, GCP, Zone B cloud infra |
+| Krish Patel | DVFS / Cooling Research | DVFS architecture + TCS cooling, onboarded 2026-06-03 |
+| Tilak | Analyst | Data, evaluation framework, testing |
+| Hasti | ML Researcher | Not yet joined — next hire |
 
 ---
 

@@ -1,5 +1,5 @@
 owner: Mujtaba Khan
-last_updated: 2026-06-02
+last_updated: 2026-06-24
 
 # ---------------------------------------------------------------
 # TASK STATUS OPTIONS: pending | in_progress | blocked | complete
@@ -11,12 +11,126 @@ tasks:
   - id: TASK-001
     title: "Complete GitHub setup and push chief-of-staff repo"
     description: "Authenticate gh CLI, create Lightgrid-Energy/chief-of-staff repo, push initial files"
-    status: in_progress
+    status: complete
     priority: 1
     due_date: 2026-06-02
+    completed_date: 2026-06-22
     goal_alignment: OBJ-3
     created: 2026-06-02
-    notes: "In progress with Claude Code"
+
+  - id: TASK-006
+    title: "Respond to Emma Todd advisor agreement points"
+    description: "Address all 8 points in Emma's May 13 email — equity certainty, vesting, IP carveout, tail provision, etc."
+    status: complete
+    priority: 1
+    due_date: 2026-06-22
+    completed_date: 2026-06-22
+    goal_alignment: OBJ-2
+    created: 2026-06-22
+
+  - id: TASK-007
+    title: "Sign and send UCalgary lab agreement"
+    description: "Deliver signed advisor/lab agreement to University of Calgary"
+    status: complete
+    priority: 1
+    due_date: 2026-07-15
+    completed_date: 2026-06-22
+    goal_alignment: OBJ-2
+    created: 2026-06-22
+
+  - id: TASK-008
+    title: "Finalize Emma Todd advisor agreement"
+    description: "Revised agreement with all 8 points addressed — send final version for countersignature"
+    status: complete
+    priority: 1
+    due_date: 2026-06-22
+    completed_date: 2026-06-22
+    goal_alignment: OBJ-2
+    created: 2026-06-22
+
+  - id: TASK-009
+    title: "Ottawa customer lab agreement — close"
+    description: "Ping Ottawa contact, get response, close agreement. Priority revenue site."
+    status: in_progress
+    priority: 1
+    due_date: 2026-06-30
+    goal_alignment: OBJ-2
+    created: 2026-06-22
+    notes: "Mujtaba pinged contact 2026-06-22. Waiting on response."
+
+  - id: TASK-010
+    title: "Sarnia LDES lab agreement — finalize"
+    description: "Next priority agreement after Ottawa. Engage Sarnia team to close."
+    status: in_progress
+    priority: 1
+    due_date: 2026-07-15
+    goal_alignment: OBJ-2
+    created: 2026-06-22
+
+  - id: TASK-011
+    title: "Humber lab agreement — cancelled"
+    description: "Humber College project is a no-go per Jun 22 ops notes. OCI grant through Humber also dead."
+    status: complete
+    priority: 4
+    due_date: 2026-07-15
+    completed_date: 2026-06-22
+    goal_alignment: OBJ-2
+    created: 2026-06-22
+    notes: "Cancelled. Per Nathan's Ops Notes Jun 22: Humber project 'is a no go'. Remove from OBJ-2 lab list."
+
+  - id: TASK-012
+    title: "U of T lab agreement"
+    description: "Sidelined for now — revisit after Ottawa and Sarnia are closed."
+    status: pending
+    priority: 4
+    due_date: 2026-07-31
+    goal_alignment: OBJ-2
+    created: 2026-06-22
+
+  - id: TASK-013
+    title: "Denver DataWorks / Telehouse — send 90-day pilot structure"
+    description: "Draft and send 90-day pilot structure to Denver DataWorks / Telehouse contact"
+    status: pending
+    priority: 1
+    due_date: 2026-06-27
+    goal_alignment: OBJ-2
+    created: 2026-06-22
+
+  - id: TASK-014
+    title: "Nyvu — follow up (overdue)"
+    description: "Overdue follow-up with Nyvu. Clarify what the next step is."
+    status: pending
+    priority: 1
+    due_date: 2026-06-23
+    goal_alignment: OBJ-2
+    created: 2026-06-22
+
+  - id: TASK-015
+    title: "Quebec conference follow-up — batch outreach"
+    description: "Follow up with QC contacts from last conference. Batch and send."
+    status: pending
+    priority: 2
+    due_date: 2026-06-27
+    goal_alignment: OBJ-2
+    created: 2026-06-22
+
+  - id: TASK-016
+    title: "Alberta conference follow-up — batch outreach"
+    description: "Follow up with Alberta contacts from last conference. Batch and send."
+    status: pending
+    priority: 2
+    due_date: 2026-06-27
+    goal_alignment: OBJ-2
+    created: 2026-06-22
+
+  - id: TASK-017
+    title: "HR — TBD"
+    description: "HR tasks flagged by Mujtaba — needs clarification on what specifically"
+    status: pending
+    priority: 2
+    due_date: 2026-06-30
+    goal_alignment: OBJ-3
+    created: 2026-06-22
 
   - id: TASK-002
     title: "Connect Gmail MCP server to Claude Code"
@@ -57,3 +171,33 @@ tasks:
     goal_alignment: OBJ-1
     created: 2026-06-02
     notes: "First key result for OBJ-1"
+
+  - id: TASK-018
+    title: "Andrew Opala — close investment cheque"
+    description: "Andrew expects a $200-350K cheque. Follow up to close. Target ~2026-07-07."
+    status: in_progress
+    priority: 1
+    due_date: 2026-07-07
+    goal_alignment: OBJ-2
+    created: 2026-06-24
+    notes: "Per Jun 22 Ops Notes. Also Angelo Rizzo, Nigel, Gary mentioned as part of investor group. Data room + data sharing agreement needed."
+
+  - id: TASK-019
+    title: "Hatch (Khaled Malas) — advance licensing deal"
+    description: "Khaled wants Lightgrid as first commercial customer. 6-month pilot + license. Get Ryan + Kerry on a call, draft 90-day pilot structure."
+    status: pending
+    priority: 1
+    due_date: 2026-07-04
+    goal_alignment: OBJ-2
+    created: 2026-06-24
+    notes: "Per Jun 22 ops meeting. Ryan = Khaled's boss. Kerry = DC business worldwide. Privately owned, can move fast. Measurable success criteria required."
+
+  - id: TASK-020
+    title: "Connect Granola MCP — get meeting transcripts into CoS"
+    description: "Granola transcripts not flowing into Attio (call_recording_ids empty). Either connect Granola native MCP or enable Granola -> Attio sync in Granola settings."
+    status: pending
+    priority: 2
+    due_date: 2026-06-30
+    goal_alignment: OBJ-3
+    created: 2026-06-24
+    notes: "Attio meetings are coming from calendar sync only. Granola has its own MCP server — add to Claude Code MCP settings. Alternatively: Granola app -> Settings -> Integrations -> Attio."
