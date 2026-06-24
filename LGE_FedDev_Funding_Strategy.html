@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LGE — Government Funding Stack Strategy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0b0e; color: #8890a8; font-size: 11px; line-height: 1.5; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 816px; min-height: 1056px; margin: 0 auto; background: #0a0b0e; padding: 36px 48px; }
+  .header { background: #0f1117; border-radius: 8px 8px 0 0; padding: 20px 24px 16px; display: flex; justify-content: space-between; align-items: flex-start; }
+  .header-left h1 { font-size: 22px; font-weight: 700; color: #f1f5f9; letter-spacing: -0.5px; }
+  .header-left h2 { font-size: 14px; font-weight: 600; color: #f1f5f9; margin-top: 4px; }
+  .header-right { text-align: right; }
+  .badge-conf { display: inline-block; background: rgba(62,207,142,.12); color: #3ecf8e; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; padding: 3px 8px; border-radius: 3px; border: 1px solid rgba(62,207,142,.25); margin-bottom: 6px; }
+  .header-meta { font-size: 10px; color: #8890a8; margin-top: 4px; }
+  .header-bar { height: 3px; background: linear-gradient(90deg,#3ecf8e,#0ea5e9,#7c3aed); border-radius: 0 0 2px 2px; margin-bottom: 20px; }
+  .section { margin-bottom: 18px; }
+  .section-head { background: #1e2333; padding: 6px 12px; border-radius: 4px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .section-num { font-size: 8px; font-weight: 700; color: #3ecf8e; letter-spacing: 1px; }
+  .section-title { font-size: 9px; font-weight: 700; color: #3ecf8e; letter-spacing: 1.5px; text-transform: uppercase; }
+  .overview-text { font-size: 11px; color: #8890a8; line-height: 1.6; margin-bottom: 12px; }
+  .overview-text strong { color: #3ecf8e; }
+  table { width: 100%; border-collapse: collapse; font-size: 10px; border: 1px solid #2a2f45; border-radius: 6px; overflow: hidden; }
+  th { background: #0f1117; color: #f1f5f9; font-weight: 600; padding: 7px 10px; text-align: left; font-size: 9px; }
+  td { padding: 6px 10px; vertical-align: top; line-height: 1.4; }
+  tr:nth-child(odd) td { background: #1e2333; }
+  tr:nth-child(even) td { background: #242840; }
+  .row-total td { background: #0a2e1e !important; color: #3ecf8e; font-weight: 700; }
+  .td-bold { color: #f1f5f9; font-weight: 600; }
+  .td-green { color: #3ecf8e; font-weight: 700; }
+  th:not(:last-child), td:not(:last-child) { border-right: 1px solid #2a2f45; }
+  tr { border-bottom: 1px solid #2a2f45; }
+  .prog-card { background: #0f1117; border-radius: 6px; overflow: hidden; border: 1px solid #2a2f45; margin-bottom: 10px; }
+  .prog-header { padding: 8px 12px; border-bottom: 2px solid; display: flex; align-items: baseline; gap: 6px; }
+  .prog-name { font-size: 11px; font-weight: 700; }
+  .prog-full { font-size: 9px; color: #8890a8; }
+  .prog-row { display: grid; grid-template-columns: 80px 1fr; padding: 4px 12px; gap: 8px; border-bottom: 1px solid #2a2f45; font-size: 9px; }
+  .prog-row:last-child { border-bottom: none; }
+  .prog-row:nth-child(odd) { background: #1e2333; }
+  .prog-label { font-weight: 700; color: #f1f5f9; }
+  .prog-val { color: #8890a8; line-height: 1.4; }
+  .pitch-block { background: #0a2e1e; border-left: 4px solid #3ecf8e; border-radius: 0 6px 6px 0; padding: 14px 18px; margin-bottom: 10px; font-size: 11px; color: #f1f5f9; font-style: italic; line-height: 1.6; }
+  .checklist { list-style: none; padding: 0; }
+  .checklist li { font-size: 11px; color: #8890a8; padding: 4px 0 4px 20px; position: relative; border-bottom: 1px solid #2a2f4520; }
+  .checklist li::before { content: attr(data-num); position: absolute; left: 0; color: #3ecf8e; font-weight: 700; }
+  .checklist li strong { color: #f1f5f9; }
+  .rule-row { display: flex; gap: 12px; padding: 5px 0; border-bottom: 1px solid #2a2f4530; }
+  .rule-label { font-size: 10px; font-weight: 700; color: #f1f5f9; min-width: 120px; flex-shrink: 0; }
+  .rule-val { font-size: 10px; color: #8890a8; }
+  .footer { margin-top: 24px; padding-top: 12px; border-top: 1px solid #2a2f45; text-align: center; font-size: 9px; color: #8890a8; }
+  @media print { body { background: #0a0b0e !important; } .page { width: 100%; margin: 0; padding: 24px 40px; } @page { size: letter; margin: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-left">
+      <h1>Lightgrid Energy</h1>
+      <h2>Government Funding Stack Strategy</h2>
+    </div>
+    <div class="header-right">
+      <div class="badge-conf">CONFIDENTIAL</div>
+      <div class="header-meta">FedDev &middot; OCI &middot; IRAP &middot; Scale AI</div>
+      <div class="header-meta">Jun 2026</div>
+    </div>
+  </div>
+  <div class="header-bar"></div>
+
+  <!-- 01 OVERVIEW -->
+  <div class="section">
+    <div class="section-head"><span class="section-num">01</span><span class="section-title">Overview</span></div>
+    <p class="overview-text">Lightgrid Energy is positioned to access <strong>$1.5M&ndash;$5M+</strong> in non-dilutive and repayable government capital across four programs. The strategy separates project costs into clean buckets &mdash; R&amp;D salaries, equipment, and commercial deployment &mdash; assigning the optimal program to each to maximise total government assistance without breaching the <strong>75% TGA ceiling</strong>.</p>
+    <table>
+      <thead><tr><th>Anchor in Place</th><th>Signal to Funders</th></tr></thead>
+      <tbody>
+        <tr><td class="td-bold">UCalgary signed (Jun 2026)</td><td>Research credibility &mdash; EMT modeling contract locked</td></tr>
+        <tr><td class="td-bold">Spur Innovation pilot agreed</td><td>First paying customer &mdash; commercial demand signal for FedDev</td></tr>
+        <tr><td class="td-bold">OCI already at the table</td><td>Provincial co-investment de-risks the FedDev application</td></tr>
+        <tr><td class="td-bold">Sarnia HIL lab (Aluma Power)</td><td>Equipment-heavy project &mdash; eligible for capital co-funding</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 02 BUDGET -->
+  <div class="section">
+    <div class="section-head"><span class="section-num">02</span><span class="section-title">Project Budget &mdash; $860K Raise + Grant Coverage</span></div>
+    <p style="font-size:10px;font-weight:700;color:#f1f5f9;margin-bottom:6px;">Staff &mdash; $624K total</p>
+    <table style="margin-bottom:12px;">
+      <thead><tr><th style="width:28%">Role</th><th style="width:12%">Salary</th><th style="width:15%">Status</th><th style="width:25%">Grant Pathway</th><th style="width:20%">Coverage Est.</th></tr></thead>
+      <tbody>
+        <tr><td class="td-bold">Founder / CEO (Mujtaba)</td><td>Existing</td><td style="color:#3ecf8e;font-weight:600;">Active</td><td>IRAP Core (R&amp;D allocation)</td><td>Up to 80%</td></tr>
+        <tr><td class="td-bold">Operator / COO (Nathan)</td><td>Existing</td><td style="color:#3ecf8e;font-weight:600;">Active</td><td>FedDev BSP (ops allocation)</td><td>Partial</td></tr>
+        <tr><td class="td-bold">Chief Product Officer</td><td>Existing</td><td style="color:#3ecf8e;font-weight:600;">Active</td><td>IRAP Core (product R&amp;D)</td><td>Up to 80%</td></tr>
+        <tr><td class="td-bold">CTO (new hire)</td><td class="td-green">$200K</td><td style="color:#f5c518;font-weight:600;">Recruiting</td><td>IRAP Core + FedDev BSP</td><td>Up to 80% eligible</td></tr>
+        <tr><td class="td-bold">AI/ML Researcher (Hasti)</td><td class="td-green">$75K</td><td style="color:#f5c518;font-weight:600;">Friday mtg</td><td>IRAP Core + Clean Tech</td><td>Up to 80% &rarr; net ~$15K</td></tr>
+        <tr><td class="td-bold">Technical Project Manager</td><td class="td-green">$100K</td><td style="color:#8890a8;">Planned</td><td>FedDev BSP + IRAP YEP</td><td>Partial + wage subsidy</td></tr>
+        <tr><td class="td-bold">Admin &amp; Grants Coordinator</td><td class="td-green">$65K</td><td style="color:#8890a8;">Planned</td><td>IRAP YEP + Career Launcher</td><td>$22&ndash;30K wage subsidy</td></tr>
+        <tr class="row-total"><td>Staff Subtotal</td><td>$624K</td><td>4 new = $440K</td><td>IRAP + FedDev + subsidies</td><td>$150&ndash;250K recoverable</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:10px;font-weight:700;color:#f1f5f9;margin-bottom:6px;">Full Budget Breakdown</p>
+    <table>
+      <thead><tr><th style="width:20%">Category</th><th style="width:11%">Amount</th><th style="width:32%">Detail</th><th style="width:20%">Grant Program</th><th style="width:17%">Type</th></tr></thead>
+      <tbody>
+        <tr><td class="td-bold">Staff (all 7)</td><td class="td-green">$624K</td><td>3 existing + 4 new hires</td><td>IRAP Core + FedDev BSP</td><td>Non-repayable (IRAP)</td></tr>
+        <tr><td class="td-bold">Compute</td><td>$77K</td><td>GPU/cloud for AI training + Ottawa/Spur pilot</td><td>Scale AI (pilot compute)</td><td>Conditional grant</td></tr>
+        <tr><td class="td-bold">Operating Costs</td><td>$85K</td><td>Office, software, legal, admin overhead</td><td>FedDev BSP (eligible opex)</td><td>Repayable</td></tr>
+        <tr><td class="td-bold">Research Partnerships</td><td>$150K</td><td>UCalgary $50K &middot; Humber $25K &middot; UofT $75K</td><td>IRAP SR&amp;D + OCI OVIN</td><td>Non-repayable (partial)</td></tr>
+        <tr><td class="td-bold">Sarnia Lab Equipment</td><td>$75K</td><td>HIL testing equipment at Aluma Power / Sarnia</td><td>FedDev BSP + OCI OVIN</td><td>FedDev repayable / OCI non-rep</td></tr>
+        <tr class="row-total"><td>Total Project Spend</td><td>~$1,011K</td><td>Raise $860K &middot; Grant gap ~$151K+</td><td>All programs</td><td>Mixed</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 03 GRANT STACK -->
+  <div class="section">
+    <div class="section-head"><span class="section-num">03</span><span class="section-title">Grant Stack Against Budget</span></div>
+    <table>
+      <thead><tr><th style="width:14%">Bucket</th><th style="width:14%">Budget</th><th style="width:22%">Program</th><th style="width:18%">Grant Target</th><th style="width:32%">Type</th></tr></thead>
+      <tbody>
+        <tr><td class="td-bold">R&amp;D Salaries</td><td class="td-green">$440K (new)</td><td>IRAP Core + Clean Tech</td><td>$300&ndash;350K</td><td>Non-repayable (80% eligible R&amp;D staff)</td></tr>
+        <tr><td class="td-bold">Sarnia Equipment</td><td>$75K</td><td>FedDev BSP + OCI OVIN</td><td>$37&ndash;75K</td><td>FedDev repayable / OCI non-repayable</td></tr>
+        <tr><td class="td-bold">Compute (Spur)</td><td>$77K</td><td>Scale AI</td><td>$50&ndash;77K</td><td>Conditional grant</td></tr>
+        <tr><td class="td-bold">Research Partners</td><td>$150K</td><td>IRAP SR&amp;D + OCI OVIN</td><td>$75&ndash;120K</td><td>Non-repayable (50&ndash;80% eligible)</td></tr>
+        <tr><td class="td-bold">Hiring subsidies</td><td>$440K payroll</td><td>IRAP YEP + Career Launcher</td><td>$60&ndash;90K</td><td>Non-repayable wage subsidies</td></tr>
+        <tr class="row-total"><td>Grant Target</td><td>vs ~$1,011K</td><td>All programs</td><td>$522K&ndash;$712K</td><td>Mixed &mdash; within 75% TGA ceiling</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 04 PROGRAM ROLES -->
+  <div class="section">
+    <div class="section-head"><span class="section-num">04</span><span class="section-title">Program Roles</span></div>
+
+    <div class="prog-card">
+      <div class="prog-header" style="border-color:#f5c518"><span class="prog-name" style="color:#f5c518">FedDev BSP</span><span class="prog-full">Business Scale-up &amp; Productivity</span></div>
+      <div class="prog-row"><span class="prog-label">Role</span><span class="prog-val">Federal co-investment for equipment, scale-up, and hiring plan</span></div>
+      <div class="prog-row"><span class="prog-label">Amount</span><span class="prog-val">$500K&ndash;$2M repayable &middot; 0% interest &middot; milestone-based forgiveness</span></div>
+      <div class="prog-row"><span class="prog-label">Gate</span><span class="prog-val">5 Ontario FTEs + path to $500K revenue. Currently ~3. CTO + Hasti = path to gate.</span></div>
+      <div class="prog-row"><span class="prog-label">Position</span><span class="prog-val">OCI engaged + UCalgary signed + Spur LOI = de-risked application</span></div>
+      <div class="prog-row"><span class="prog-label">Contact</span><span class="prog-val">Eddie Bissoon &middot; Eddie.Bissoon@FedDevOntario.gc.ca</span></div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-header" style="border-color:#3ecf8e"><span class="prog-name" style="color:#3ecf8e">OCI OVIN</span><span class="prog-full">R&amp;D Grant &mdash; Ontario Centre of Innovation</span></div>
+      <div class="prog-row"><span class="prog-label">Role</span><span class="prog-val">Provincial co-investment on Sarnia lab R&amp;D validation</span></div>
+      <div class="prog-row"><span class="prog-label">Amount</span><span class="prog-val">$100K&ndash;$1M non-repayable &middot; rolling intake &middot; no FTE requirement</span></div>
+      <div class="prog-row"><span class="prog-label">Stackable</span><span class="prog-val">Provincial (Ontario) + Federal (Canada) = different levels, designed to co-invest</span></div>
+      <div class="prog-row"><span class="prog-label">Contact</span><span class="prog-val">Joshua Amante &middot; jamante@oc-innovation.ca</span></div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-header" style="border-color:#0ea5e9"><span class="prog-name" style="color:#0ea5e9">IRAP Core + CT</span><span class="prog-full">Industrial Research Assistance Program &mdash; NRC</span></div>
+      <div class="prog-row"><span class="prog-label">Role</span><span class="prog-val">Anchor program &mdash; covers 80% of R&amp;D staff salaries. File first.</span></div>
+      <div class="prog-row"><span class="prog-label">Amount</span><span class="prog-val">$300&ndash;500K/yr non-repayable &middot; monthly reimbursement</span></div>
+      <div class="prog-row"><span class="prog-label">Priority</span><span class="prog-val">File first &mdash; establishes R&amp;D cost basis, protects lines from other programs</span></div>
+      <div class="prog-row"><span class="prog-label">Action</span><span class="prog-val">Call 1-877-994-4727 &middot; request local ITA assignment for Ontario cleantech</span></div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-header" style="border-color:#7c3aed"><span class="prog-name" style="color:#7c3aed">Scale AI</span><span class="prog-full">AI Deployment Co-funding</span></div>
+      <div class="prog-row"><span class="prog-label">Role</span><span class="prog-val">AI deployment co-funding for Ottawa/Spur commercial pilot (compute $77K + deployment)</span></div>
+      <div class="prog-row"><span class="prog-label">Amount</span><span class="prog-val">$500K&ndash;$2M conditional grant</span></div>
+      <div class="prog-row"><span class="prog-label">Requires</span><span class="prog-val">Canadian AI company + industry partner with co-investment (Spur = perfect fit)</span></div>
+      <div class="prog-row"><span class="prog-label">Timeline</span><span class="prog-val">Register this week &middot; apply August 2026</span></div>
+    </div>
+  </div>
+
+  <!-- 05 FEDDEV PITCH -->
+  <div class="section">
+    <div class="section-head"><span class="section-num">05</span><span class="section-title">The FedDev Pitch</span></div>
+    <div class="pitch-block">&ldquo;OCI has committed to co-invest in the Sarnia lab and Ottawa pilot through OVIN. We&rsquo;re looking to FedDev to be the federal co-investment partner on the same project &mdash; equipment, scale-up, and 4 hires to execute. UCalgary is our research anchor, Spur is our first paying customer, and OCI is already at the table. We want FedDev as the federal partner in this consortium.&rdquo;</div>
+    <ul class="checklist">
+      <li data-num="1."><strong>Spur LOI</strong> signed or near-signed &mdash; commercial demand proof</li>
+      <li data-num="2."><strong>UCalgary agreement</strong> (signed Jun 2026) &mdash; research anchor proof</li>
+      <li data-num="3."><strong>Project budget</strong> broken into eligible cost categories &mdash; Eddie confirms line-by-line</li>
+    </ul>
+  </div>
+
+  <!-- 06 STACKING RULES -->
+  <div class="section">
+    <div class="section-head"><span class="section-num">06</span><span class="section-title">Stacking Rules &mdash; 75% TGA Ceiling</span></div>
+    <div class="rule-row"><span class="rule-label">TGA ceiling</span><span class="rule-val">Total Government Assistance cannot exceed 75% of eligible project costs</span></div>
+    <div class="rule-row"><span class="rule-label">FedDev cap</span><span class="rule-val">FedDev alone = max 50% of eligible costs per project</span></div>
+    <div class="rule-row"><span class="rule-label">OCI + FedDev</span><span class="rule-val">Provincial + Federal = different government levels, stackable without conflict</span></div>
+    <div class="rule-row"><span class="rule-label">IRAP + FedDev</span><span class="rule-val">IRAP covers salaries / FedDev covers equipment = different cost lines, fully stackable</span></div>
+    <div class="rule-row"><span class="rule-label">Scale AI + FedDev</span><span class="rule-val">Separate cost buckets required: pilot deployment vs. scale-up costs</span></div>
+    <div class="rule-row"><span class="rule-label">Key rule</span><span class="rule-val">Never claim the same cost line to two programs</span></div>
+  </div>
+
+  <div class="footer">Lightgrid Energy &nbsp;&middot;&nbsp; Confidential &nbsp;&middot;&nbsp; Jun 2026 &nbsp;&middot;&nbsp; mujtaba@lightgrid.energy</div>
+</div>
+</body>
+</html>
