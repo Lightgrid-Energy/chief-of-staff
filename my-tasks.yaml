@@ -68,15 +68,14 @@ tasks:
     created: 2026-06-22
 
   - id: TASK-011
-    title: "Humber lab agreement — cancelled"
-    description: "Humber College project is a no-go per Jun 22 ops notes. OCI grant through Humber also dead."
-    status: complete
-    priority: 4
+    title: "Humber lab agreement — follow up"
+    description: "Agreement sent. Waiting on Humber to return signed copy."
+    status: blocked
+    priority: 2
     due_date: 2026-07-15
-    completed_date: 2026-06-22
     goal_alignment: OBJ-2
     created: 2026-06-22
-    notes: "Cancelled. Per Nathan's Ops Notes Jun 22: Humber project 'is a no go'. Remove from OBJ-2 lab list."
+    notes: "Sent 2026-06-22. Awaiting countersignature. NOTE: Humber OCI grant pathway is dead (Jun 22 ops notes) — but the lab agreement itself is still live."
 
   - id: TASK-012
     title: "U of T lab agreement"
