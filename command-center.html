@@ -234,167 +234,148 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-seri
 <!-- ═══════════════════════════════════════════════════════ TODAY ══ -->
 <div class="page active" id="page-today">
   <div class="grid-4" style="margin-bottom:20px;">
-    <div class="stat"><div class="stat-label">Act Now</div><div class="stat-val c-red">6</div><div class="stat-sub">urgent items</div></div>
-    <div class="stat"><div class="stat-label">Round Close</div><div class="stat-val c-orange">9</div><div class="stat-sub">days to Jun 15</div></div>
-    <div class="stat"><div class="stat-label">Committed</div><div class="stat-val c-green">$325K</div><div class="stat-sub">of ~$500K target</div></div>
-    <div class="stat"><div class="stat-label">CIRIF Deadline</div><div class="stat-val c-red">4d</div><div class="stat-sub">June 10 — gated on TMU chair</div></div>
+    <div class="stat"><div class="stat-label">Sprint Gate</div><div class="stat-val c-red">5d</div><div class="stat-sub">E2E test due Jun 28 — hard gate</div></div>
+    <div class="stat"><div class="stat-label">Nishant Backlog</div><div class="stat-val c-red">5+</div><div class="stat-sub">tasks overdue · OPC UA due tomorrow</div></div>
+    <div class="stat"><div class="stat-label">Ottawa Lab</div><div class="stat-val c-yellow">Pending</div><div class="stat-sub">Pinged Jun 22 · awaiting reply</div></div>
+    <div class="stat"><div class="stat-label">Lab Agreements</div><div class="stat-val c-green">1/5</div><div class="stat-sub">UCalgary ✓ · Humber blocked</div></div>
   </div>
 
-  <!-- Round Progress Bar -->
+  <!-- Sprint Progress Bar -->
   <div class="card" style="margin-bottom:16px;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-      <div style="font-size:13px;font-weight:700;color:var(--text);">Pre-Seed Round Progress</div>
-      <div style="font-size:12px;color:var(--text2);">$325K committed · targeting ~$500K · close Jun 15</div>
+      <div style="font-size:13px;font-weight:700;color:var(--text);">Sprint-01 Prelab — Week 3 of 4</div>
+      <div style="font-size:12px;color:var(--text2);">Zones A+B production-ready · hard gate Jun 28 (E2E integration test)</div>
     </div>
     <div style="position:relative;height:28px;background:var(--bg3);border-radius:8px;overflow:hidden;">
-      <div style="width:65%;height:100%;background:linear-gradient(90deg,var(--green),#2ab876);border-radius:8px;display:flex;align-items:center;padding-left:12px;font-size:11px;font-weight:700;color:#fff;">$325K F&F + Strategic</div>
+      <div style="width:75%;height:100%;background:linear-gradient(90deg,var(--yellow),#d97706);border-radius:8px;display:flex;align-items:center;padding-left:12px;font-size:11px;font-weight:700;color:#fff;">Week 3 / 4 — 75% through sprint</div>
     </div>
     <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10px;color:var(--text3);">
-      <span>$0</span><span style="color:var(--green);font-weight:700;">65% to target</span><span>$500K</span>
+      <span>Jun 6</span><span style="color:var(--red);font-weight:700;">⚠ Nishant: 5+ tasks past due</span><span style="color:var(--red);">Jun 28 gate</span>
     </div>
     <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
-      <div style="padding:4px 10px;background:rgba(62,207,142,.1);border:1px solid rgba(62,207,142,.2);border-radius:6px;font-size:11px;color:var(--green);">✓ $225K Friends &amp; Family</div>
-      <div style="padding:4px 10px;background:rgba(62,207,142,.1);border:1px solid rgba(62,207,142,.2);border-radius:6px;font-size:11px;color:var(--green);">✓ $100K Strategic Investor</div>
-      <div style="padding:4px 10px;background:rgba(14,165,233,.1);border:1px solid rgba(14,165,233,.2);border-radius:6px;font-size:11px;color:var(--blue);">🔄 IAF (MaRS) — active DD</div>
-      <div style="padding:4px 10px;background:rgba(14,165,233,.1);border:1px solid rgba(14,165,233,.2);border-radius:6px;font-size:11px;color:var(--blue);">🔄 The Narro — NDA signed</div>
-      <div style="padding:4px 10px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);border-radius:6px;font-size:11px;color:var(--purple);">⏳ BDC Seed VF — met Jun 1</div>
+      <div style="padding:4px 10px;background:rgba(62,207,142,.1);border:1px solid rgba(62,207,142,.2);border-radius:6px;font-size:11px;color:var(--green);">✓ UCalgary signed</div>
+      <div style="padding:4px 10px;background:rgba(62,207,142,.1);border:1px solid rgba(62,207,142,.2);border-radius:6px;font-size:11px;color:var(--green);">✓ Emma Todd advisor agreement sent</div>
+      <div style="padding:4px 10px;background:rgba(14,165,233,.1);border:1px solid rgba(14,165,233,.2);border-radius:6px;font-size:11px;color:var(--blue);">🔄 Ottawa lab — awaiting reply</div>
+      <div style="padding:4px 10px;background:rgba(245,197,24,.1);border:1px solid rgba(245,197,24,.2);border-radius:6px;font-size:11px;color:var(--yellow);">⏳ Humber — awaiting countersignature</div>
+      <div style="padding:4px 10px;background:rgba(255,77,77,.1);border:1px solid rgba(255,77,77,.2);border-radius:6px;font-size:11px;color:var(--red);">🔥 Nishant: OPC UA due tomorrow</div>
     </div>
   </div>
 
-  <div class="sh"><div class="sh-title"><span class="pulse"></span>ACT NOW — Jun 6 · You're on the train to Montreal (back Jun 11)</div></div>
+  <div class="sh"><div class="sh-title"><span class="pulse"></span>ACT NOW — Jun 23, 2026 · Sprint Week 3 — 5 days to Jun 28 hard gate</div></div>
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;">
 
     <div class="card red">
       <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
-        <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span class="tag tag-red">🔥 DUE MON NOON</span><span style="font-size:11px;color:var(--text3);">Jun 8 deadline</span></div>
-          <div style="font-size:14px;font-weight:700;color:var(--text);">Altitude Accelerator — Pitch Deck</div>
-          <div style="font-size:12px;color:var(--text3);margin-top:3px;">Richard + Rutuja need finalized deck by Monday Jun 8, noon. PPT + PDF. IRP presentation Jun 11 at Brampton City Hall (10 min). Founders & Funders Jun 16 on stage.</div>
+        <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span class="tag tag-red">🔥 DUE TOMORROW</span><span style="font-size:11px;color:var(--text3);">Jun 24 · Nishant · T-18</span></div>
+          <div style="font-size:14px;font-weight:700;color:var(--text);">Zone B OPC UA Layer — Not Started</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:3px;">Standard OPC UA endpoint implementation, master tag list integration, read/write validated end-to-end. Zone B hard dependency — without this, T-22 E2E test on Jun 28 fails. Status unknown as of this morning.</div>
+        </div>
+      </div>
+      <div style="padding:10px 14px;background:rgba(255,77,77,.06);border:1px solid rgba(255,77,77,.15);border-radius:8px;font-size:12px;color:var(--text2);">
+        Raise in today's dev meeting: <strong>where is this?</strong> If not started, escalate immediately — 1 day left.
+      </div>
+    </div>
+
+    <div class="card red">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
+        <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span class="tag tag-red">OVERDUE TODAY</span></div>
+          <div style="font-size:14px;font-weight:700;color:var(--text);">TASK-014 — Nyvu Follow-Up</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:3px;">Overdue as of today Jun 23. Clarify next steps with Nyvu. Don't let this go cold.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card red">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
+        <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span class="tag tag-red">5 TASKS OVERDUE</span><span style="font-size:11px;color:var(--text3);">Nishant · Weeks 1+2</span></div>
+          <div style="font-size:14px;font-weight:700;color:var(--text);">Nishant Sprint Status — Accountability Check</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:3px;">T-04 (historian spec), T-06 (CI/CD skeleton), T-08/09/10 (3x ingestion pipelines), T-13 (historian connector cloud impl), T-14 (MLOps pipeline) — all marked not_started, all past due. Status unknown. Today's dev meeting must close this loop.</div>
         </div>
       </div>
       <div style="padding:10px 14px;background:rgba(245,197,24,.06);border:1px solid rgba(245,197,24,.15);border-radius:8px;font-size:12px;color:var(--text2);">
-        Send to: <strong>richard.nonso@altitudeaccelerator.ca</strong> + <strong>rutuja.jori@altitudeaccelerator.ca</strong> — PPT and PDF format required.
+        Ask: which are actually done vs genuinely behind? Mark complete in sprint or escalate to Manish.
       </div>
-    </div>
-
-    <div class="card red">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
-        <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span class="tag tag-red">🔥 3 WEEKS UNANSWERED</span></div>
-          <div style="font-size:14px;font-weight:700;color:var(--text);">Emma Todd (MMH Group) — Advisor Agreement Feedback</div>
-          <div style="font-size:12px;color:var(--text3);margin-top:3px;">Sarah Stone followed up Jun 5 — still no reply. Emma has specific clause feedback on the advisor agreement. This advisor is going cold. Respond today.</div>
-        </div>
-      </div>
-      <div class="draft" contenteditable="true">Emma / Sarah — apologies for the delay, it's been a hectic few weeks.
-
-We've reviewed your feedback on the agreement points and want to work through them with you. Can we find 30 min early next week to align on the outstanding clauses? I'm back in Toronto Jun 11.
-
-Mujtaba</div>
-      <div class="action-row"><button class="btn btn-green" onclick="sent(this)">Send ✓</button><button class="btn btn-ghost">Edit</button></div>
-    </div>
-
-    <div class="card red">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
-        <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span class="tag tag-red">DD ACTIVE</span></div>
-          <div style="font-size:14px;font-weight:700;color:var(--text);">The Narro — Post-DD Follow-Up</div>
-          <div style="font-size:12px;color:var(--text3);margin-top:3px;">NDA signed + DD call Jun 2 with Winston Edwards. Nothing sent since. Strike while warm — they may want to meet other Narro partners next.</div>
-        </div>
-      </div>
-      <div class="draft" contenteditable="true">Winston — thanks again for the time on Tuesday. Really enjoyed walking through the business with you.
-
-Happy to connect with the rest of the Narro team whenever works. In the meantime, let me know if there's anything from the data room you'd like us to pull together.
-
-Mujtaba</div>
-      <div class="action-row"><button class="btn btn-green" onclick="sent(this)">Send ✓</button><button class="btn btn-ghost">Edit</button></div>
     </div>
 
     <div class="card yellow">
       <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
-        <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span class="tag tag-yellow">CONFIRMED</span></div>
-          <div style="font-size:14px;font-weight:700;color:var(--text);">Tam Kemabonta — Wed Jun 10, 12pm MST (online)</div>
-          <div style="font-size:12px;color:var(--text3);margin-top:3px;">Kemabonta Ventures confirmed for deck session. You're in Montreal — this is online, works. Nathan initiated. Send confirmation + calendar invite.</div>
+        <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span class="tag tag-yellow">DUE JUN 27</span></div>
+          <div style="font-size:14px;font-weight:700;color:var(--text);">TASK-013 — Denver DataWorks / Telehouse Pilot Structure</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:3px;">Draft and send 90-day pilot structure. Due in 4 days. Don't miss this — it's OBJ-2 revenue pipeline.</div>
         </div>
       </div>
-      <div class="draft" contenteditable="true">Tam — confirmed, Wednesday June 10 at 12pm MST works perfectly. I'll send a calendar invite now. Looking forward to walking through the deck with you.
-
-Mujtaba</div>
-      <div class="action-row"><button class="btn btn-green" onclick="sent(this)">Send ✓</button></div>
     </div>
 
     <div class="card yellow">
       <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
-        <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span class="tag tag-red">4 DAYS</span></div>
-          <div style="font-size:14px;font-weight:700;color:var(--text);">CIRIF Grant — Confirm Research Chair (Due Jun 10)</div>
-          <div style="font-size:12px;color:var(--text3);margin-top:3px;">Tarig (Arctech) needs: separate PPT per project + confirm Canada Impact+ Research Chair at TMU (Mathusha). Individual companies can't apply directly.</div>
-        </div>
-      </div>
-      <div class="draft" contenteditable="true">Mathusha / Tarig — quick check: is the Canada Impact+ Research Chair in place at TMU? That's the gating requirement for CIRIF (due Jun 10). Let me know ASAP so Arctech can start the Project Planning Toolkit.
-
-Mujtaba</div>
-      <div class="action-row"><button class="btn btn-green" onclick="sent(this)">Send ✓</button></div>
-    </div>
-
-    <div class="card yellow">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;">
-        <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span class="tag tag-red">OVERDUE</span></div>
-          <div style="font-size:14px;font-weight:700;color:var(--text);">YSpace — Book May Check-In (2nd reminder received)</div>
-          <div style="font-size:12px;color:var(--text3);margin-top:3px;">Hamed asked twice. Also: book office hours with Igor Cunha (OCI) and Mayuran Yogarajah (Index Exchange CTO) — limited slots, book now.</div>
+        <div><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span class="tag tag-yellow">DUE JUN 27</span></div>
+          <div style="font-size:14px;font-weight:700;color:var(--text);">Conference Follow-Ups — QC + Alberta (TASK-015/016)</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:3px;">Batch outreach to Quebec and Alberta conference contacts. Both due June 27. Batch and send.</div>
         </div>
       </div>
     </div>
 
   </div>
 
-  <div class="sh"><div class="sh-title">📅 This Week</div></div>
+  <div class="sh"><div class="sh-title">📅 This Week — Jun 23–28</div></div>
   <div class="grid-2">
     <div class="card red">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-        <div style="font-size:14px;font-weight:700;">Toyota Ventures — Lisa Coca</div>
-        <span class="tag tag-red">WED JUN 10 · 1pm EDT</span>
+        <div style="font-size:14px;font-weight:700;">Dev Meeting — Sprint Status Check</div>
+        <span class="tag tag-red">TODAY · In progress</span>
       </div>
-      <div style="font-size:12px;color:var(--text2);">First meeting with Toyota Ventures VC. lisa@toyota.ventures + katie.kloska@toyotaventures.com. Online — you're in Montreal. Prep: know their energy+mobility portfolio, lead with grid flexibility thesis for data centers.</div>
-    </div>
-    <div class="card blue">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-        <div style="font-size:14px;font-weight:700;">Train to Montreal</div>
-        <span class="tag tag-blue">TODAY 3:38–9:25pm</span>
-      </div>
-      <div style="font-size:12px;color:var(--text2);">Hotel Chrome Montreal. Staying Jun 6–11. Good time to close async items from train.</div>
-    </div>
-    <div class="card blue">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-        <div style="font-size:14px;font-weight:700;">Tam Kemabonta — Deck Session</div>
-        <span class="tag tag-blue">WED JUN 10 · 12pm MST</span>
-      </div>
-      <div style="font-size:12px;color:var(--text2);">Kemabonta Ventures. Online. Nathan initiated. Confirm + send invite.</div>
+      <div style="font-size:12px;color:var(--text2);">Close loop on all Nishant overdue tasks. Get status on T-18 OPC UA (due tomorrow). Confirm Rakshit RL velocity. Set expectations for T-22 E2E test Jun 28.</div>
     </div>
     <div class="card red">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-        <div style="font-size:14px;font-weight:700;">Altitude IRP — 10 min Presentation</div>
-        <span class="tag tag-red">THU JUN 11 · Brampton City Hall</span>
+        <div style="font-size:14px;font-weight:700;">T-18 — Zone B OPC UA</div>
+        <span class="tag tag-red">DUE TUE JUN 24 · Nishant</span>
       </div>
-      <div style="font-size:12px;color:var(--text2);">Arrive back from Montreal Jun 11. Presentation same day. Deck must be sent by Mon Jun 8 noon.</div>
+      <div style="font-size:12px;color:var(--text2);">OPC UA endpoint, master tag list, read/write validated. Not started. Hard dependency for T-22.</div>
     </div>
     <div class="card yellow">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-        <div style="font-size:14px;font-weight:700;">Next AI — Blockchains & Agentic Commerce</div>
-        <span class="tag tag-yellow">TUE JUN 9 · 1–3pm ET</span>
+        <div style="font-size:14px;font-weight:700;">T-16/17 — RL Optimization Pathways</div>
+        <span class="tag tag-blue">DUE WED JUN 25 · Rakshit</span>
       </div>
-      <div style="font-size:12px;color:var(--text2);">Required. Zoom. Prof. Scott Kominers (HBS, a16z crypto).</div>
+      <div style="font-size:12px;color:var(--text2);">Geo+time shifting RL — in progress. Must train, validate, pass all eval gates. Rakshit part-time constraint — check velocity.</div>
+    </div>
+    <div class="card yellow">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <div style="font-size:14px;font-weight:700;">T-19 — Zone B GCP Telemetry Return</div>
+        <span class="tag tag-yellow">DUE WED JUN 25 · Nishant</span>
+      </div>
+      <div style="font-size:12px;color:var(--text2);">PLC/physical asset layer telemetry flowing back to GCP, latency measured. Feeds into T-22.</div>
+    </div>
+    <div class="card red">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <div style="font-size:14px;font-weight:700;">T-22 — E2E Integration Test</div>
+        <span class="tag tag-red">JUN 28 · HARD GATE</span>
+      </div>
+      <div style="font-size:12px;color:var(--text2);">Full stack: ingestion → classifier → eval → opt → rescheduler → AE → historian → OPC UA → telemetry. If this fails, lab deployment does not proceed. Nishant + Rakshit on-call.</div>
+    </div>
+    <div class="card blue">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <div style="font-size:14px;font-weight:700;">Ottawa Lab Agreement</div>
+        <span class="tag tag-blue">DUE JUN 30</span>
+      </div>
+      <div style="font-size:12px;color:var(--text2);">Pinged contact Jun 22. Awaiting reply. Priority revenue site — first deployment. Follow up if no response by end of week.</div>
     </div>
   </div>
 
   <div class="sh" style="margin-top:16px;"><div class="sh-title">⚠️ Flags</div></div>
   <div style="display:flex;flex-direction:column;gap:6px;">
     <div style="display:flex;gap:10px;padding:10px 14px;background:var(--bg2);border:1px solid rgba(255,77,77,.2);border-radius:9px;font-size:12px;color:var(--text2);">
-      <span style="color:var(--red);">🔴</span><span><strong style="color:var(--text);">Data room not investor-ready:</strong> Cap table TBD, whitepaper incomplete, no demo video, no case study. Narro + IAF are in DD now.</span>
+      <span style="color:var(--red);">🔴</span><span><strong style="color:var(--text);">Sprint hard gate Jun 28 at risk:</strong> Nishant has 5+ overdue Week 1+2 tasks. OPC UA (T-18) due tomorrow — not confirmed started. T-22 E2E test is the hard gate — all of these must be done first.</span>
     </div>
     <div style="display:flex;gap:10px;padding:10px 14px;background:var(--bg2);border:1px solid rgba(255,140,66,.2);border-radius:9px;font-size:12px;color:var(--text2);">
-      <span style="color:var(--orange);">⚠</span><span><strong style="color:var(--text);">Nathan + Manish pay unresolved:</strong> Active tension since May 18. Nathan entering investor-facing work unpaid. You need to make a call.</span>
+      <span style="color:var(--orange);">⚠</span><span><strong style="color:var(--text);">Rakshit part-time constraint:</strong> RL pathways (T-16/17) due Jun 25 — in progress. Part-time capacity is a bottleneck. Check velocity in today's meeting.</span>
     </div>
     <div style="display:flex;gap:10px;padding:10px 14px;background:var(--bg2);border:1px solid rgba(255,140,66,.2);border-radius:9px;font-size:12px;color:var(--text2);">
-      <span style="color:var(--orange);">⚠</span><span><strong style="color:var(--text);">Round close pressure:</strong> Nathan told IAF + others you close ~June 15. 9 days. Cap table and whitepaper are the two biggest blockers.</span>
+      <span style="color:var(--orange);">⚠</span><span><strong style="color:var(--text);">Humber lab agreement blocked:</strong> Sent Jun 22. Awaiting countersignature. Follow up if no reply by Jun 27.</span>
     </div>
     <div style="display:flex;gap:10px;padding:10px 14px;background:var(--bg2);border:1px solid rgba(255,140,66,.2);border-radius:9px;font-size:12px;color:var(--text2);">
-      <span style="color:var(--orange);">⚠</span><span><strong style="color:var(--text);">Next AI BIZ Assignment #2:</strong> Was due May 29. Likely overdue — check with Alexandra McGregor.</span>
+      <span style="color:var(--orange);">⚠</span><span><strong style="color:var(--text);">Inbox + Fundraising tabs stale:</strong> Last updated Jun 6. Connect Jira or manually refresh — fundraising pipeline status unknown.</span>
     </div>
   </div>
 </div>
@@ -768,96 +749,80 @@ Mujtaba</div>
 
 <!-- ═══════════════════════════════════════════════════════ CALENDAR ══ -->
 <div class="page" id="page-calendar">
-  <div class="sh"><div class="sh-title">Week of Jun 6–12, 2026 · You're in Montreal Jun 6–11</div></div>
+  <div class="sh"><div class="sh-title">Week of Jun 23–29, 2026 · Sprint Week 3 — hard gate Jun 28</div></div>
   <div class="cal-grid" style="margin-bottom:28px;">
     <div class="cal-day today">
+      <div class="cal-day-header">MON</div>
+      <div class="cal-day-num" style="color:var(--blue);">23</div>
+      <div class="cal-event red">Dev meeting — sprint check</div>
+      <div class="cal-event red">TASK-014 Nyvu — overdue</div>
+    </div>
+    <div class="cal-day" style="border-color:rgba(255,77,77,.4);">
+      <div class="cal-day-header">TUE</div>
+      <div class="cal-day-num" style="color:var(--red);">24</div>
+      <div class="cal-event red">⚠ T-18 OPC UA DUE (Nishant)</div>
+    </div>
+    <div class="cal-day">
+      <div class="cal-day-header">WED</div>
+      <div class="cal-day-num">25</div>
+      <div class="cal-event yellow">T-16/17 RL pathways due (Rakshit)</div>
+      <div class="cal-event yellow">T-19 GCP telemetry due (Nishant)</div>
+      <div class="cal-event blue">T-20 Rescheduler due (Manish)</div>
+    </div>
+    <div class="cal-day">
+      <div class="cal-day-header">THU</div>
+      <div class="cal-day-num">26</div>
+      <div class="cal-event blue">Denver pilot structure draft</div>
+      <div class="cal-event blue">T-21 AE 11 rules (Manish)</div>
+    </div>
+    <div class="cal-day" style="border-color:rgba(245,197,24,.3);">
+      <div class="cal-day-header">FRI</div>
+      <div class="cal-day-num">27</div>
+      <div class="cal-event yellow">TASK-013 Denver pilot DUE</div>
+      <div class="cal-event yellow">TASK-015 QC follow-ups DUE</div>
+      <div class="cal-event yellow">TASK-016 Alberta follow-ups DUE</div>
+    </div>
+    <div class="cal-day" style="border-color:rgba(255,77,77,.5);">
       <div class="cal-day-header">SAT</div>
-      <div class="cal-day-num" style="color:var(--blue);">6</div>
-      <div class="cal-event blue">3:38pm Train departs TO</div>
-      <div class="cal-event yellow">Next AI SPEED session</div>
-      <div class="cal-event red">Altitude deck — start drafting</div>
+      <div class="cal-day-num" style="color:var(--red);">28</div>
+      <div class="cal-event red">🔥 T-22 E2E TEST — HARD GATE</div>
+      <div class="cal-event red">Zone A↔B full stack must pass</div>
     </div>
     <div class="cal-day">
       <div class="cal-day-header">SUN</div>
-      <div class="cal-day-num">7</div>
-      <div class="cal-event green">Montreal</div>
-    </div>
-    <div class="cal-day" style="border-color:rgba(255,77,77,.3);">
-      <div class="cal-day-header">MON</div>
-      <div class="cal-day-num" style="color:var(--red);">8</div>
-      <div class="cal-event red">⚠ Altitude deck DUE noon</div>
-      <div class="cal-event blue">Angela Davoud call (AM)</div>
-      <div class="cal-event red">Emma Todd — reply due</div>
-    </div>
-    <div class="cal-day">
-      <div class="cal-day-header">TUE</div>
-      <div class="cal-day-num">9</div>
-      <div class="cal-event blue">1–3pm YSpace: Right Investors</div>
-      <div class="cal-event red">Nathan+Manish pay — decide</div>
-    </div>
-    <div class="cal-day" style="border-color:rgba(245,197,24,.4);">
-      <div class="cal-day-header">WED</div>
-      <div class="cal-day-num">10</div>
-      <div class="cal-event yellow">11:30am NAI VM</div>
-      <div class="cal-event red">1pm Toyota Ventures ⚡ PREP NOW</div>
-      <div class="cal-event purple">2pm MST Tam Kemabonta</div>
-      <div class="cal-event red">CIRIF deadline</div>
-      <div class="cal-event blue">6:09pm Train MTL→TO</div>
-    </div>
-    <div class="cal-day" style="border-color:rgba(62,207,142,.3);">
-      <div class="cal-day-header">THU</div>
-      <div class="cal-day-num">11</div>
-      <div class="cal-event green">Back — train arrives overnight</div>
-      <div class="cal-event red">9:30am Altitude IRP — Brampton</div>
-      <div class="cal-event blue">12pm LGE SOP Touchbase</div>
-      <div class="cal-event yellow">1–3pm YSpace: Closing Round</div>
-    </div>
-    <div class="cal-day">
-      <div class="cal-day-header">FRI</div>
-      <div class="cal-day-num">12</div>
-      <div class="cal-event yellow">Fin. Feasibility 1-pager due</div>
-      <div class="cal-event blue">1:30pm DeFi Toronto Weekly</div>
+      <div class="cal-day-num">29</div>
     </div>
   </div>
 
-  <!-- Tom Blum Prep Brief -->
-  <div style="background:var(--bg2);border:1px solid rgba(14,165,233,.25);border-radius:14px;overflow:hidden;margin-bottom:24px;">
-    <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
-      <div>
-        <div style="font-size:16px;font-weight:800;color:var(--text);">Prep Brief — Tom Blum</div>
-        <div style="font-size:12px;color:var(--text2);margin-top:2px;">New York Angels · tblum@yahoo.com · 917-769-9547</div>
+  <div class="sh"><div class="sh-title">Upcoming — Next 2 Weeks</div></div>
+  <div class="grid-2">
+    <div class="card red">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <div style="font-size:14px;font-weight:700;">Ottawa Lab Agreement — Close</div>
+        <span class="tag tag-red">DUE JUN 30</span>
       </div>
-      <div style="font-size:12px;font-weight:700;padding:6px 14px;border-radius:8px;background:rgba(14,165,233,.15);color:var(--blue);border:1px solid rgba(14,165,233,.3);">Thu Jun 4 · 4:00–4:30pm EDT</div>
+      <div style="font-size:12px;color:var(--text2);">Priority #1 revenue site. Pinged Jun 22. If no reply by Jun 26 — follow up hard. TASK-009.</div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
-      <div style="padding:18px 20px;border-right:1px solid var(--border);">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:10px;">Your Outcomes</div>
-        <div style="display:flex;flex-direction:column;gap:6px;">
-          <div style="display:flex;gap:8px;padding:8px 12px;background:var(--bg3);border-radius:8px;font-size:12px;color:var(--text2);"><span style="color:var(--blue);font-weight:800;flex-shrink:0;">1</span>Warm intros to 2–3 angels who can write $25–100K</div>
-          <div style="display:flex;gap:8px;padding:8px 12px;background:var(--bg3);border-radius:8px;font-size:12px;color:var(--text2);"><span style="color:var(--blue);font-weight:800;flex-shrink:0;">2</span>Intro to Carter Li — Swtch Energy (load balancing → data centers)</div>
-          <div style="display:flex;gap:8px;padding:8px 12px;background:var(--bg3);border-radius:8px;font-size:12px;color:var(--text2);"><span style="color:var(--blue);font-weight:800;flex-shrink:0;">3</span>Test advisory conversation — he's mentoring for free already</div>
-        </div>
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin:14px 0 10px;">Talking Points</div>
-        <div style="display:flex;flex-direction:column;gap:6px;">
-          <div style="padding:9px 12px;background:var(--bg3);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;font-size:12px;color:var(--text2);font-style:italic;" contenteditable="true">"Followed up on Swtch Energy — Carter does EV load balancing in apartments, we do data centers. Complementary not competitive."</div>
-          <div style="padding:9px 12px;background:var(--bg3);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;font-size:12px;color:var(--text2);font-style:italic;" contenteditable="true">"At $325K committed. Looking to close with 2–3 more at $25–100K. You mentioned sympathetic angels?"</div>
-        </div>
+    <div class="card blue">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <div style="font-size:14px;font-weight:700;">T-24 — AE Low-Fidelity Validator Loop</div>
+        <span class="tag tag-blue">DUE JUL 2 · Rakshit</span>
       </div>
-      <div style="padding:18px 20px;">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:10px;">Watch-Outs</div>
-        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px;">
-          <div style="display:flex;gap:8px;padding:8px 12px;background:rgba(255,140,66,.06);border:1px solid rgba(255,140,66,.2);border-radius:8px;font-size:12px;color:var(--text2);"><span style="color:var(--orange);">⚠</span>He already said no to investing — don't ask again</div>
-          <div style="display:flex;gap:8px;padding:8px 12px;background:rgba(255,140,66,.06);border:1px solid rgba(255,140,66,.2);border-radius:8px;font-size:12px;color:var(--text2);"><span style="color:var(--orange);">⚠</span>Don't oversell traction — he'll see through it</div>
-          <div style="display:flex;gap:8px;padding:8px 12px;background:rgba(255,140,66,.06);border:1px solid rgba(255,140,66,.2);border-radius:8px;font-size:12px;color:var(--text2);"><span style="color:var(--orange);">⚠</span>He's a connector — work that angle hard</div>
-        </div>
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:10px;">His Leads to Reference</div>
-        <div style="display:flex;flex-direction:column;gap:6px;">
-          <div style="padding:8px 12px;background:var(--bg3);border-radius:8px;font-size:12px;color:var(--text2);">🏢 <strong style="color:var(--text);">Swtch Energy</strong> — Carter Li · Best lead</div>
-          <div style="padding:8px 12px;background:var(--bg3);border-radius:8px;font-size:12px;color:var(--text2);">🚀 <strong style="color:var(--text);">TandemLaunch</strong> — Toronto startup foundry</div>
-          <div style="padding:8px 12px;background:var(--bg3);border-radius:8px;font-size:12px;color:var(--text2);">⚡ <strong style="color:var(--text);">Cleantech Open</strong> — mentors, no funding</div>
-        </div>
-        <a href="https://meet.google.com/kej-hwkg-pqk" target="_blank" style="display:inline-block;margin-top:12px;padding:7px 14px;background:rgba(14,165,233,.15);color:var(--blue);border:1px solid rgba(14,165,233,.3);border-radius:7px;font-size:12px;font-weight:700;text-decoration:none;">Join Google Meet →</a>
+      <div style="font-size:12px;color:var(--text2);">Dispatch → AE validates → recursive refinement → passes to hi-fi DT. Post-sprint Week 4.</div>
+    </div>
+    <div class="card yellow">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <div style="font-size:14px;font-weight:700;">Sarnia LDES Agreement</div>
+        <span class="tag tag-yellow">DUE JUL 15</span>
       </div>
+      <div style="font-size:12px;color:var(--text2);">Next priority after Ottawa. TASK-010 in progress. Engage Sarnia team this week.</div>
+    </div>
+    <div class="card blue">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <div style="font-size:14px;font-weight:700;">TRL 4→5 Gate Review</div>
+        <span class="tag tag-blue">DUE JUL 31</span>
+      </div>
+      <div style="font-size:12px;color:var(--text2);">Internal sim (50MW TX facility) reviewed and signed off. System cleared for Humber-BCTI data connection. T-29.</div>
     </div>
   </div>
 </div>
@@ -1082,90 +1047,85 @@ Mujtaba</div>
 <!-- ═══════════════════════════════════════════════════════ TASKS ══ -->
 <div class="page" id="page-tasks">
   <div class="grid-3" style="margin-bottom:20px;">
-    <div class="stat"><div class="stat-label">Overdue</div><div class="stat-val c-red">1</div><div class="stat-sub">GitHub token rotation</div></div>
-    <div class="stat"><div class="stat-label">Due This Week</div><div class="stat-val c-yellow">4</div><div class="stat-sub">Deck, CIRIF, Calendar, CLAUDE.md</div></div>
-    <div class="stat"><div class="stat-label">Complete</div><div class="stat-val c-green">2</div><div class="stat-sub">GitHub + Gmail MCP</div></div>
+    <div class="stat"><div class="stat-label">Overdue</div><div class="stat-val c-red">1</div><div class="stat-sub">TASK-014 · Nyvu follow-up</div></div>
+    <div class="stat"><div class="stat-label">Due This Week</div><div class="stat-val c-yellow">3</div><div class="stat-sub">Denver pilot + QC + Alberta (Jun 27)</div></div>
+    <div class="stat"><div class="stat-label">Complete</div><div class="stat-val c-green">4</div><div class="stat-sub">UCalgary · Emma Todd ×2 · GitHub</div></div>
   </div>
 
   <div class="sh"><div class="sh-title" style="color:var(--red);">🔴 Overdue</div></div>
   <div class="task-row overdue">
     <div class="chk" onclick="chk(this)"></div>
     <div class="task-body">
-      <div class="task-title">TASK-006 — Rotate GitHub token (exposed in chat)</div>
-      <div class="task-meta"><span class="task-due late">Jun 2 — OVERDUE</span><span class="p1">P1</span><span style="font-size:10px;color:var(--text3);">OBJ-3</span></div>
+      <div class="task-title">TASK-014 — Nyvu follow-up (clarify next step)</div>
+      <div class="task-meta"><span class="task-due late">Jun 23 — OVERDUE</span><span class="p1">P1</span><span style="font-size:10px;color:var(--text3);">OBJ-2</span></div>
     </div>
   </div>
 
-  <div class="sh" style="margin-top:16px;"><div class="sh-title" style="color:var(--yellow);">🟡 This Week</div></div>
+  <div class="sh" style="margin-top:16px;"><div class="sh-title" style="color:var(--yellow);">🟡 Due This Week</div></div>
   <div class="task-row">
     <div class="chk" onclick="chk(this)"></div>
     <div class="task-body">
-      <div class="task-title">TASK-NEW — Send pitch deck to Altitude Accelerator (Richard)</div>
-      <div class="task-meta"><span class="task-due">Due: Jun 5 EOD</span><span class="p1">P1</span><span style="font-size:10px;color:var(--text3);">OBJ-1</span></div>
+      <div class="task-title">TASK-013 — Denver DataWorks / Telehouse — send 90-day pilot structure</div>
+      <div class="task-meta"><span class="task-due">Due: Jun 27</span><span class="p1">P1</span><span style="font-size:10px;color:var(--text3);">OBJ-2</span></div>
     </div>
   </div>
   <div class="task-row">
     <div class="chk" onclick="chk(this)"></div>
     <div class="task-body">
-      <div class="task-title">TASK-NEW — Confirm CIRIF research chair with Mathusha (TMU)</div>
-      <div class="task-meta"><span class="task-due late">Due: Today (CIRIF Jun 10)</span><span class="p1">P1</span></div>
+      <div class="task-title">TASK-015 — Quebec conference follow-up — batch outreach</div>
+      <div class="task-meta"><span class="task-due">Due: Jun 27</span><span class="p2">P2</span><span style="font-size:10px;color:var(--text3);">OBJ-2</span></div>
     </div>
   </div>
   <div class="task-row">
     <div class="chk" onclick="chk(this)"></div>
     <div class="task-body">
-      <div class="task-title">TASK-NEW — Finalize + send Lenny's agreement</div>
-      <div class="task-meta"><span class="task-due">Due: Today</span><span class="p1">P1</span></div>
-    </div>
-  </div>
-  <div class="task-row">
-    <div class="chk" onclick="chk(this)"></div>
-    <div class="task-body">
-      <div class="task-title">TASK-NEW — Respond to Gerro (AlumaPower) Sarnia SOW</div>
-      <div class="task-meta"><span class="task-due">Due: Today</span><span class="p1">P1</span></div>
-    </div>
-  </div>
-  <div class="task-row">
-    <div class="chk" onclick="chk(this)"></div>
-    <div class="task-body">
-      <div class="task-title">TASK-NEW — Fix Friday double-booking (FedDev + Tam, both 12pm)</div>
-      <div class="task-meta"><span class="task-due">Due: Today</span><span class="p2">P2</span></div>
-    </div>
-  </div>
-  <div class="task-row">
-    <div class="chk" onclick="chk(this)"></div>
-    <div class="task-body">
-      <div class="task-title">TASK-003 — Connect Google Calendar MCP</div>
-      <div class="task-meta"><span class="task-due">Due: Jun 5</span><span class="p1">P1</span><span style="font-size:10px;color:var(--text3);">OBJ-1</span></div>
-    </div>
-  </div>
-  <div class="task-row">
-    <div class="chk" onclick="chk(this)"></div>
-    <div class="task-body">
-      <div class="task-title">TASK-004 — Fill in CLAUDE.md personal details (team, timezone, writing style)</div>
-      <div class="task-meta"><span class="task-due">Due: Jun 7</span><span class="p2">P2</span></div>
+      <div class="task-title">TASK-016 — Alberta conference follow-up — batch outreach</div>
+      <div class="task-meta"><span class="task-due">Due: Jun 27</span><span class="p2">P2</span><span style="font-size:10px;color:var(--text3);">OBJ-2</span></div>
     </div>
   </div>
 
-  <div class="sh" style="margin-top:16px;"><div class="sh-title">📅 Later</div></div>
+  <div class="sh" style="margin-top:16px;"><div class="sh-title">📅 In Progress / Later</div></div>
   <div class="task-row">
     <div class="chk" onclick="chk(this)"></div>
     <div class="task-body">
-      <div class="task-title">TASK-005 — Define Lightgrid v1 product spec</div>
-      <div class="task-meta"><span class="task-due">Due: Jun 15</span><span class="p1">P1</span><span style="font-size:10px;color:var(--text3);">OBJ-1</span></div>
+      <div class="task-title">TASK-009 — Ottawa customer lab agreement — close</div>
+      <div class="task-meta"><span class="task-due">Due: Jun 30</span><span class="p1">P1</span><span style="font-size:10px;color:var(--text3);">OBJ-2 · Pinged Jun 22 · awaiting reply</span></div>
     </div>
   </div>
   <div class="task-row">
     <div class="chk" onclick="chk(this)"></div>
     <div class="task-body">
-      <div class="task-title">TASK-008 — Fix Granola MCP (debug proxy)</div>
-      <div class="task-meta"><span class="task-due">Due: Jun 7</span><span class="p2">P2</span></div>
+      <div class="task-title">TASK-017 — HR tasks (needs clarification)</div>
+      <div class="task-meta"><span class="task-due">Due: Jun 30</span><span class="p2">P2</span><span style="font-size:10px;color:var(--text3);">OBJ-3</span></div>
+    </div>
+  </div>
+  <div class="task-row">
+    <div class="chk" onclick="chk(this)"></div>
+    <div class="task-body">
+      <div class="task-title">TASK-010 — Sarnia LDES lab agreement — finalize</div>
+      <div class="task-meta"><span class="task-due">Due: Jul 15</span><span class="p1">P1</span><span style="font-size:10px;color:var(--text3);">OBJ-2</span></div>
+    </div>
+  </div>
+  <div class="task-row" style="border-color:rgba(255,140,66,.3);">
+    <div class="chk" onclick="chk(this)"></div>
+    <div class="task-body">
+      <div class="task-title">TASK-011 — Humber lab agreement — awaiting countersignature</div>
+      <div class="task-meta"><span class="task-due" style="color:var(--orange);">BLOCKED · Sent Jun 22</span><span class="p2">P2</span><span style="font-size:10px;color:var(--text3);">OBJ-2</span></div>
+    </div>
+  </div>
+  <div class="task-row">
+    <div class="chk" onclick="chk(this)"></div>
+    <div class="task-body">
+      <div class="task-title">TASK-012 — U of T lab agreement</div>
+      <div class="task-meta"><span class="task-due">Due: Jul 31</span><span class="p3">P4</span><span style="font-size:10px;color:var(--text3);">OBJ-2 · Sidelined — after Ottawa + Sarnia</span></div>
     </div>
   </div>
 
   <div class="sh" style="margin-top:16px;"><div class="sh-title">✅ Complete</div></div>
-  <div class="task-row done"><div class="chk on" onclick="chk(this)"></div><div class="task-body"><div class="task-title">TASK-001 — GitHub setup + push chief-of-staff repo</div><div class="task-meta"><span class="task-due">Completed Jun 2</span></div></div></div>
-  <div class="task-row done"><div class="chk on" onclick="chk(this)"></div><div class="task-body"><div class="task-title">TASK-002 — Connect Gmail MCP</div><div class="task-meta"><span class="task-due">Completed Jun 3</span></div></div></div>
+  <div class="task-row done"><div class="chk on" onclick="chk(this)"></div><div class="task-body"><div class="task-title">TASK-001 — GitHub setup + push chief-of-staff repo</div><div class="task-meta"><span class="task-due">Completed Jun 22</span></div></div></div>
+  <div class="task-row done"><div class="chk on" onclick="chk(this)"></div><div class="task-body"><div class="task-title">TASK-006 — Respond to Emma Todd advisor agreement (all 8 points)</div><div class="task-meta"><span class="task-due">Completed Jun 22</span></div></div></div>
+  <div class="task-row done"><div class="chk on" onclick="chk(this)"></div><div class="task-body"><div class="task-title">TASK-007 — Sign and send UCalgary lab agreement</div><div class="task-meta"><span class="task-due">Completed Jun 22</span></div></div></div>
+  <div class="task-row done"><div class="chk on" onclick="chk(this)"></div><div class="task-body"><div class="task-title">TASK-008 — Finalize Emma Todd advisor agreement — send for countersignature</div><div class="task-meta"><span class="task-due">Completed Jun 22</span></div></div></div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════ GOALS ══ -->
@@ -1178,23 +1138,23 @@ Mujtaba</div>
       <svg width="110" height="110" viewBox="0 0 110 110" style="display:block;margin:0 auto;">
         <circle cx="55" cy="55" r="45" fill="none" stroke="#1e2333" stroke-width="10"/>
         <circle cx="55" cy="55" r="45" fill="none" stroke="#ff8c42" stroke-width="10"
-          stroke-dasharray="28 283" stroke-dashoffset="70" stroke-linecap="round"/>
-        <text x="55" y="51" text-anchor="middle" fill="#e8eaf0" font-size="18" font-weight="800">10%</text>
+          stroke-dasharray="45 283" stroke-dashoffset="70" stroke-linecap="round"/>
+        <text x="55" y="51" text-anchor="middle" fill="#e8eaf0" font-size="18" font-weight="800">15%</text>
         <text x="55" y="66" text-anchor="middle" fill="#555e7a" font-size="9">avg progress</text>
       </svg>
-      <div style="font-size:12px;font-weight:600;color:var(--text);margin-top:10px;" contenteditable="true">Ship v1 to first paying data center</div>
+      <div style="font-size:12px;font-weight:600;color:var(--text);margin-top:10px;">Prelab sprint — Zones A+B for lab deployment</div>
     </div>
 
     <div class="card" style="text-align:center;">
       <div style="font-size:10px;color:var(--text3);text-transform:uppercase;margin-bottom:12px;">OBJ-2 · P2</div>
       <svg width="110" height="110" viewBox="0 0 110 110" style="display:block;margin:0 auto;">
         <circle cx="55" cy="55" r="45" fill="none" stroke="#1e2333" stroke-width="10"/>
-        <circle cx="55" cy="55" r="45" fill="none" stroke="#ff4d4d" stroke-width="10"
-          stroke-dasharray="0 283" stroke-dashoffset="70" stroke-linecap="round"/>
-        <text x="55" y="51" text-anchor="middle" fill="#e8eaf0" font-size="18" font-weight="800">0%</text>
+        <circle cx="55" cy="55" r="45" fill="none" stroke="#ff8c42" stroke-width="10"
+          stroke-dasharray="71 283" stroke-dashoffset="70" stroke-linecap="round"/>
+        <text x="55" y="51" text-anchor="middle" fill="#e8eaf0" font-size="18" font-weight="800">25%</text>
         <text x="55" y="66" text-anchor="middle" fill="#555e7a" font-size="9">avg progress</text>
       </svg>
-      <div style="font-size:12px;font-weight:600;color:var(--text);margin-top:10px;" contenteditable="true">Strategic partnerships with renewable developers</div>
+      <div style="font-size:12px;font-weight:600;color:var(--text);margin-top:10px;">Sign 5 lab/partner agreements + first deployment</div>
     </div>
 
     <div class="card" style="text-align:center;">
@@ -1206,7 +1166,7 @@ Mujtaba</div>
         <text x="55" y="51" text-anchor="middle" fill="#e8eaf0" font-size="18" font-weight="800">45%</text>
         <text x="55" y="66" text-anchor="middle" fill="#555e7a" font-size="9">avg progress</text>
       </svg>
-      <div style="font-size:12px;font-weight:600;color:var(--text);margin-top:10px;" contenteditable="true">GitHub org + technical foundation</div>
+      <div style="font-size:12px;font-weight:600;color:var(--text);margin-top:10px;">Team execution infra + CoS operating system</div>
     </div>
   </div>
 
@@ -1214,41 +1174,72 @@ Mujtaba</div>
   <div style="display:flex;flex-direction:column;gap:14px;">
     <div class="card">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
-        <div><div style="font-size:11px;color:var(--text3);margin-bottom:3px;">OBJ-1 · Priority 1</div><div style="font-size:14px;font-weight:700;" contenteditable="true">Ship Lightgrid v1 product to first paying data center customers</div></div>
+        <div><div style="font-size:11px;color:var(--text3);margin-bottom:3px;">OBJ-1 · Priority 1 · Due Jun 28 (sprint gate) → Jul 31 (TRL)</div><div style="font-size:14px;font-weight:700;">Complete prelab sprint — Zones A+B production-ready for lab deployment</div></div>
         <span class="tag tag-yellow">P1</span>
       </div>
       <div style="display:flex;flex-direction:column;gap:8px;">
         <div style="padding:10px 14px;background:var(--bg3);border-radius:8px;">
-          <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text2);" contenteditable="true">Define and lock v1 product spec</span><span style="font-size:11px;font-weight:700;color:var(--orange);">10%</span></div>
-          <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:var(--orange);"></div></div>
-          <div style="font-size:10px;color:var(--text3);margin-top:4px;">Due Jun 15</div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text2);">Team responsibility map + interface specs</span><span style="font-size:11px;font-weight:700;color:var(--orange);">20%</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:20%;background:var(--orange);"></div></div>
+          <div style="font-size:10px;color:var(--text3);margin-top:4px;">Due Jun 12 · In progress</div>
         </div>
         <div style="padding:10px 14px;background:var(--bg3);border-radius:8px;">
-          <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text2);" contenteditable="true">Build MVP dispatch optimization engine</span><span style="font-size:11px;font-weight:700;color:var(--red);">0%</span></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text2);">Zone A complete — data pipeline, classifier, eval, geo+time RL</span><span style="font-size:11px;font-weight:700;color:var(--orange);">20%</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:20%;background:var(--orange);"></div></div>
+          <div style="font-size:10px;color:var(--text3);margin-top:4px;">Due Jun 25 · Rakshit RL in progress · Nishant pipelines status unknown</div>
+        </div>
+        <div style="padding:10px 14px;background:var(--bg3);border-radius:8px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text2);">Zone B complete — historian connector, OPC UA, GCP telemetry return</span><span style="font-size:11px;font-weight:700;color:var(--red);">10%</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:var(--red);"></div></div>
+          <div style="font-size:10px;color:var(--text3);margin-top:4px;">Due Jun 25 · OPC UA not started · at risk</div>
+        </div>
+        <div style="padding:10px 14px;background:var(--bg3);border-radius:8px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text2);">Zone A↔B interface contract + E2E integration test passing</span><span style="font-size:11px;font-weight:700;color:var(--red);">0%</span></div>
           <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:var(--red);"></div></div>
-          <div style="font-size:10px;color:var(--text3);margin-top:4px;">Due Jul 15</div>
-        </div>
-        <div style="padding:10px 14px;background:var(--bg3);border-radius:8px;">
-          <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text2);" contenteditable="true">Sign first pilot agreement with data center operator</span><span style="font-size:11px;font-weight:700;color:var(--orange);">15%</span></div>
-          <div class="bar-wrap"><div class="bar-fill" style="width:15%;background:var(--orange);"></div></div>
-          <div style="font-size:10px;color:var(--text3);margin-top:4px;">Due Aug 31 · AlumaPower SOW in progress</div>
+          <div style="font-size:10px;color:var(--text3);margin-top:4px;">Due Jun 28 · HARD GATE</div>
         </div>
       </div>
     </div>
 
     <div class="card">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
-        <div><div style="font-size:11px;color:var(--text3);margin-bottom:3px;">OBJ-3 · Priority 3</div><div style="font-size:14px;font-weight:700;" contenteditable="true">Establish GitHub org and technical foundation</div></div>
+        <div><div style="font-size:11px;color:var(--text3);margin-bottom:3px;">OBJ-2 · Priority 2 · Due Jun 30 – Sep 30</div><div style="font-size:14px;font-weight:700;">Sign 5 lab/partner agreements + begin first customer deployment</div></div>
+        <span class="tag tag-yellow">P2</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="padding:10px 14px;background:var(--bg3);border-radius:8px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text2);">Ottawa customer lab agreement (priority revenue site)</span><span style="font-size:11px;font-weight:700;color:var(--yellow);">40%</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:40%;background:var(--yellow);"></div></div>
+          <div style="font-size:10px;color:var(--text3);margin-top:4px;">Due Jun 30 · Pinged Jun 22 · awaiting reply</div>
+        </div>
+        <div style="padding:10px 14px;background:var(--bg3);border-radius:8px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text2);">Remaining 4 lab agreements (UCalgary ✓, Humber blocked, Sarnia active, U of T sidelined)</span><span style="font-size:11px;font-weight:700;color:var(--orange);">20%</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:20%;background:var(--orange);"></div></div>
+          <div style="font-size:10px;color:var(--text3);margin-top:4px;">Due Jul 15</div>
+        </div>
+        <div style="padding:10px 14px;background:var(--bg3);border-radius:8px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text2);">Zone A deployed at Ottawa + shadow mode active</span><span style="font-size:11px;font-weight:700;color:var(--red);">0%</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:var(--red);"></div></div>
+          <div style="font-size:10px;color:var(--text3);margin-top:4px;">Due Jul–Aug 31 · Blocked on lab agreement + sprint gate</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+        <div><div style="font-size:11px;color:var(--text3);margin-bottom:3px;">OBJ-3 · Priority 3 · Due Jun 20 (most KRs)</div><div style="font-size:14px;font-weight:700;">Build team execution infrastructure + chief-of-staff operating system</div></div>
         <span class="tag tag-blue">P3</span>
       </div>
       <div style="display:flex;flex-direction:column;gap:8px;">
         <div style="padding:10px 14px;background:var(--bg3);border-radius:8px;">
-          <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text2);">GitHub org + first repo</span><span style="font-size:11px;font-weight:700;color:var(--green);">90%</span></div>
-          <div class="bar-wrap"><div class="bar-fill" style="width:90%;background:var(--green);"></div></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text2);">CoS system live — inbox, contacts, calendar integrated</span><span style="font-size:11px;font-weight:700;color:var(--green);">70%</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:70%;background:var(--green);"></div></div>
+          <div style="font-size:10px;color:var(--text3);margin-top:4px;">Gmail ✓ · Calendar ✓ · Jira pending · WhatsApp pending</div>
         </div>
         <div style="padding:10px 14px;background:var(--bg3);border-radius:8px;">
-          <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text2);">Chief of Staff system live</span><span style="font-size:11px;font-weight:700;color:var(--green);">85%</span></div>
-          <div class="bar-wrap"><div class="bar-fill" style="width:85%;background:var(--green);"></div></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text2);">Staff accountability framework — hours, deliverables, blockers tracked weekly</span><span style="font-size:11px;font-weight:700;color:var(--orange);">20%</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:20%;background:var(--orange);"></div></div>
+          <div style="font-size:10px;color:var(--text3);margin-top:4px;">Sprint tracking in place · Jira would close this loop</div>
         </div>
       </div>
     </div>
@@ -1258,21 +1249,21 @@ Mujtaba</div>
 <!-- ═══════════════════════════════════════════════════════ R&D ══ -->
 <div class="page" id="page-rd">
   <div class="rd-stats">
-    <div class="rd-stat"><div class="stat-label">Critical Gaps</div><div class="stat-val c-red">3</div><div class="stat-sub">at 0%</div></div>
-    <div class="rd-stat"><div class="stat-label">Pre-Lab Items</div><div class="stat-val c-yellow">7</div><div class="stat-sub">need completion</div></div>
-    <div class="rd-stat"><div class="stat-label">Active Owners</div><div class="stat-val c-blue">4</div><div class="stat-sub">assigned</div></div>
-    <div class="rd-stat"><div class="stat-label">Unowned</div><div class="stat-val c-orange">1</div><div class="stat-sub">Promoted Models</div></div>
+    <div class="rd-stat"><div class="stat-label">Sprint Week</div><div class="stat-val c-yellow">3/4</div><div class="stat-sub">hard gate Jun 28</div></div>
+    <div class="rd-stat"><div class="stat-label">At Risk</div><div class="stat-val c-red">Zone B</div><div class="stat-sub">OPC UA due tomorrow</div></div>
+    <div class="rd-stat"><div class="stat-label">In Progress</div><div class="stat-val c-blue">2</div><div class="stat-sub">Rakshit RL pathways</div></div>
+    <div class="rd-stat"><div class="stat-label">Status Check</div><div class="stat-val c-orange">Today</div><div class="stat-sub">dev meeting — Nishant audit</div></div>
   </div>
 
   <div class="next-up-panel">
-    <div class="next-up-title"><div class="pulse"></div>Next Up — Immediate Priorities</div>
+    <div class="next-up-title"><div class="pulse"></div>Next Up — Week 3 Sprint Priorities (Jun 23–28)</div>
     <div class="next-up-list">
-      <div class="next-up-item"><div class="nu-date">Tilak — ASAP</div><div class="nu-name">Internal Simulation Doc</div><div class="nu-task">Review academic + competitor case studies. Draft facility spec + workloads.</div><div class="nu-owners"><div class="nu-owner" style="background:#d97706;">T</div></div></div>
-      <div class="next-up-item"><div class="nu-date">Tilak — ASAP</div><div class="nu-name">Data Audit + Master Tag List</div><div class="nu-task">Inventory all data sources. Build tracker + compressed file for Mostafa.</div><div class="nu-owners"><div class="nu-owner" style="background:#d97706;">T</div></div></div>
-      <div class="next-up-item"><div class="nu-date">Tilak — ASAP</div><div class="nu-name">OPC UA Documentation</div><div class="nu-task">Document PLC → OPC UA → Historian stack. Build vs buy rec.</div><div class="nu-owners"><div class="nu-owner" style="background:#d97706;">T</div></div></div>
-      <div class="next-up-item"><div class="nu-date">Nishant — ASAP</div><div class="nu-name">Classification Layer</div><div class="nu-task">Stand up base architecture. Define input schema from Data Layer output.</div><div class="nu-owners"><div class="nu-owner" style="background:#7c3aed;">N</div></div></div>
-      <div class="next-up-item"><div class="nu-date">Nishant + Tilak</div><div class="nu-name">Historian Connector Validation</div><div class="nu-task">Tilak validates data completeness. Test sampling rates + GB volume projections.</div><div class="nu-owners"><div class="nu-owner" style="background:#7c3aed;">N</div><div class="nu-owner" style="background:#d97706;">T</div></div></div>
-      <div class="next-up-item"><div class="nu-date">All — Near-term</div><div class="nu-name">Promoted Models — Assign Owner</div><div class="nu-task">No owner yet. Unblocked once Classification + Evaluator hit 70%+.</div><div class="nu-owners"><div class="nu-owner" style="background:#555;">?</div></div></div>
+      <div class="next-up-item"><div class="nu-date" style="color:var(--red);">Nishant — DUE TOMORROW</div><div class="nu-name">T-18: Zone B OPC UA Layer</div><div class="nu-task">OPC UA endpoint, master tag list, read/write validated. Not started. Hard dependency for T-22.</div><div class="nu-owners"><div class="nu-owner" style="background:#7c3aed;">N</div></div></div>
+      <div class="next-up-item"><div class="nu-date" style="color:var(--yellow);">Rakshit — Jun 25</div><div class="nu-name">T-16/17: RL Optimization</div><div class="nu-task">Geo+time shifting RL pathways — in progress. Train, validate, pass all eval gates.</div><div class="nu-owners"><div class="nu-owner" style="background:#0ea5e9;">R</div></div></div>
+      <div class="next-up-item"><div class="nu-date" style="color:var(--yellow);">Nishant — Jun 25</div><div class="nu-name">T-19: GCP Telemetry Return</div><div class="nu-task">PLC/physical layer telemetry back to GCP, latency measured. Not started.</div><div class="nu-owners"><div class="nu-owner" style="background:#7c3aed;">N</div></div></div>
+      <div class="next-up-item"><div class="nu-date" style="color:var(--yellow);">Manish — Jun 25</div><div class="nu-name">T-20/21: Rescheduler + AE</div><div class="nu-task">Dispatch layer with trigger gates + accountability engine 11 rules.</div><div class="nu-owners"><div class="nu-owner" style="background:#059669;">M</div></div></div>
+      <div class="next-up-item"><div class="nu-date" style="color:var(--yellow);">Tilak — Jun 23</div><div class="nu-name">T-15: Eval Framework Gates</div><div class="nu-task">Remaining gates: overfit detection, per-variable accuracy, latency budget, zero physics violations.</div><div class="nu-owners"><div class="nu-owner" style="background:#d97706;">T</div></div></div>
+      <div class="next-up-item"><div class="nu-date" style="color:var(--red);">All — Jun 28</div><div class="nu-name">T-22: E2E Integration Test</div><div class="nu-task">HARD GATE. Full stack end-to-end. Nishant + Rakshit on-call to fix failures. Lab deployment gated on this.</div><div class="nu-owners"><div class="nu-owner" style="background:#7c3aed;">N</div><div class="nu-owner" style="background:#0ea5e9;">R</div><div class="nu-owner" style="background:#d97706;">T</div></div></div>
     </div>
   </div>
 
