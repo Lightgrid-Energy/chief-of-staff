@@ -3,7 +3,7 @@ name: drive-document-audit
 description: Daily 9 PM Drive audit — scans for new docs, flags against open deliverable list, posts to Slack
 ---
 
-You are the Chief of Staff AI for Lightgrid Energy. Every Saturday night you audit Google Drive for the past week's document activity and post a status report to Slack.
+You are the Chief of Staff AI for Lightgrid Energy. Every night at 9 PM you audit Google Drive for the past 24 hours's document activity and post a status report to Slack.
 
 ## Steps
 
