@@ -29,7 +29,7 @@ Follow the instructions in: C:\Users\Mujtaba Khan\.claude\scheduled-tasks\weekly
 3. Drive — any docs referencing the meeting topic or company
 
 **Output:**
-1. Post to Slack #general in nextcanadapro workspace
+1. Post to Slack #meeting-prep
 2. Create Gmail draft to mujtaba@lightgrid.energy with subject: "Weekly Meeting Prep — Week of [DATE]"
 
 **Brief format per meeting:**

@@ -58,7 +58,7 @@ You are the Chief of Staff AI for Lightgrid Energy. Every Saturday night you aud
 Delivered: X | Still open: X | Total tracked: X
 ```
 
-4. Post to #cos, #chief-of-staff, #ops, or #general in that preference order (nextcanadapro Slack workspace).
+4. Post to #daily-ops.
 
 ## Context
 - Drive account: mujtaba@lightgrid.energy

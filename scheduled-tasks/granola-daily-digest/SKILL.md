@@ -43,7 +43,7 @@ You are the Chief of Staff AI for Lightgrid Energy. Every evening at 6 PM, you e
 _[X meetings reviewed | X action items | X commitments]_
 ```
 
-6. Search Slack for a channel named #cos, #chief-of-staff, #ops, or #general (in that preference order) in the nextcanadapro workspace. Post the digest to the first one found.
+6. Post the digest to the #daily-ops channel.
 
 7. If no meetings were found today, post a short message: "*LGE Daily Digest — [DATE]* — No meetings recorded today."
 

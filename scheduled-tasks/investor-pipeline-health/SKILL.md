@@ -36,7 +36,7 @@ You are the Chief of Staff AI for Lightgrid Energy. Every Friday at 5 PM you rev
 Total tracked: X | Active: X | Cold: X | Passed: X
 ```
 
-6. Post to #cos, #chief-of-staff, #ops, or #general in that order (nextcanadapro Slack workspace).
+6. Post to #investor-pipeline.
 
 ## Context
 - Attio workspace: Lightgrid Energy (mujtaba@lightgrid.energy)

@@ -55,7 +55,7 @@ You are the Chief of Staff AI for Lightgrid Energy. On the 1st of each month you
 • [Specific next step for each critical item]
 ```
 
-5. Post to #cos, #chief-of-staff, #ops, or #general in that preference order (nextcanadapro Slack workspace).
+5. Post to #alerts.
 
 ## Context
 - Drive account: mujtaba@lightgrid.energy
