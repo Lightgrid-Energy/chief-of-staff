@@ -51,10 +51,20 @@ for f in "$SCRIPT_DIR/docs/"*.md; do
 done
 
 echo ""
+echo "Scheduled tasks:"
+mkdir -p "$CLAUDE_DIR/scheduled-tasks"
+for dir in "$SCRIPT_DIR/scheduled-tasks/"/*/; do
+  task=$(basename "$dir")
+  mkdir -p "$CLAUDE_DIR/scheduled-tasks/$task"
+  copy_if_older "$dir/SKILL.md" "$CLAUDE_DIR/scheduled-tasks/$task/SKILL.md"
+done
+
+echo ""
 echo -e "${GREEN}Done.${NC} System installed to ~/.claude/"
 echo ""
 echo "Next steps:"
-echo "  1. Edit ~/.claude/CLAUDE.md — fill in all CUSTOMIZE sections"
-echo "  2. Edit ~/.claude/goals.yaml — set your actual Q2 goals"
-echo "  3. Connect MCP servers — see ~/.claude/docs/mcp-setup.md"
-echo "  4. Open Claude Code and try: /gm"
+echo "  1. Connect MCP servers — see ~/.claude/docs/mcp-setup.md"
+echo "     (Gmail, Google Drive, Calendar, Granola, Slack, Attio)"
+echo "  2. Open Claude Code — scheduled tasks will appear in the Scheduled sidebar"
+echo "  3. Hit 'Run now' on each task to pre-approve tool permissions"
+echo "  4. Try: /gm"

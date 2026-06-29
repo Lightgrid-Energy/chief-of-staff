@@ -1,59 +1,222 @@
 owner: Mujtaba Khan
-last_updated: 2026-06-02
-
-# ---------------------------------------------------------------
-# TASK STATUS OPTIONS: pending | in_progress | blocked | complete
-# PRIORITY: 1 (highest) to 4 (lowest)
-# ---------------------------------------------------------------
+last_updated: 2026-06-23
 
 tasks:
 
+  # ─── COMPLETE ───────────────────────────────────────────────
+
   - id: TASK-001
-    title: "Complete GitHub setup and push chief-of-staff repo"
-    description: "Authenticate gh CLI, create Lightgrid-Energy/chief-of-staff repo, push initial files"
-    status: in_progress
+    title: "GitHub setup and push chief-of-staff repo"
+    status: complete
     priority: 1
     due_date: 2026-06-02
+    completed: 2026-06-02
     goal_alignment: OBJ-3
-    created: 2026-06-02
-    notes: "In progress with Claude Code"
-
-  - id: TASK-002
-    title: "Connect Gmail MCP server to Claude Code"
-    description: "Set up gmail-mcp so Claude can read/draft emails in triage"
-    status: pending
-    priority: 1
-    due_date: 2026-06-05
-    goal_alignment: OBJ-1
-    created: 2026-06-02
-    notes: "See docs/mcp-setup.md for instructions"
 
   - id: TASK-003
     title: "Connect Google Calendar MCP server"
-    description: "Set up calendar MCP so Claude can check availability and schedule"
+    status: complete
+    priority: 1
+    due_date: 2026-06-06
+    completed: 2026-06-06
+    goal_alignment: OBJ-1
+
+  - id: TASK-009
+    title: "Altitude IRP presentation — Brampton City Hall"
+    status: complete
+    priority: 1
+    completed: 2026-06-11
+    goal_alignment: OBJ-2
+
+  - id: TASK-010
+    title: "Founders & Funders — Altitude on stage"
+    status: complete
+    priority: 1
+    completed: 2026-06-16
+    goal_alignment: OBJ-2
+
+  - id: TASK-011
+    title: "Narro DD — send 30 due diligence questions + data room"
+    status: complete
+    priority: 1
+    completed: 2026-06-13
+    goal_alignment: OBJ-3
+
+  - id: TASK-012
+    title: "Toyota Ventures / Lisa Coca — close out (not a fit)"
+    status: complete
+    priority: 2
+    completed: 2026-06-10
+    goal_alignment: OBJ-3
+
+  - id: TASK-013
+    title: "3-month intelligence briefing — pull all email + Granola data"
+    status: complete
+    priority: 1
+    completed: 2026-06-23
+    goal_alignment: OBJ-1
+
+  - id: TASK-014
+    title: "UCalgary — SIGN final research agreement and return to Catherine"
+    status: complete
+    priority: 1
+    completed: 2026-06-23
+    goal_alignment: OBJ-2
+    notes: "Signed Jun 23. Catherine McCleary before her OOO Jun 26."
+
+  - id: TASK-015
+    title: "BDC / Alroy Almeida — follow-up after Jun 17 MaRS whiteboard"
+    status: complete
+    priority: 1
+    completed: 2026-06-23
+    goal_alignment: OBJ-3
+    notes: "Followed up x2."
+
+  - id: TASK-017
+    title: "Emma Todd — revised advisor agreement sent to Sarah"
+    status: complete
+    priority: 1
+    completed: 2026-06-23
+    goal_alignment: OBJ-3
+    notes: "Sent Jun 23."
+
+  - id: TASK-019
+    title: "Narro / Winston Edwards — direct push from Mujtaba"
+    status: complete
+    priority: 1
+    completed: 2026-06-23
+    goal_alignment: OBJ-3
+    notes: "Pinged Jun 23."
+
+  - id: TASK-020
+    title: "Spur — send terms to Sharif Virani"
+    status: complete
+    priority: 1
+    completed: 2026-06-23
+    goal_alignment: OBJ-2
+    notes: "Messaged Jun 23. Meeting booked Friday morning. Need to prep answers."
+
+  # ─── CRITICAL / ACTIVE ──────────────────────────────────────
+
+  - id: TASK-016
+    title: "FedDev Ontario — personal email from Mujtaba to Eddie Bissoon"
     status: pending
     priority: 1
-    due_date: 2026-06-05
+    due_date: 2026-06-24
+    goal_alignment: OBJ-3
+    notes: "Eddie.Bissoon@FedDevOntario.gc.ca. Still not done."
+
+  - id: TASK-031
+    title: "Spur Friday meeting — prep answers to pilot questions"
+    description: "Meeting booked Friday morning. Spur will have questions on pilot structure, GPU utilization, LOI terms, grant pathway (R&D Grant vs SCALE AI). Need sharp answers ready."
+    status: pending
+    priority: 1
+    due_date: 2026-06-26
+    goal_alignment: OBJ-2
+    notes: "Prep needed before Friday. Key Q areas: pilot scope, hardware ownership, grant co-funding, revenue model."
+
+  - id: TASK-023
+    title: "Hasti hire — meeting Friday with team"
+    status: in_progress
+    priority: 1
+    due_date: 2026-06-27
+    goal_alignment: OBJ-3
+    notes: "Meeting Friday. Unlocks 6 grant programs. Make offer if meeting goes well."
+
+  - id: TASK-021
+    title: "IRAP — get assigned a local ITA (Industrial Technology Advisor)"
+    description: "Need a local ITA assigned to Lightgrid — you don't cold-call one by name, you call IRAP and they assign one from your region. Call 1-877-994-4727 to get the intake process started. Deepak Sabharwal name was from the existing dashboard (prior session) — may not be current or local. Verify."
+    status: pending
+    priority: 1
+    due_date: 2026-06-26
+    goal_alignment: OBJ-3
+    notes: "Call 1-877-994-4727. Say you're a cleantech startup in Ontario looking to start an IRAP application. They assign your ITA from there."
+
+  - id: TASK-022
+    title: "Arctech / Tarig — push for actual grant fund delivery, not just strategy"
+    description: "Tarig has been in strategy mode for months. Need to push: what are the specific applications being filed, what are the submission dates, what does Lightgrid need to do this week to get money flowing? Hold them accountable."
+    status: pending
+    priority: 1
+    due_date: 2026-06-26
+    goal_alignment: OBJ-3
+    notes: "tarig@arctechaccelerate.ca. Job descriptions sent. Now push for timeline + deliverables."
+
+  - id: TASK-018
+    title: "CDL Climate Stream — submit application"
+    description: "James Kim direct referral. Roger Singh = mentor in stream = inside advantage. Application is long but worth it. Ping Roger first."
+    status: pending
+    priority: 2
+    due_date: 2026-07-18
+    goal_alignment: OBJ-3
+    notes: "Hard deadline Jul 24 PT. Do tonight or this week — don't let it drift."
+
+  # ─── THIS WEEK ───────────────────────────────────────────────
+
+  - id: TASK-024
+    title: "Greg Robart (SGIN) — reply to Energy Data Trust email"
+    status: pending
+    priority: 2
+    due_date: 2026-06-24
+    goal_alignment: OBJ-2
+    notes: "greg@sgin.ca. 27+ days silence. Short reply + book call."
+
+  - id: TASK-025
+    title: "Roger Singh — ping before CDL application + confirm advisor agreement signed"
+    status: pending
+    priority: 2
+    due_date: 2026-06-26
+    goal_alignment: OBJ-3
+
+  - id: TASK-026
+    title: "SunnySide — verify term sheet signed/closed status with Yuri"
+    status: pending
+    priority: 2
+    due_date: 2026-06-26
+    goal_alignment: OBJ-3
+    notes: "ynavarro@sunnysideinc.ca. No visible signed confirmation in email."
+
+  - id: TASK-027
+    title: "Hamed Hamedian (YSpace) — book monthly check-in"
+    status: pending
+    priority: 2
+    due_date: 2026-06-24
+    goal_alignment: OBJ-3
+    notes: "hamedian@yorku.ca"
+
+  - id: TASK-028
+    title: "Scale AI — register for info session"
+    status: pending
+    priority: 2
+    due_date: 2026-06-26
+    goal_alignment: OBJ-3
+
+  - id: TASK-029
+    title: "Lenny Kerman deck rebuild — provide positioning input"
+    status: pending
+    priority: 3
+    due_date: 2026-06-28
+    goal_alignment: OBJ-3
+
+  - id: TASK-030
+    title: "SR&ED time-tracking — ask Rahim to set up structure"
+    status: pending
+    priority: 2
+    due_date: 2026-06-28
+    goal_alignment: OBJ-3
+
+  # ─── INFRASTRUCTURE ──────────────────────────────────────────
+
+  - id: TASK-002
+    title: "Connect Gmail MCP directly (Work + Personal)"
+    description: "Gmail routed through Attio sync — broken date filters, ~23 email limit. Need direct Gmail MCP for both accounts."
+    status: pending
+    priority: 1
+    due_date: 2026-06-28
     goal_alignment: OBJ-1
-    created: 2026-06-02
-    notes: "Required for /gm morning briefing to work properly"
 
   - id: TASK-004
     title: "Fill in CLAUDE.md personal details"
-    description: "Complete all CUSTOMIZE sections: team members, hard constraints, writing examples, timezone"
     status: pending
-    priority: 2
-    due_date: 2026-06-07
+    priority: 3
+    due_date: 2026-07-07
     goal_alignment: OBJ-1
-    created: 2026-06-02
-    notes: "The more detail added, the better the system performs"
-
-  - id: TASK-005
-    title: "Define Lightgrid v1 product spec"
-    description: "Lock the core product definition: what the dispatch optimization engine does, data inputs, APIs"
-    status: pending
-    priority: 1
-    due_date: 2026-06-15
-    goal_alignment: OBJ-1
-    created: 2026-06-02
-    notes: "First key result for OBJ-1"
