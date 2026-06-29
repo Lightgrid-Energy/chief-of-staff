@@ -326,11 +326,31 @@ Continual tests:
 
 | Server | Status | What It Enables |
 |--------|--------|-----------------|
-| Gmail | <!-- TODO: Connect --> | Email triage, drafting |
-| Google Calendar | <!-- TODO: Connect --> | Scheduling, availability |
-| WhatsApp | <!-- TODO: Connect --> | WhatsApp triage |
-| Google Drive | <!-- TODO: Connect --> | Document access |
-| Slack | <!-- TODO: Connect --> | Team messaging |
+| Gmail | Connected (draft only — no direct send) | Investor follow-ups, team accountability drafts, investor update drafts |
+| Google Calendar | Connected | Scheduling, availability, grant deadline calendar |
+| Google Drive | Connected | Document audit, deliverable tracking, gap detection |
+| Granola | Connected (Lightgrid Energy workspace) | Meeting digest, commitment extraction, action item tracking |
+| Slack | Connected (nextcanadapro workspace) | Automation outputs, digest posting |
+| Attio | Connected (Lightgrid Energy workspace) | Investor CRM, pipeline health, contact management |
+| WhatsApp | Not connected | Dev team comms — connect when available |
+| GitHub | Not connected | Dev commit monitoring — connect when available |
+| ClickUp / Jira | Not connected | Task gap reports — connect when available |
+
+### Scheduled Automations (as of 2026-06-28)
+
+All automation SKILL.md files live in `~/.claude/scheduled-tasks/` and are tracked in the chief-of-staff repo.
+
+| Automation | Schedule | Output |
+|---|---|---|
+| Granola Daily Digest | Daily 6 PM | Slack |
+| Drive Document Audit | Daily 9 PM | Slack |
+| Investor Pipeline Health | Daily 5 PM | Slack |
+| Grant Deadline Monitor | Mon/Wed/Fri 8 PM | Slack |
+| Contract Expiry Monitor | 1st + 15th 8 AM | Slack |
+| Investor Follow-Up Sweep | Monday 7 AM | Gmail drafts + Slack |
+| Weekly Investor Update Draft | Friday 4 PM | Gmail draft + Slack |
+
+Note: automations run locally — Claude Code must be open. DigitalOcean VM recommended for always-on execution (~$6/mo).
 
 ### Source Routing
 
@@ -338,9 +358,11 @@ Continual tests:
 |---------------|-------|
 | Work/personal email | Gmail |
 | Schedule, meetings | Google Calendar |
-| Team messages | Slack |
+| Team messages | Slack (nextcanadapro) or WhatsApp (dev team) |
 | Personal messages | WhatsApp |
 | Documents, decks | Google Drive |
+| Investor pipeline | Attio |
+| Meeting notes + commitments | Granola |
 
 ---
 
