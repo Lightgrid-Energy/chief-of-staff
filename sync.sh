@@ -14,5 +14,14 @@ cp "$CLAUDE_DIR/my-tasks.yaml" "$SCRIPT_DIR/"
 cp "$CLAUDE_DIR/commands/"*.md "$SCRIPT_DIR/commands/"
 cp "$CLAUDE_DIR/docs/"*.md "$SCRIPT_DIR/docs/" 2>/dev/null || true
 
+echo "Scheduled tasks:"
+mkdir -p "$SCRIPT_DIR/scheduled-tasks"
+for dir in "$CLAUDE_DIR/scheduled-tasks/"/*/; do
+  task=$(basename "$dir")
+  mkdir -p "$SCRIPT_DIR/scheduled-tasks/$task"
+  cp "$dir/SKILL.md" "$SCRIPT_DIR/scheduled-tasks/$task/SKILL.md"
+  echo "  synced: $task"
+done
+
 echo "Done. Review changes and commit:"
 echo "  git add -A && git commit -m 'update chief-of-staff config'"
