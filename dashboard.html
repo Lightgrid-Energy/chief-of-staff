@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lightgrid â€” Chief of Staff</title>
+<title>Lightgrid &mdash; Chief of Staff</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -73,7 +73,6 @@
   .meeting-meta { font-size: 12px; color: var(--text2); margin-top: 2px; }
   .meeting-time-badge { font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 8px; background: rgba(14,165,233,0.15); color: var(--blue); border: 1px solid rgba(14,165,233,0.3); }
   .meeting-body { padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .meeting-section { }
   .ms-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); margin-bottom: 10px; }
   .ms-content { font-size: 13px; color: var(--text2); line-height: 1.7; }
   .outcome-list { display: flex; flex-direction: column; gap: 6px; }
@@ -90,30 +89,6 @@
   .person-title { font-size: 11px; color: var(--text2); margin-top: 2px; }
   .person-phone { font-size: 11px; color: var(--text3); margin-top: 2px; }
 
-  /* EMAIL CARDS */
-  .email-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 10px; transition: border-color 0.15s; }
-  .email-card:hover { border-color: var(--border2); }
-  .email-card.t1 { border-color: rgba(255,77,77,0.35); }
-  .email-card.t2 { border-color: rgba(245,197,24,0.2); }
-  .email-card.t3 { opacity: 0.5; }
-  .email-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
-  .email-from { font-size: 13px; font-weight: 600; color: var(--text); }
-  .email-subject { font-size: 12px; color: var(--text2); margin-bottom: 6px; }
-  .email-snippet { font-size: 12px; color: var(--text3); margin-bottom: 10px; line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .email-draft { background: var(--bg3); border: 1px solid var(--border2); border-radius: 8px; padding: 10px 14px; font-size: 12px; color: var(--text2); line-height: 1.6; margin-bottom: 8px; white-space: pre-wrap; }
-  .email-actions { display: flex; gap: 8px; }
-  .btn { padding: 5px 14px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; border: 1px solid; transition: all 0.15s; }
-  .btn-send { background: rgba(62,207,142,0.15); color: var(--green); border-color: rgba(62,207,142,0.3); }
-  .btn-send:hover { background: rgba(62,207,142,0.25); }
-  .btn-edit { background: transparent; color: var(--text2); border-color: var(--border2); }
-  .btn-edit:hover { background: var(--bg3); color: var(--text); }
-  .btn-archive { background: transparent; color: var(--text3); border-color: var(--border); }
-  .btn-archive:hover { color: var(--red); border-color: rgba(255,77,77,0.4); }
-  .tier-badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 99px; flex-shrink: 0; }
-  .tb-1 { background: rgba(255,77,77,0.15); color: var(--red); border: 1px solid rgba(255,77,77,0.3); }
-  .tb-2 { background: rgba(245,197,24,0.1); color: var(--yellow); border: 1px solid rgba(245,197,24,0.25); }
-  .tb-3 { background: var(--bg3); color: var(--text3); border: 1px solid var(--border); }
-
   /* TASKS */
   .task-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; transition: border-color 0.15s; }
   .task-item:hover { border-color: var(--border2); }
@@ -122,7 +97,7 @@
   .task-check { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--border2); flex-shrink: 0; margin-top: 2px; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: center; }
   .task-check:hover { border-color: var(--green); }
   .task-check.checked { background: var(--green); border-color: var(--green); }
-  .task-check.checked::after { content: 'âœ“'; font-size: 10px; color: white; font-weight: 800; }
+  .task-check.checked::after { content: '\2713'; font-size: 10px; color: white; font-weight: 800; }
   .task-body { flex: 1; }
   .task-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
   .task-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
@@ -150,7 +125,7 @@
   .kr-pct { font-size: 10px; font-weight: 700; }
 
   /* PULSE */
-  .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--yellow); animation: pulse 2s infinite; flex-shrink: 0; display: inline-block; }
+  .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--yellow); animation: pulse 2s infinite; flex-shrink: 0; display: inline-block; margin-right: 6px; }
   @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
 
   /* SCROLLBAR */
@@ -161,6 +136,16 @@
   [contenteditable]:focus { background: rgba(255,255,255,0.03); border-radius: 4px; }
 
   .edit-hint { font-size: 10px; color: var(--text3); text-align: right; margin-bottom: 12px; }
+
+  .btn { padding: 5px 14px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; border: 1px solid; transition: all 0.15s; }
+  .btn-send { background: rgba(62,207,142,0.15); color: var(--green); border-color: rgba(62,207,142,0.3); }
+  .btn-send:hover { background: rgba(62,207,142,0.25); }
+  .btn-edit { background: transparent; color: var(--text2); border-color: var(--border2); }
+  .btn-edit:hover { background: var(--bg3); color: var(--text); }
+  .btn-archive { background: transparent; color: var(--text3); border-color: var(--border); }
+  .tier-badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 99px; flex-shrink: 0; }
+  .tb-1 { background: rgba(255,77,77,0.15); color: var(--red); border: 1px solid rgba(255,77,77,0.3); }
+  .tb-2 { background: rgba(245,197,24,0.1); color: var(--yellow); border: 1px solid rgba(245,197,24,0.25); }
 </style>
 </head>
 <body>
@@ -173,7 +158,6 @@
   </div>
   <div class="topbar-tabs">
     <button class="tab-btn active" onclick="showPage('today')">Today</button>
-    <button class="tab-btn" onclick="showPage('inbox')">Inbox</button>
     <button class="tab-btn" onclick="showPage('meetings')">Meetings</button>
     <button class="tab-btn" onclick="showPage('tasks')">Tasks</button>
     <button class="tab-btn" onclick="showPage('goals')">Goals</button>
@@ -188,34 +172,49 @@
   <div class="sidebar">
     <div class="sidebar-section">
       <div class="sidebar-label">Navigate</div>
-      <button class="nav-btn active" onclick="showPage('today')"><span class="nav-icon">âš¡</span>Today<span class="nav-count">3</span></button>
-      <button class="nav-btn" onclick="showPage('inbox')"><span class="nav-icon">ðŸ“¬</span>Inbox<span class="nav-count">2</span></button>
-      <button class="nav-btn" onclick="showPage('meetings')"><span class="nav-icon">ðŸ—“</span>Meetings<span class="nav-count muted">2</span></button>
-      <button class="nav-btn" onclick="showPage('tasks')"><span class="nav-icon">âœ…</span>Tasks<span class="nav-count muted">5</span></button>
-      <button class="nav-btn" onclick="showPage('goals')"><span class="nav-icon">ðŸŽ¯</span>Goals<span class="nav-count muted">3</span></button>
-      <button class="nav-btn" onclick="showPage('architecture')"><span class="nav-icon">ðŸ—</span>Architecture</button>
+      <button class="nav-btn active" onclick="showPage('today')"><span class="nav-icon">*</span>Today<span class="nav-count">3</span></button>
+      <button class="nav-btn" onclick="showPage('meetings')"><span class="nav-icon">+</span>Meetings<span class="nav-count muted">2</span></button>
+      <button class="nav-btn" onclick="showPage('tasks')"><span class="nav-icon">-</span>Tasks<span class="nav-count muted">4</span></button>
+      <button class="nav-btn" onclick="showPage('goals')"><span class="nav-icon">o</span>Goals<span class="nav-count muted">3</span></button>
+      <button class="nav-btn" onclick="showPage('architecture')"><span class="nav-icon">#</span>Architecture</button>
     </div>
     <div class="sidebar-section">
-      <div class="sidebar-label">Status</div>
+      <div class="sidebar-label">Integrations</div>
       <div style="padding: 12px; background: var(--bg3); border-radius: 10px; border: 1px solid var(--border);">
-        <div style="font-size:10px;color:var(--text3);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.08em;">Inboxes</div>
         <div style="display:flex;flex-direction:column;gap:6px;">
           <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);">
-            <div style="width:6px;height:6px;border-radius:50%;background:var(--green);"></div>Gmail (personal)
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--green);"></div>Gmail
           </div>
           <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);">
-            <div style="width:6px;height:6px;border-radius:50%;background:var(--green);"></div>Gmail (2nd)
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--green);"></div>Google Calendar
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--green);"></div>Google Drive
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--green);"></div>Slack
           </div>
           <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);">
             <div style="width:6px;height:6px;border-radius:50%;background:var(--yellow);"></div>Granola
           </div>
-          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text3);">
-            <div style="width:6px;height:6px;border-radius:50%;background:var(--border2);"></div>Calendar (soon)
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--green);"></div>Jira
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--green);"></div>Attio
           </div>
           <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text3);">
-            <div style="width:6px;height:6px;border-radius:50%;background:var(--border2);"></div>Outlook (soon)
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--border2);"></div>WhatsApp (pending)
           </div>
         </div>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Sprint 01</div>
+      <div style="padding: 10px 12px; background: var(--bg3); border-radius: 8px; font-size: 11px; color: var(--text2);">
+        <div style="margin-bottom:6px;">Humber target: <strong style="color:var(--blue);">~Jul 22</strong></div>
+        <div style="margin-bottom:6px;color:var(--green);">1 Done &middot; 15 In Progress</div>
+        <div style="color:var(--orange);">2 Jira pending (Nishant, Rakshit)</div>
       </div>
     </div>
   </div>
@@ -227,51 +226,43 @@
     <div class="page active" id="page-today">
       <div class="stats-row">
         <div class="stat-card">
-          <div class="stat-label">Act Now</div>
-          <div class="stat-value c-red">2</div>
-          <div class="stat-sub">Tier 1 emails</div>
+          <div class="stat-label">Top Priority</div>
+          <div class="stat-value c-red" style="font-size:14px;padding-top:4px;">Spur / Ottawa</div>
+          <div class="stat-sub">Meeting prep &mdash; Thu Jul 3</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">Meetings Today</div>
-          <div class="stat-value c-blue">1</div>
-          <div class="stat-sub">Krish â€” 9:45am EDT</div>
+          <div class="stat-label">Meetings Thu</div>
+          <div class="stat-value c-blue">2</div>
+          <div class="stat-sub">Propel 10am &middot; Aaron Le 2pm PST</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">Tomorrow</div>
-          <div class="stat-value c-yellow">1</div>
-          <div class="stat-sub">Tom Blum â€” 4pm EDT</div>
+          <div class="stat-label">Investor Signal</div>
+          <div class="stat-value c-yellow" style="font-size:14px;padding-top:4px;">Opala</div>
+          <div class="stat-sub">$200-350K &mdash; closing ~Jul 7</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">Tasks Due</div>
-          <div class="stat-value c-orange">2</div>
-          <div class="stat-sub">today + overdue</div>
+          <div class="stat-label">Sprint Gate</div>
+          <div class="stat-value c-blue" style="font-size:14px;padding-top:4px;">~3 wk</div>
+          <div class="stat-sub">Humber &mdash; Jul 22</div>
         </div>
       </div>
 
-      <div class="section-header"><div class="section-title"><span class="pulse"></span> Immediate â€” Act Now</div></div>
+      <div class="section-header"><div class="section-title"><span class="pulse"></span>Priority &mdash; Act Now</div></div>
       <div class="cards-grid">
 
         <div class="card tier1">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px;">
             <div>
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-                <span class="tier-badge tb-1">TIER 1</span>
-                <span style="font-size:11px;color:var(--text3);">Gmail Â· May 21</span>
+                <span class="tier-badge tb-1">#1</span>
+                <span style="font-size:11px;color:var(--text3);">Thu Jul 3 &mdash; Ottawa pilot meeting</span>
               </div>
-              <div style="font-size:14px;font-weight:600;color:var(--text);">Scott Howard â€” LightGrid + Revenue Engine</div>
-              <div style="font-size:12px;color:var(--text3);margin-top:3px;">13 days unanswered. Nathan told him "will review with MK."</div>
+              <div style="font-size:14px;font-weight:600;color:var(--text);">Spur / Ottawa &mdash; Partnership framing + KPI lock</div>
+              <div style="font-size:12px;color:var(--text3);margin-top:3px;">TASK-010 at 40%. Thu is the gate to close it.</div>
             </div>
           </div>
-          <div class="email-draft" contenteditable="true">Scott â€” apologies for the slow follow-up, been heads-down on product.
-
-We're not in a position to take on new engagements right now but I don't want to leave this hanging. The Sales-Sleuth concept is interesting â€” open to a quick demo on one target account when we're closer to a proper go-to-market push, likely Q3.
-
-Will loop back then.
-
-Mujtaba</div>
-          <div class="email-actions">
-            <button class="btn btn-send" onclick="markSent(this)">Send âœ“</button>
-            <button class="btn btn-archive">Archive</button>
+          <div style="padding:10px 14px;background:var(--bg3);border-radius:8px;font-size:12px;color:var(--text2);line-height:1.7;">
+            Walk in with: (1) 5 KPIs you require them to commit to, (2) challenge the rent structure, (3) frame it as &ldquo;partnership&rdquo; not vendor-customer. Set Jul 10 for KPI agreement, Jul 17 for sign-off.
           </div>
         </div>
 
@@ -280,242 +271,277 @@ Mujtaba</div>
             <div>
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
                 <span class="tier-badge tb-1">FLAG</span>
-                <span style="font-size:11px;color:var(--text3);">Gmail Â· Jun 2</span>
+                <span style="font-size:11px;color:var(--text3);">15 days since feedback &mdash; closing ~Jul 7</span>
               </div>
-              <div style="font-size:14px;font-weight:600;color:var(--text);">Noor Khan â€” Lightgrid Energy 2025 Financials</div>
-              <div style="font-size:12px;color:var(--text3);margin-top:3px;">Sent financials to Rahim. Key decision: capitalize ~$50K R&D spend vs expense it. Affects how investors read your books.</div>
+              <div style="font-size:14px;font-weight:600;color:var(--text);">Andrew Opala &mdash; Angel Round ($200-350K)</div>
+              <div style="font-size:12px;color:var(--text3);margin-top:3px;">Gave deck feedback Jun 15. No reply in 15 days. Closing date is in 6 days.</div>
             </div>
           </div>
           <div style="padding:10px 14px;background:rgba(245,197,24,0.08);border:1px solid rgba(245,197,24,0.2);border-radius:8px;font-size:12px;color:var(--text2);line-height:1.6;">
-            âš  Review with Rahim before he responds. Capitalizing $50K looks better on the balance sheet for investors (higher assets, lower losses) but is aggressive at this stage. Ask Rahim what he recommends before approving.
+            ! Follow up today. Reference his feedback, show what changed. This cheque closes in days &mdash; it can go cold fast.
+          </div>
+        </div>
+
+        <div class="card tier2">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px;">
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                <span class="tier-badge tb-2">TODAY</span>
+                <span style="font-size:11px;color:var(--text3);">Canada Day &mdash; organic timing</span>
+              </div>
+              <div style="font-size:14px;font-weight:600;color:var(--text);">Al Roy (BDC) &mdash; Canada Day ping</div>
+              <div style="font-size:12px;color:var(--text3);margin-top:3px;">BDC is the investor domino &mdash; everything else is waiting on their signal.</div>
+            </div>
+          </div>
+          <div style="padding:10px 14px;background:var(--bg3);border-radius:8px;font-size:12px;color:var(--text2);line-height:1.7;">
+            Short note, propose Thu/Fri call. Don&rsquo;t overthink it &mdash; Canada Day is the excuse.
+          </div>
+        </div>
+
+        <div class="card tier2">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px;">
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                <span class="tier-badge tb-2">TODAY</span>
+                <span style="font-size:11px;color:var(--text3);">Sarnia contract &mdash; gating Yuri + PO</span>
+              </div>
+              <div style="font-size:14px;font-weight:600;color:var(--text);">Gerro Prinsloo (AlumaPower) &mdash; SOW v2.7</div>
+              <div style="font-size:12px;color:var(--text3);margin-top:3px;">SOW v2.6 updated Jun 30 fixing naming. Get Nathan to send v2.7 today.</div>
+            </div>
           </div>
         </div>
 
       </div>
 
-      <div class="section-header" style="margin-top:8px;"><div class="section-title">Today's Meeting</div></div>
-      <div class="card upcoming" style="margin-bottom:28px;">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-          <div style="font-size:14px;font-weight:700;color:var(--text);">Krish Patel â€” LGE Onboarding</div>
-          <div style="font-size:12px;font-weight:700;color:var(--blue);background:rgba(14,165,233,0.12);padding:4px 12px;border-radius:6px;border:1px solid rgba(14,165,233,0.25);">Today 9:45am EDT</div>
-        </div>
-        <div style="font-size:12px;color:var(--text2);">New hire onboarding. Set up by Nathan. <a href="https://meet.google.com/kej-hwkg-pqk" target="_blank" style="color:var(--blue);text-decoration:none;">Join Meet â†’</a></div>
-      </div>
-
-      <div class="section-header"><div class="section-title">Tomorrow</div></div>
-      <div class="card upcoming">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-          <div style="font-size:14px;font-weight:700;color:var(--text);">Tom Blum â€” Lightgrid x Tom</div>
-          <div style="font-size:12px;font-weight:700;color:var(--blue);background:rgba(14,165,233,0.12);padding:4px 12px;border-radius:6px;border:1px solid rgba(14,165,233,0.25);">Jun 4 Â· 4pm EDT Â· 30 min</div>
-        </div>
-        <div style="font-size:12px;color:var(--text2);margin-bottom:8px;">New York Angels Â· Follow-up from May 18 pitch. He didn't invest but stayed engaged â€” that's the signal. Go in asking for intros, not a check.</div>
-        <button class="btn btn-edit" onclick="showPage('meetings')" style="font-size:11px;">View full prep brief â†’</button>
-      </div>
-    </div>
-
-    <!-- INBOX PAGE -->
-    <div class="page" id="page-inbox">
-      <div class="edit-hint">ðŸ’¡ Click any draft to edit before sending</div>
-      <div class="section-header"><div class="section-title">ðŸ”´ Tier 1 â€” Act Now</div></div>
-
-      <div class="email-card t1">
-        <div class="email-header">
-          <div>
-            <div class="email-from">Scott Howard &lt;scottj.howard@gmail.com&gt;</div>
-            <div class="email-subject">Re: LightGrid + Revenue Engine</div>
-            <div class="email-snippet">Hi, fellas. Any movement on this?</div>
+      <div class="section-header" style="margin-top:4px;"><div class="section-title">Thursday Jul 3</div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px;">
+        <div class="card upcoming">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+            <div style="font-size:14px;font-weight:700;color:var(--text);">Propel Impact &mdash; Tech Demo</div>
+            <div style="font-size:12px;font-weight:700;color:var(--blue);background:rgba(14,165,233,0.12);padding:4px 12px;border-radius:6px;border:1px solid rgba(14,165,233,0.25);">Thu 10:00 AM EDT</div>
           </div>
-          <span class="tier-badge tb-1">T1</span>
+          <div style="font-size:12px;color:var(--text2);">Lily Sun + Jadon (Propel, $22.5M fund). Both viewed deck + data room Jun 29 &mdash; hot signal. Demo the core dispatch optimization. Must-get: next step / term sheet conversation.</div>
         </div>
-        <div class="email-draft" contenteditable="true">Scott â€” apologies for the slow follow-up, been heads-down on product.
-
-We're not in a position to take on new engagements right now but I don't want to leave this hanging. The Sales-Sleuth concept is interesting â€” open to a quick demo on one target account when we're closer to a proper go-to-market push, likely Q3.
-
-Will loop back then.
-
-Mujtaba</div>
-        <div class="email-actions">
-          <button class="btn btn-send" onclick="markSent(this)">Send âœ“</button>
-          <button class="btn btn-edit">Edit</button>
-          <button class="btn btn-archive">Archive</button>
-        </div>
-      </div>
-
-      <div class="section-header" style="margin-top:20px;"><div class="section-title">ðŸŸ¡ Tier 2 â€” Today</div></div>
-
-      <div class="email-card t2">
-        <div class="email-header">
-          <div>
-            <div class="email-from">Noor Khan &lt;noork2024@gmail.com&gt;</div>
-            <div class="email-subject">Lightgrid Energy 2025 Financials</div>
-            <div class="email-snippet">TB, P&L, BS, AP Aging attached. Wants to capitalize ~$50K R&D spend.</div>
+        <div class="card upcoming">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+            <div style="font-size:14px;font-weight:700;color:var(--text);">Aaron Le (Hatch) &mdash; V4 Arch Review</div>
+            <div style="font-size:12px;font-weight:700;color:var(--blue);background:rgba(14,165,233,0.12);padding:4px 12px;border-radius:6px;border:1px solid rgba(14,165,233,0.25);">Thu 2:00 PM PST</div>
           </div>
-          <span class="tier-badge tb-2">T2</span>
-        </div>
-        <div style="padding:10px 14px;background:rgba(245,197,24,0.06);border:1px solid rgba(245,197,24,0.15);border-radius:8px;font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:8px;">
-          FYI only â€” this was sent to Rahim. Your action: review with Rahim before he responds on the $50K capitalization decision.
-        </div>
-        <div class="email-actions">
-          <button class="btn btn-archive">Archive</button>
+          <div style="font-size:12px;color:var(--text2);">SCRUM-41. Review V4 architecture + interface contract for Humber. Confirm deployment timeline ~Jul 22. Pre-prep: architecture summary for Aaron.</div>
         </div>
       </div>
 
-      <div class="section-header" style="margin-top:20px;"><div class="section-title">âšª Tier 3 â€” Archived</div></div>
-      <div style="padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;font-size:12px;color:var(--text3);">
-        17 items archived â€” calendar notifications (Narro DD, IAF meeting, Spur, Pat Doyle, Benton, Lenny x2, Pierre, Pres Touchbase, App Touchbase), Dealum password change, 1 scam (BlackRock phishing), Porter Airlines, LinkedIn x2, Tactiq x2.
+      <div class="section-header"><div class="section-title">Done Today (Jul 1)</div></div>
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:24px;">
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--text2);">
+          <div style="display:flex;gap:8px;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Daily Doc Session with Nathan (12 PM)</div>
+          <div style="display:flex;gap:8px;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Product Team Meeting &mdash; full team (1:30 PM)</div>
+          <div style="display:flex;gap:8px;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Sales Coaching with Elliot, 2 PM (YSpace working doc updated)</div>
+          <div style="display:flex;gap:8px;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Rob Kenedi / Singularity Point office hours (4 PM)</div>
+          <div style="display:flex;gap:8px;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Sent Humber architecture update + Zone B deployment diagram to Nilushi</div>
+          <div style="display:flex;gap:8px;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Updated Mostafa (U-Calgary) &mdash; research agreement signed, waiting on Dean/Provost</div>
+          <div style="display:flex;gap:8px;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Submitted NAIVU venture application</div>
+          <div style="display:flex;gap:8px;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Sent Scale AI follow-up to Adithya</div>
+          <div style="display:flex;gap:8px;"><span style="color:var(--green);font-weight:700;">&#10003;</span> Drive: Sprint01 tasks, LGE Spec Sheet v2, OVIN tracker, AlumaPower OVIN letter, Data Room Checklist updated</div>
+        </div>
+      </div>
+
+      <div class="section-header"><div class="section-title">Waiting / Follow-up</div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div style="padding:12px 16px;background:var(--bg2);border:1px solid rgba(14,165,233,0.2);border-radius:10px;font-size:12px;">
+          <div style="font-weight:700;color:var(--text);margin-bottom:4px;">Charles Cao / Nebula Block</div>
+          <div style="color:var(--text2);">Confirmed Wed Jul 2 @ 11:30 AM EDT.</div>
+        </div>
+        <div style="padding:12px 16px;background:var(--bg2);border:1px solid rgba(245,197,24,0.2);border-radius:10px;font-size:12px;">
+          <div style="font-weight:700;color:var(--text);margin-bottom:4px;">Darya / Spur &mdash; LOI Terms</div>
+          <div style="color:var(--text2);">MK proposed Thu before 2 PM (Jun 25). 6 days no reply. Nudge before Thu.</div>
+        </div>
+        <div style="padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;font-size:12px;">
+          <div style="font-weight:700;color:var(--text);margin-bottom:4px;">Hasti &mdash; Next hire</div>
+          <div style="color:var(--text2);">Following up on next meeting prep. Don&rsquo;t let this cool.</div>
+        </div>
+        <div style="padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;font-size:12px;">
+          <div style="font-weight:700;color:var(--text);margin-bottom:4px;">Winston Edwards / The Narro</div>
+          <div style="color:var(--text2);">Nathan followed up Jun 29. 17 days no reply from Winston.</div>
+        </div>
       </div>
     </div>
 
     <!-- MEETINGS PAGE -->
     <div class="page" id="page-meetings">
+
       <div class="meeting-card">
         <div class="meeting-header">
           <div>
-            <div class="meeting-name">Lightgrid Ã— Tom Blum</div>
-            <div class="meeting-meta">New York Angels Â· 917-769-9547 Â· tblum@yahoo.com</div>
+            <div class="meeting-name">Propel Impact &mdash; Tech Demo</div>
+            <div class="meeting-meta">$22.5M fund &middot; Lily Sun + Jadon &middot; lily.sun@propelimpact.com</div>
           </div>
-          <div class="meeting-time-badge">Thu Jun 4 Â· 4:00â€“4:30pm EDT</div>
-        </div>
-        <div style="padding:16px 20px;border-bottom:1px solid var(--border);">
-          <div class="person-card">
-            <div class="person-avatar">TB</div>
-            <div>
-              <div class="person-name">Thomas Blum</div>
-              <div class="person-title">New York Angels Â· Cleantech mentor Â· Active investor</div>
-              <div class="person-phone">917-769-9547 Â· tblum@yahoo.com</div>
-            </div>
-          </div>
-          <div style="font-size:12px;color:var(--text2);line-height:1.7;padding:10px 14px;background:var(--bg3);border-radius:8px;">
-            Met on May 18 (NY Angels pitch). Gave candid feedback â€” called you "Friends & Family stage." Didn't invest but stayed engaged (positive signal). Knows the energy/compute space well. Active investor in Feedback Solutions. Connected across Toronto cleantech ecosystem.
-          </div>
+          <div class="meeting-time-badge">Thu Jul 3 &middot; 10:00 AM EDT</div>
         </div>
         <div class="meeting-body">
           <div>
             <div class="ms-title">Your Outcomes</div>
             <div class="outcome-list">
-              <div class="outcome-item"><span class="outcome-num">1</span>Warm intros to 2â€“3 angels who can write $25â€“100K</div>
-              <div class="outcome-item"><span class="outcome-num">2</span>Intro to Carter Li at Swtch Energy (acqui-hire/partnership angle)</div>
-              <div class="outcome-item"><span class="outcome-num">3</span>Test advisory conversation â€” he's already mentoring for free</div>
+              <div class="outcome-item"><span class="outcome-num">1</span>Get them to name a next step &mdash; term sheet conversation, partner intro, or follow-up due diligence request</div>
+              <div class="outcome-item"><span class="outcome-num">2</span>Demo core dispatch optimization engine &mdash; make the value prop visceral, not abstract</div>
+              <div class="outcome-item"><span class="outcome-num">3</span>Understand their decision timeline and who else is in the room</div>
             </div>
+            <div class="ms-title" style="margin-top:16px;">Context</div>
+            <div class="ms-content">Lily Sun + Jadon both viewed your deck, sales pipeline, and data room on Jun 29. That&rsquo;s a hot signal &mdash; they&rsquo;re doing diligence. $22.5M fund. Keshiv is the main contact. Go in treating this as a late-stage conversation, not a first pitch.</div>
+          </div>
+          <div>
+            <div class="ms-title">Watch-outs</div>
+            <div class="watchout-list">
+              <div class="watchout-item"><span class="wo-icon">!</span>Don&rsquo;t re-pitch the deck &mdash; they&rsquo;ve read it. Go straight to the demo and Q&amp;A.</div>
+              <div class="watchout-item"><span class="wo-icon">!</span>Have the data room ready and organized &mdash; they may ask for specific docs live.</div>
+              <div class="watchout-item"><span class="wo-icon">!</span>Know your pre-money ask and how you got there before walking in.</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <div class="meeting-card">
+        <div class="meeting-header">
+          <div>
+            <div class="meeting-name">Aaron Le &mdash; V4 Architecture Review</div>
+            <div class="meeting-meta">Hatch &middot; SCRUM-41 &middot; Humber lab deployment gate</div>
+          </div>
+          <div class="meeting-time-badge">Thu Jul 3 &middot; 2:00 PM PST</div>
+        </div>
+        <div class="meeting-body">
+          <div>
+            <div class="ms-title">Your Outcomes</div>
+            <div class="outcome-list">
+              <div class="outcome-item"><span class="outcome-num">1</span>Aaron signs off on V4 interface contract &mdash; this unblocks SCRUM-32 (E2E) and the Humber gate</div>
+              <div class="outcome-item"><span class="outcome-num">2</span>Confirm deployment timeline: ~Jul 22 Humber lab</div>
+              <div class="outcome-item"><span class="outcome-num">3</span>Surface any Hatch compliance / security requirements we haven&rsquo;t accounted for</div>
+            </div>
             <div class="ms-title" style="margin-top:16px;">Talking Points</div>
             <div class="talk-track">
-              <div class="talk-item" contenteditable="true">"We followed up on the Swtch Energy idea â€” Carter Li does load balancing for EVs in apartments, we do it for data centers. Feels complementary not competitive."</div>
-              <div class="talk-item" contenteditable="true">"At $225K F&F + $100K strategic committed. Looking to close with 2â€“3 more at $25â€“100K. You mentioned sympathetic angels in your circle?"</div>
-              <div class="talk-item" contenteditable="true">"You gave us the most candid feedback we've gotten. Would an advisory arrangement make sense?"</div>
+              <div class="talk-item" contenteditable="true">"Zone A and Zone B are now clearly separated &mdash; cloud software handles all optimization, physical layer only receives dispatch commands via OPC UA. No bidirectional control."</div>
+              <div class="talk-item" contenteditable="true">"The non-invasive constraint is locked: BFS cannot run when RL optimizer is shifting loads. Nishant owns the hierarchy architecture."</div>
+              <div class="talk-item" contenteditable="true">"We&rsquo;re targeting Humber lab by Jul 22. What&rsquo;s Hatch&rsquo;s gate for green-lighting that?"</div>
             </div>
           </div>
           <div>
             <div class="ms-title">Watch-outs</div>
             <div class="watchout-list">
-              <div class="watchout-item"><span class="wo-icon">âš </span>He already said he's not investing â€” don't ask again, you'll lose trust</div>
-              <div class="watchout-item"><span class="wo-icon">âš </span>Don't oversell traction you don't have â€” he'll see through it</div>
-              <div class="watchout-item"><span class="wo-icon">âš </span>He's a connector, not a check writer â€” work that angle</div>
-            </div>
-
-            <div class="ms-title" style="margin-top:16px;">His Leads from Last Time</div>
-            <div style="display:flex;flex-direction:column;gap:6px;">
-              <div style="padding:8px 12px;background:var(--bg3);border-radius:8px;font-size:12px;color:var(--text2);">ðŸ¢ <strong style="color:var(--text);">Swtch Energy</strong> â€” Carter Li. EV load balancing â†’ data centers. Best intro to pursue.</div>
-              <div style="padding:8px 12px;background:var(--bg3);border-radius:8px;font-size:12px;color:var(--text2);">ðŸš€ <strong style="color:var(--text);">TandemLaunch</strong> â€” Toronto startup foundry. His #1 rec.</div>
-              <div style="padding:8px 12px;background:var(--bg3);border-radius:8px;font-size:12px;color:var(--text2);">âš¡ <strong style="color:var(--text);">Cleantech Open</strong> â€” mentors + pitch practice. No funding.</div>
-            </div>
-
-            <div style="margin-top:16px;">
-              <a href="https://meet.google.com/kej-hwkg-pqk" target="_blank" style="display:inline-block;padding:8px 16px;background:rgba(14,165,233,0.15);color:var(--blue);border:1px solid rgba(14,165,233,0.3);border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;">Join Google Meet â†’</a>
+              <div class="watchout-item"><span class="wo-icon">!</span>Still need Humber IT server URL + port for OPC UA. Ask Aaron if he can facilitate.</div>
+              <div class="watchout-item"><span class="wo-icon">!</span>SCRUM-31 (interface contract) is at 85% &mdash; Manish needs to finish before this meeting if possible.</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Krish card -->
       <div class="meeting-card">
         <div class="meeting-header">
           <div>
-            <div class="meeting-name">Krish Patel â€” LGE Onboarding</div>
-            <div class="meeting-meta">Internal Â· Set up by Nathan Odotei</div>
+            <div class="meeting-name">Charles Cao &mdash; Nebula Block</div>
+            <div class="meeting-meta">Confirmed &middot; Wed Jul 2</div>
           </div>
-          <div class="meeting-time-badge">Today Â· 9:45â€“10:30am EDT</div>
+          <div class="meeting-time-badge">Wed Jul 2 &middot; 11:30 AM EDT</div>
         </div>
         <div style="padding:16px 20px;font-size:12px;color:var(--text2);">
-          New hire onboarding session. <a href="https://meet.google.com/kej-hwkg-pqk" target="_blank" style="color:var(--blue);">Join Meet â†’</a>
-          <div style="margin-top:10px;padding:10px 14px;background:var(--bg3);border-radius:8px;">Add notes here about what Krish is joining to work on and what you want to cover in onboarding.</div>
+          Add prep notes here before the call.
         </div>
       </div>
+
     </div>
 
     <!-- TASKS PAGE -->
     <div class="page" id="page-tasks">
       <div class="stats-row" style="grid-template-columns:repeat(3,1fr);">
-        <div class="stat-card"><div class="stat-label">Overdue</div><div class="stat-value c-red">1</div><div class="stat-sub">TASK-006 â€” rotate token</div></div>
-        <div class="stat-card"><div class="stat-label">Due This Week</div><div class="stat-value c-yellow">3</div><div class="stat-sub">Gmail, Calendar, VS Code</div></div>
-        <div class="stat-card"><div class="stat-label">Complete</div><div class="stat-value c-green">2</div><div class="stat-sub">GitHub + Gmail MCP</div></div>
+        <div class="stat-card"><div class="stat-label">Overdue</div><div class="stat-value c-red">1</div><div class="stat-sub">TASK-010 &mdash; Spur agreement (40%)</div></div>
+        <div class="stat-card"><div class="stat-label">Due This Week</div><div class="stat-value c-yellow">3</div><div class="stat-sub">Opala, Hasti, System map review</div></div>
+        <div class="stat-card"><div class="stat-label">Complete</div><div class="stat-value c-green">3</div><div class="stat-sub">Jira setup, Humber arch, NAIVU app</div></div>
       </div>
 
-      <div class="section-header"><div class="section-title">ðŸ”´ Overdue</div></div>
+      <div class="section-header"><div class="section-title">Overdue</div></div>
       <div class="task-item overdue">
         <div class="task-check" onclick="toggleCheck(this)"></div>
         <div class="task-body">
-          <div class="task-title">TASK-006 â€” Rotate GitHub token (exposed in chat)</div>
+          <div class="task-title">TASK-010 &mdash; Spur / Ottawa pilot agreement</div>
           <div class="task-meta">
-            <span class="task-due overdue">Due: Jun 2 â€” OVERDUE</span>
+            <span class="task-due overdue">Due: Jul 1 &mdash; OVERDUE (40%)</span>
             <span class="task-p p1">P1</span>
-            <span class="task-goal">OBJ-3</span>
+            <span class="task-goal">OBJ-2</span>
           </div>
         </div>
       </div>
 
-      <div class="section-header" style="margin-top:16px;"><div class="section-title">ðŸŸ¡ Due This Week</div></div>
+      <div class="section-header" style="margin-top:16px;"><div class="section-title">Due This Week</div></div>
       <div class="task-item">
         <div class="task-check" onclick="toggleCheck(this)"></div>
         <div class="task-body">
-          <div class="task-title">TASK-003 â€” Connect Google Calendar MCP</div>
-          <div class="task-meta"><span class="task-due">Due: Jun 5</span><span class="task-p p1">P1</span><span class="task-goal">OBJ-1</span></div>
+          <div class="task-title">Andrew Opala &mdash; follow-up on $200-350K cheque (closing ~Jul 7)</div>
+          <div class="task-meta"><span class="task-due overdue">Due: TODAY</span><span class="task-p p1">P1</span><span class="task-goal">OBJ-3</span></div>
         </div>
       </div>
       <div class="task-item">
         <div class="task-check" onclick="toggleCheck(this)"></div>
         <div class="task-body">
-          <div class="task-title">TASK-007 â€” Install Claude Code extension in VS Code</div>
-          <div class="task-meta"><span class="task-due">Due: Jun 3</span><span class="task-p p2">P2</span><span class="task-goal">OBJ-3</span></div>
+          <div class="task-title">System map review &mdash; sign off on Manish&rsquo;s system map (unblocks wireframes)</div>
+          <div class="task-meta"><span class="task-due">Due: Jul 5</span><span class="task-p p1">P1</span><span class="task-goal">OBJ-1</span></div>
         </div>
       </div>
       <div class="task-item">
         <div class="task-check" onclick="toggleCheck(this)"></div>
         <div class="task-body">
-          <div class="task-title">TASK-004 â€” Fill in CLAUDE.md personal details</div>
-          <div class="task-meta"><span class="task-due">Due: Jun 7</span><span class="task-p p2">P2</span><span class="task-goal">OBJ-1</span></div>
+          <div class="task-title">Hasti &mdash; reply on next meeting / onboarding prep</div>
+          <div class="task-meta"><span class="task-due">Due: this week</span><span class="task-p p2">P2</span><span class="task-goal">OBJ-1</span></div>
+        </div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="toggleCheck(this)"></div>
+        <div class="task-body">
+          <div class="task-title">Humber IT &mdash; email to get OPC UA server URL + port (unblocks Nishant)</div>
+          <div class="task-meta"><span class="task-due">Due: ASAP</span><span class="task-p p1">P1</span><span class="task-goal">OBJ-1</span></div>
         </div>
       </div>
 
-      <div class="section-header" style="margin-top:16px;"><div class="section-title">ðŸ“… Later</div></div>
+      <div class="section-header" style="margin-top:16px;"><div class="section-title">Later</div></div>
       <div class="task-item">
         <div class="task-check" onclick="toggleCheck(this)"></div>
         <div class="task-body">
-          <div class="task-title">TASK-005 â€” Define Lightgrid v1 product spec</div>
-          <div class="task-meta"><span class="task-due">Due: Jun 15</span><span class="task-p p1">P1</span><span class="task-goal">OBJ-1</span></div>
+          <div class="task-title">Pre-lab scope definition &mdash; one-pager for Hatch / Humber (SCRUM-43)</div>
+          <div class="task-meta"><span class="task-due">Due: Jul 10</span><span class="task-p p1">P1</span><span class="task-goal">OBJ-1</span></div>
         </div>
       </div>
       <div class="task-item">
         <div class="task-check" onclick="toggleCheck(this)"></div>
         <div class="task-body">
-          <div class="task-title">TASK-008 â€” Connect Granola MCP (debug)</div>
-          <div class="task-meta"><span class="task-due">Due: Jun 7</span><span class="task-p p2">P2</span><span class="task-goal">OBJ-1</span></div>
+          <div class="task-title">Ben (Vectors CIO) security review &mdash; schedule before Jul 15 (SCRUM-42)</div>
+          <div class="task-meta"><span class="task-due">Due: Jul 15</span><span class="task-p p2">P2</span><span class="task-goal">OBJ-1</span></div>
+        </div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="toggleCheck(this)"></div>
+        <div class="task-body">
+          <div class="task-title">Rakshit + Nishant &mdash; push all work to Lightgrid-Energy GitHub org</div>
+          <div class="task-meta"><span class="task-due">Due: this week</span><span class="task-p p1">P1</span><span class="task-goal">OBJ-1</span></div>
         </div>
       </div>
 
-      <div class="section-header" style="margin-top:16px;"><div class="section-title">âœ… Complete</div></div>
+      <div class="section-header" style="margin-top:16px;"><div class="section-title">Complete</div></div>
       <div class="task-item done">
         <div class="task-check checked" onclick="toggleCheck(this)"></div>
         <div class="task-body">
-          <div class="task-title">TASK-001 â€” GitHub setup + push chief-of-staff repo</div>
-          <div class="task-meta"><span class="task-due">Completed Jun 2</span><span class="task-p p1">P1</span></div>
+          <div class="task-title">Jira setup &mdash; SCRUM-37</div>
+          <div class="task-meta"><span class="task-due">Completed Jul 1</span><span class="task-p p1">P1</span></div>
         </div>
       </div>
       <div class="task-item done">
         <div class="task-check checked" onclick="toggleCheck(this)"></div>
         <div class="task-body">
-          <div class="task-title">TASK-002 â€” Connect Gmail MCP</div>
-          <div class="task-meta"><span class="task-due">Completed Jun 3</span><span class="task-p p1">P1</span></div>
+          <div class="task-title">Sent Humber architecture update + Zone B diagram to Nilushi</div>
+          <div class="task-meta"><span class="task-due">Completed Jul 1</span><span class="task-p p1">P1</span></div>
+        </div>
+      </div>
+      <div class="task-item done">
+        <div class="task-check checked" onclick="toggleCheck(this)"></div>
+        <div class="task-body">
+          <div class="task-title">NAIVU venture application submitted</div>
+          <div class="task-meta"><span class="task-due">Completed Jul 1</span><span class="task-p p2">P2</span></div>
         </div>
       </div>
     </div>
@@ -523,37 +549,44 @@ Mujtaba</div>
     <!-- GOALS PAGE -->
     <div class="page" id="page-goals">
       <div style="font-size:13px;color:var(--text2);margin-bottom:20px;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;">
-        Q2 2026 Â· Last updated Jun 3 Â· <strong style="color:var(--text);">3 objectives</strong> Â· Click any key result to edit
+        Q2&ndash;Q3 2026 &middot; Last updated Jul 1 &middot; <strong style="color:var(--text);">3 objectives</strong> &middot; Click any key result to edit
       </div>
 
       <div class="goal-card">
         <div class="goal-header">
           <div>
-            <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">OBJ-1 Â· Priority 1</div>
-            <div class="goal-title" contenteditable="true">Ship Lightgrid v1 product to first paying data center customers</div>
+            <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">OBJ-1 &middot; Priority 1</div>
+            <div class="goal-title" contenteditable="true">Ship Lightgrid v1 to Humber lab &mdash; TRL 4 to TRL 5 by Jul 31</div>
           </div>
           <span class="goal-priority">P1</span>
         </div>
         <div class="kr-list">
           <div class="kr-item">
             <div class="kr-bar-wrap">
-              <div class="kr-label" contenteditable="true">Define and lock v1 product spec</div>
-              <div class="kr-track"><div class="kr-fill" style="width:10%;background:var(--orange);"></div></div>
-              <div class="kr-meta"><span class="kr-due">Due Jun 15</span><span class="kr-pct c-orange">10%</span></div>
+              <div class="kr-label" contenteditable="true">Interface contract signed off (SCRUM-31) &mdash; Aaron Le gate</div>
+              <div class="kr-track"><div class="kr-fill" style="width:85%;background:var(--green);"></div></div>
+              <div class="kr-meta"><span class="kr-due">Due Jul 7</span><span class="kr-pct c-green">85%</span></div>
             </div>
           </div>
           <div class="kr-item">
             <div class="kr-bar-wrap">
-              <div class="kr-label" contenteditable="true">Build MVP of core dispatch optimization engine</div>
-              <div class="kr-track"><div class="kr-fill" style="width:0%;background:var(--red);"></div></div>
-              <div class="kr-meta"><span class="kr-due">Due Jul 15</span><span class="kr-pct c-red">0%</span></div>
+              <div class="kr-label" contenteditable="true">Zone B: OPC UA + Historian + GCP deploy (Nishant)</div>
+              <div class="kr-track"><div class="kr-fill" style="width:75%;background:var(--yellow);"></div></div>
+              <div class="kr-meta"><span class="kr-due">Due Jul 15</span><span class="kr-pct c-yellow">75%</span></div>
             </div>
           </div>
           <div class="kr-item">
             <div class="kr-bar-wrap">
-              <div class="kr-label" contenteditable="true">Sign first pilot agreement with a data center operator</div>
-              <div class="kr-track"><div class="kr-fill" style="width:0%;background:var(--red);"></div></div>
-              <div class="kr-meta"><span class="kr-due">Due Aug 31</span><span class="kr-pct c-red">0%</span></div>
+              <div class="kr-label" contenteditable="true">RL optimization engine live &mdash; geo-shift + time-shift (Rakshit)</div>
+              <div class="kr-track"><div class="kr-fill" style="width:55%;background:var(--yellow);"></div></div>
+              <div class="kr-meta"><span class="kr-due">Due Jul 22</span><span class="kr-pct c-yellow">55%</span></div>
+            </div>
+          </div>
+          <div class="kr-item">
+            <div class="kr-bar-wrap">
+              <div class="kr-label" contenteditable="true">E2E test pass pre-Humber (SCRUM-32 &mdash; blocked on SCRUM-31)</div>
+              <div class="kr-track"><div class="kr-fill" style="width:5%;background:var(--red);"></div></div>
+              <div class="kr-meta"><span class="kr-due">Due Jul 20</span><span class="kr-pct c-red">5%</span></div>
             </div>
           </div>
         </div>
@@ -562,24 +595,31 @@ Mujtaba</div>
       <div class="goal-card">
         <div class="goal-header">
           <div>
-            <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">OBJ-2 Â· Priority 2</div>
-            <div class="goal-title" contenteditable="true">Build strategic partnerships with renewable energy developers</div>
+            <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">OBJ-2 &middot; Priority 2</div>
+            <div class="goal-title" contenteditable="true">Close pre-seed round &mdash; $500K&ndash;$750K by Sep 2026</div>
           </div>
           <span class="goal-priority">P2</span>
         </div>
         <div class="kr-list">
           <div class="kr-item">
             <div class="kr-bar-wrap">
-              <div class="kr-label" contenteditable="true">Identify top 10 target partners in energy flexibility space</div>
-              <div class="kr-track"><div class="kr-fill" style="width:0%;background:var(--red);"></div></div>
-              <div class="kr-meta"><span class="kr-due">Due Jun 20</span><span class="kr-pct c-red">0%</span></div>
+              <div class="kr-label" contenteditable="true">Andrew Opala &mdash; $200-350K cheque</div>
+              <div class="kr-track"><div class="kr-fill" style="width:80%;background:var(--yellow);"></div></div>
+              <div class="kr-meta"><span class="kr-due">Closing ~Jul 7</span><span class="kr-pct c-yellow">80%</span></div>
             </div>
           </div>
           <div class="kr-item">
             <div class="kr-bar-wrap">
-              <div class="kr-label" contenteditable="true">Have first substantive conversation with 3 potential partners</div>
-              <div class="kr-track"><div class="kr-fill" style="width:0%;background:var(--red);"></div></div>
-              <div class="kr-meta"><span class="kr-due">Due Jul 31</span><span class="kr-pct c-red">0%</span></div>
+              <div class="kr-label" contenteditable="true">Propel Impact &mdash; $22.5M fund, tech demo Jul 3</div>
+              <div class="kr-track"><div class="kr-fill" style="width:50%;background:var(--yellow);"></div></div>
+              <div class="kr-meta"><span class="kr-due">Demo Jul 3</span><span class="kr-pct c-yellow">50%</span></div>
+            </div>
+          </div>
+          <div class="kr-item">
+            <div class="kr-bar-wrap">
+              <div class="kr-label" contenteditable="true">BDC &mdash; Al Roy decision (investor domino)</div>
+              <div class="kr-track"><div class="kr-fill" style="width:30%;background:var(--orange);"></div></div>
+              <div class="kr-meta"><span class="kr-due">Stalled</span><span class="kr-pct c-orange">30%</span></div>
             </div>
           </div>
         </div>
@@ -588,24 +628,24 @@ Mujtaba</div>
       <div class="goal-card">
         <div class="goal-header">
           <div>
-            <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">OBJ-3 Â· Priority 3</div>
-            <div class="goal-title" contenteditable="true">Establish GitHub org and technical foundation for Lightgrid</div>
+            <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">OBJ-3 &middot; Priority 3</div>
+            <div class="goal-title" contenteditable="true">Sign first commercial pilot &mdash; AlumaPower (Sarnia) + Ottawa (Spur)</div>
           </div>
           <span class="goal-priority">P3</span>
         </div>
         <div class="kr-list">
           <div class="kr-item">
             <div class="kr-bar-wrap">
-              <div class="kr-label" contenteditable="true">Lightgrid-Energy GitHub org set up with first repo</div>
-              <div class="kr-track"><div class="kr-fill" style="width:90%;background:var(--green);"></div></div>
-              <div class="kr-meta"><span class="kr-due">Due Jun 5</span><span class="kr-pct c-green">90%</span></div>
+              <div class="kr-label" contenteditable="true">AlumaPower SOW &mdash; Sarnia pilot ($75K max PO, Yuri)</div>
+              <div class="kr-track"><div class="kr-fill" style="width:70%;background:var(--yellow);"></div></div>
+              <div class="kr-meta"><span class="kr-due">SOW v2.7 in progress</span><span class="kr-pct c-yellow">70%</span></div>
             </div>
           </div>
           <div class="kr-item">
             <div class="kr-bar-wrap">
-              <div class="kr-label" contenteditable="true">Core architecture documented and agreed</div>
-              <div class="kr-track"><div class="kr-fill" style="width:0%;background:var(--red);"></div></div>
-              <div class="kr-meta"><span class="kr-due">Due Jun 20</span><span class="kr-pct c-red">0%</span></div>
+              <div class="kr-label" contenteditable="true">Spur / Ottawa pilot &mdash; KPI lock + partnership framing (TASK-010)</div>
+              <div class="kr-track"><div class="kr-fill" style="width:40%;background:var(--orange);"></div></div>
+              <div class="kr-meta"><span class="kr-due">Gate: Thu Jul 3</span><span class="kr-pct c-orange">40%</span></div>
             </div>
           </div>
         </div>
@@ -614,13 +654,13 @@ Mujtaba</div>
 
     <!-- ARCHITECTURE PAGE -->
     <div class="page" id="page-architecture">
-      <div class="section-header"><div class="section-title">ðŸ— System Architecture â€” Zone A &amp; Zone B</div></div>
+      <div class="section-header"><div class="section-title">System Architecture &mdash; Zone A &amp; Zone B</div></div>
       <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px;overflow-x:auto;">
         <svg viewBox="0 0 860 540" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px;display:block;margin:0 auto;" font-family="system-ui,sans-serif">
           <rect width="860" height="540" fill="#0f1117"/>
           <!-- Zone A -->
           <rect x="20" y="20" width="500" height="500" rx="12" fill="#1a1f2e" stroke="#3b5bdb" stroke-width="1.5"/>
-          <text x="36" y="48" fill="#3b5bdb" font-size="11" font-weight="700" letter-spacing="2">ZONE A â€” CLOUD SOFTWARE</text>
+          <text x="36" y="48" fill="#3b5bdb" font-size="11" font-weight="700" letter-spacing="2">ZONE A - CLOUD SOFTWARE</text>
           <!-- Data Ingestion -->
           <rect x="40" y="65" width="460" height="72" rx="8" fill="#252b3b"/>
           <text x="56" y="85" fill="#a5b4fc" font-size="10" font-weight="700">DATA INGESTION</text>
@@ -632,55 +672,55 @@ Mujtaba</div>
           <!-- Classifier -->
           <rect x="40" y="153" width="460" height="52" rx="8" fill="#252b3b"/>
           <text x="56" y="172" fill="#a5b4fc" font-size="10" font-weight="700">CLASSIFIER</text>
-          <text x="56" y="186" fill="#6b7280" font-size="9">Rakshit â€” Flex-tier 0â€“3, priority scoring, tenant sensitivity</text>
+          <text x="56" y="186" fill="#6b7280" font-size="9">Rakshit - Flex-tier 0-3, priority scoring, tenant sensitivity</text>
           <line x1="270" y1="205" x2="270" y2="221" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arr)"/>
           <!-- Eval Framework -->
           <rect x="40" y="221" width="460" height="52" rx="8" fill="#252b3b"/>
           <text x="56" y="240" fill="#a5b4fc" font-size="10" font-weight="700">EVAL FRAMEWORK</text>
-          <text x="56" y="254" fill="#6b7280" font-size="9">Tilak â€” Data quality, physics gates, accuracy, latency, overfit detection</text>
+          <text x="56" y="254" fill="#6b7280" font-size="9">Tilak - Data quality, physics gates, accuracy, latency, overfit detection</text>
           <line x1="270" y1="273" x2="270" y2="289" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arr)"/>
           <!-- Optimization Engine -->
           <rect x="40" y="289" width="460" height="60" rx="8" fill="#252b3b"/>
           <text x="56" y="308" fill="#a5b4fc" font-size="10" font-weight="700">OPTIMIZATION ENGINE</text>
-          <text x="56" y="322" fill="#6b7280" font-size="9">Rakshit â€” RL pathways</text>
+          <text x="56" y="322" fill="#6b7280" font-size="9">Rakshit - RL pathways</text>
           <rect x="56" y="329" width="190" height="16" rx="3" fill="#1e2436"/><text x="151" y="340" fill="#c7d2fe" font-size="9" text-anchor="middle">Geo-shift (RL)</text>
           <rect x="258" y="329" width="190" height="16" rx="3" fill="#1e2436"/><text x="353" y="340" fill="#c7d2fe" font-size="9" text-anchor="middle">Time-shift (RL)</text>
           <line x1="270" y1="349" x2="270" y2="365" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arr)"/>
           <!-- Rescheduler + AE -->
           <rect x="40" y="365" width="220" height="52" rx="8" fill="#252b3b"/>
           <text x="56" y="384" fill="#a5b4fc" font-size="10" font-weight="700">RESCHEDULER</text>
-          <text x="56" y="398" fill="#6b7280" font-size="9">Manish â€” Trigger gates</text>
+          <text x="56" y="398" fill="#6b7280" font-size="9">Manish - Trigger gates</text>
           <rect x="274" y="365" width="226" height="52" rx="8" fill="#252b3b"/>
           <text x="290" y="384" fill="#a5b4fc" font-size="10" font-weight="700">ACCOUNTABILITY ENGINE</text>
-          <text x="290" y="398" fill="#6b7280" font-size="9">Manish â€” 11 rules / 4 clusters</text>
+          <text x="290" y="398" fill="#6b7280" font-size="9">Manish - 11 rules / 4 clusters</text>
           <line x1="270" y1="417" x2="270" y2="433" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arr)"/>
           <!-- Operator UI + Hi-fi DT -->
           <rect x="40" y="433" width="220" height="68" rx="8" fill="#252b3b"/>
           <text x="56" y="452" fill="#a5b4fc" font-size="10" font-weight="700">OPERATOR UI</text>
-          <text x="56" y="466" fill="#6b7280" font-size="9">Manish â€” Exec / operator /</text>
+          <text x="56" y="466" fill="#6b7280" font-size="9">Manish - Exec / operator /</text>
           <text x="56" y="478" fill="#6b7280" font-size="9">tenant views</text>
           <rect x="274" y="433" width="226" height="68" rx="8" fill="#252b3b"/>
           <text x="290" y="452" fill="#a5b4fc" font-size="10" font-weight="700">HI-FI DIGITAL TWIN</text>
           <text x="290" y="466" fill="#6b7280" font-size="9">Rakshit + Mostafa (U-Calgary)</text>
           <text x="290" y="478" fill="#6b7280" font-size="9">PSCAD / RSCAD validation</text>
-          <!-- Zone A â†’ Zone B -->
+          <!-- Zone A to Zone B -->
           <line x1="500" y1="300" x2="540" y2="300" stroke="#f59e0b" stroke-width="2" marker-end="url(#arry)"/>
           <text x="504" y="294" fill="#f59e0b" font-size="8">API contract</text>
           <text x="504" y="307" fill="#f59e0b" font-size="8">Manish+Nishant</text>
           <!-- Zone B -->
           <rect x="540" y="20" width="300" height="500" rx="12" fill="#1a2218" stroke="#2f9e44" stroke-width="1.5"/>
-          <text x="556" y="48" fill="#2f9e44" font-size="11" font-weight="700" letter-spacing="2">ZONE B â€” CLOUD TO PHYSICAL</text>
+          <text x="556" y="48" fill="#2f9e44" font-size="11" font-weight="700" letter-spacing="2">ZONE B - CLOUD TO PHYSICAL</text>
           <!-- Historian -->
           <rect x="560" y="65" width="260" height="100" rx="8" fill="#1e2a1e"/>
           <text x="576" y="85" fill="#86efac" font-size="10" font-weight="700">HISTORIAN CONNECTOR</text>
-          <text x="576" y="100" fill="#6b7280" font-size="9">Nishant â€” GCP</text>
+          <text x="576" y="100" fill="#6b7280" font-size="9">Nishant - GCP</text>
           <rect x="576" y="108" width="228" height="20" rx="4" fill="#162016"/><text x="690" y="121" fill="#86efac" font-size="9" text-anchor="middle">Ingest &amp; store dispatches</text>
           <rect x="576" y="134" width="228" height="20" rx="4" fill="#162016"/><text x="690" y="147" fill="#86efac" font-size="9" text-anchor="middle">GCP time-series storage</text>
           <line x1="690" y1="165" x2="690" y2="185" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arr)"/>
           <!-- OPC UA -->
           <rect x="560" y="185" width="260" height="80" rx="8" fill="#1e2a1e"/>
           <text x="576" y="205" fill="#86efac" font-size="10" font-weight="700">OPC UA LAYER</text>
-          <text x="576" y="220" fill="#6b7280" font-size="9">Nishant â€” Standard endpoints</text>
+          <text x="576" y="220" fill="#6b7280" font-size="9">Nishant - Standard endpoints</text>
           <rect x="576" y="228" width="228" height="20" rx="4" fill="#162016"/><text x="690" y="241" fill="#86efac" font-size="9" text-anchor="middle">Master tag list integration</text>
           <line x1="690" y1="265" x2="690" y2="285" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arr)"/>
           <!-- PLC -->
@@ -693,14 +733,14 @@ Mujtaba</div>
           <!-- GCP Telemetry Return -->
           <rect x="560" y="390" width="260" height="60" rx="8" fill="#1e2a1e"/>
           <text x="576" y="410" fill="#86efac" font-size="10" font-weight="700">GCP TELEMETRY RETURN</text>
-          <text x="576" y="425" fill="#6b7280" font-size="9">Nishant â€” latency measured</text>
+          <text x="576" y="425" fill="#6b7280" font-size="9">Nishant - latency measured</text>
           <!-- CI/CD -->
           <rect x="560" y="462" width="260" height="40" rx="8" fill="#162016" stroke="#2f9e44" stroke-width="0.5" stroke-dasharray="3,2"/>
           <text x="576" y="478" fill="#6b7280" font-size="9">CI/CD + MLOps (GCP)</text>
-          <text x="576" y="491" fill="#6b7280" font-size="9">Nishant â€” versioning, stagingâ†’prod</text>
+          <text x="576" y="491" fill="#6b7280" font-size="9">Nishant - versioning, staging to prod</text>
           <!-- Krish -->
           <rect x="40" y="508" width="260" height="24" rx="6" fill="#2a1f0e" stroke="#f59e0b" stroke-width="0.8"/>
-          <text x="56" y="523" fill="#fbbf24" font-size="9">Krish â€” DVFS + TCS cooling research (integration TBD)</text>
+          <text x="56" y="523" fill="#fbbf24" font-size="9">Krish - DVFS + TCS cooling research (integration TBD)</text>
           <!-- Arrow defs -->
           <defs>
             <marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#4b5563"/></marker>
@@ -709,10 +749,10 @@ Mujtaba</div>
           </defs>
         </svg>
       </div>
-      <!-- Team table -->
-      <!-- Team cards - Sprint 01 Status (Updated 2026-07-01) -->
+
+      <!-- Sprint 01 Status -->
       <div class="section-header" style="margin-top:24px;"><div class="section-title">Sprint 01 Team Status <span style="font-size:11px;color:var(--text3);font-weight:400;">Updated 2026-07-01</span></div></div>
-      <div style="margin-bottom:14px;padding:12px 16px;background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.25);border-radius:10px;font-size:12px;color:var(--text2);line-height:1.6;"><strong style="color:#a78bfa;">Non-Invasive Constraint:</strong> Hierarchy (what-runs-when) must be locked before Humber. BFS cannot run when RL optimizer is shifting loads. Nishant owns this arch.</div>
+      <div style="margin-bottom:14px;padding:12px 16px;background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.25);border-radius:10px;font-size:12px;color:var(--text2);line-height:1.6;"><strong style="color:#a78bfa;">Non-Invasive Constraint:</strong> Hierarchy (what-runs-when) must be locked before Humber. BFS cannot run when RL optimizer is shifting loads. Nishant owns this arch (SCRUM-40).</div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;">
         <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;text-align:center;"><div style="font-size:22px;font-weight:800;color:var(--green);">1</div><div style="font-size:10px;color:var(--text3);text-transform:uppercase;">Done</div><div style="font-size:10px;color:var(--text2);">SCRUM-35 GCP cost</div></div>
         <div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;text-align:center;"><div style="font-size:22px;font-weight:800;color:var(--yellow);">15</div><div style="font-size:10px;color:var(--text3);text-transform:uppercase;">In Progress</div><div style="font-size:10px;color:var(--text2);">Zone A+B active</div></div>
@@ -721,15 +761,21 @@ Mujtaba</div>
       </div>
       <div style="margin-bottom:14px;padding:12px 16px;background:rgba(255,77,77,0.08);border:1px solid rgba(255,77,77,0.3);border-radius:10px;font-size:12px;"><strong style="color:var(--red);">Hard Gate:</strong> <span style="color:var(--text2);">SCRUM-32 (E2E) blocked on SCRUM-31. MK decision pending: full vs. partial E2E pre-Humber.</span></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
-        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;"><div style="padding:10px 16px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;"><div><div style="font-size:13px;font-weight:700;">Nishant Raghuvanshi</div><div style="font-size:11px;color:var(--text3);">MLOps / Zone B / GCP</div></div><span style="font-size:11px;color:var(--orange);background:rgba(255,140,66,0.12);border:1px solid rgba(255,140,66,0.25);border-radius:6px;padding:3px 10px;font-weight:700;">Jira pending</span></div><div style="padding:12px 16px;font-size:11px;"><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>OPC UA (SCRUM-20)</span><strong style="color:var(--green);">90</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:90%;height:100%;background:var(--green);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Historian (SCRUM-19)</span><strong style="color:var(--green);">80</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:80%;height:100%;background:var(--green);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>GCP Deploy (SCRUM-24)</span><strong style="color:var(--yellow);">75</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:75%;height:100%;background:var(--yellow);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>MQTT / Modbus</span><strong style="color:var(--yellow);">70</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:70%;height:100%;background:var(--yellow);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>AE Validator (SCRUM-18)</span><strong style="color:var(--orange);">50</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:50%;height:100%;background:var(--orange);border-radius:2px;"></div></div></div><div style="color:var(--text3);padding-top:8px;border-top:1px solid var(--border);">Also: hierarchy arch. Data Ingest 100 | CI/CD 100 | GCP Cost 100</div></div></div>
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;"><div style="padding:10px 16px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;"><div><div style="font-size:13px;font-weight:700;">Nishant Raghuvanshi</div><div style="font-size:11px;color:var(--text3);">MLOps / Zone B / GCP</div></div><span style="font-size:11px;color:var(--orange);background:rgba(255,140,66,0.12);border:1px solid rgba(255,140,66,0.25);border-radius:6px;padding:3px 10px;font-weight:700;">Jira pending</span></div><div style="padding:12px 16px;font-size:11px;"><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>OPC UA (SCRUM-20)</span><strong style="color:var(--green);">90</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:90%;height:100%;background:var(--green);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Historian (SCRUM-19)</span><strong style="color:var(--green);">80</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:80%;height:100%;background:var(--green);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>GCP Deploy (SCRUM-24)</span><strong style="color:var(--yellow);">75</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:75%;height:100%;background:var(--yellow);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>AE Validator (SCRUM-18)</span><strong style="color:var(--orange);">50</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:50%;height:100%;background:var(--orange);border-radius:2px;"></div></div></div><div style="color:var(--text3);padding-top:8px;border-top:1px solid var(--border);">Also: hierarchy arch (SCRUM-40). Data Ingest 100 | CI/CD 100 | GCP Cost 100</div></div></div>
         <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;"><div style="padding:10px 16px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;"><div><div style="font-size:13px;font-weight:700;">Rakshit Mishra <span style="font-size:10px;color:var(--text3);">(pt)</span></div><div style="font-size:11px;color:var(--text3);">Lead Dev / Zone A Opt</div></div><span style="font-size:11px;color:var(--orange);background:rgba(255,140,66,0.12);border:1px solid rgba(255,140,66,0.25);border-radius:6px;padding:3px 10px;font-weight:700;">Jira pending</span></div><div style="padding:12px 16px;font-size:11px;"><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Eval Framework (SCRUM-27)</span><strong style="color:var(--green);">80</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:80%;height:100%;background:var(--green);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Time-shift RL (SCRUM-17)</span><strong style="color:var(--yellow);">60</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:60%;height:100%;background:var(--yellow);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Geo-shift RL (SCRUM-16)</span><strong style="color:var(--yellow);">50</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:50%;height:100%;background:var(--yellow);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Rescheduler (SCRUM-12)</span><strong style="color:var(--orange);">32</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:32%;height:100%;background:var(--orange);border-radius:2px;"></div></div></div><div style="color:var(--red);padding-top:8px;border-top:1px solid var(--border);">Classifier (25) blocked on MK meeting. Push all to org ASAP.</div></div></div>
-        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;"><div style="padding:10px 16px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;"><div><div style="font-size:13px;font-weight:700;">Tilak Kamani</div><div style="font-size:11px;color:var(--text3);">Analyst / Eval</div></div><span style="font-size:11px;color:var(--green);background:rgba(62,207,142,0.1);border:1px solid rgba(62,207,142,0.25);border-radius:6px;padding:3px 10px;font-weight:700;">Active</span></div><div style="padding:12px 16px;font-size:11px;"><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>50MW DC Spec (SCRUM-30)</span><strong style="color:var(--green);">90</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:90%;height:100%;background:var(--green);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Data Schema (SCRUM-26)</span><strong style="color:var(--green);">80</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:80%;height:100%;background:var(--green);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Eval Gates 1+2 (SCRUM-27)</span><strong style="color:var(--yellow);">50</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:50%;height:100%;background:var(--yellow);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>E2E Test (SCRUM-32)</span><strong style="color:var(--red);">5</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:5%;height:100%;background:var(--red);border-radius:2px;"></div></div></div><div style="color:var(--text3);padding-top:8px;border-top:1px solid var(--border);">Current: benchmark data for classifier. E2E blocked on SCRUM-31.</div></div></div>
-        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;"><div style="padding:10px 16px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;"><div><div style="font-size:13px;font-weight:700;">Manish Chauhan</div><div style="font-size:11px;color:var(--text3);">CPTO / Arch / Product</div></div><span style="font-size:11px;color:var(--green);background:rgba(62,207,142,0.1);border:1px solid rgba(62,207,142,0.25);border-radius:6px;padding:3px 10px;font-weight:700;">Active</span></div><div style="padding:12px 16px;font-size:11px;"><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Interface Contract (SCRUM-31)</span><strong style="color:var(--green);">85</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:85%;height:100%;background:var(--green);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Auth/RBAC (SCRUM-34)</span><strong style="color:var(--yellow);">60</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:60%;height:100%;background:var(--yellow);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>AE Arch Review (SCRUM-13)</span><strong style="color:var(--yellow);">50</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:50%;height:100%;background:var(--yellow);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Decision Engine UI (SCRUM-33)</span><strong style="color:var(--orange);">40</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:40%;height:100%;background:var(--orange);border-radius:2px;"></div></div></div><div style="color:var(--text3);padding-top:8px;border-top:1px solid var(--border);">Owns wireframes. MK owns arch doc. Needs MK system map review to unblock UI.</div></div></div>
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;"><div style="padding:10px 16px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;"><div><div style="font-size:13px;font-weight:700;">Tilak Kamani</div><div style="font-size:11px;color:var(--text3);">Analyst / Eval</div></div><span style="font-size:11px;color:var(--green);background:rgba(62,207,142,0.1);border:1px solid rgba(62,207,142,0.25);border-radius:6px;padding:3px 10px;font-weight:700;">Active</span></div><div style="padding:12px 16px;font-size:11px;"><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>50MW DC Spec (SCRUM-30)</span><strong style="color:var(--green);">90</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:90%;height:100%;background:var(--green);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Data Schema (SCRUM-26)</span><strong style="color:var(--green);">80</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:80%;height:100%;background:var(--green);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Eval Gates 1+2 (SCRUM-27)</span><strong style="color:var(--yellow);">50</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:50%;height:100%;background:var(--yellow);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>E2E Test (SCRUM-32)</span><strong style="color:var(--red);">5</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:5%;height:100%;background:var(--red);border-radius:2px;"></div></div></div><div style="color:var(--text3);padding-top:8px;border-top:1px solid var(--border);">Benchmark data for classifier. E2E blocked on SCRUM-31.</div></div></div>
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;"><div style="padding:10px 16px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;"><div><div style="font-size:13px;font-weight:700;">Manish Chauhan</div><div style="font-size:11px;color:var(--text3);">CPTO / Arch / Product</div></div><span style="font-size:11px;color:var(--green);background:rgba(62,207,142,0.1);border:1px solid rgba(62,207,142,0.25);border-radius:6px;padding:3px 10px;font-weight:700;">Active</span></div><div style="padding:12px 16px;font-size:11px;"><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Interface Contract (SCRUM-31)</span><strong style="color:var(--green);">85</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:85%;height:100%;background:var(--green);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Auth/RBAC (SCRUM-34)</span><strong style="color:var(--yellow);">60</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:60%;height:100%;background:var(--yellow);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>AE Arch Review (SCRUM-13)</span><strong style="color:var(--yellow);">50</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:50%;height:100%;background:var(--yellow);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Decision Engine UI (SCRUM-33)</span><strong style="color:var(--orange);">40</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:40%;height:100%;background:var(--orange);border-radius:2px;"></div></div></div><div style="color:var(--text3);padding-top:8px;border-top:1px solid var(--border);">System map due Jul 3. MK sign-off unblocks wireframes.</div></div></div>
         <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;"><div style="padding:10px 16px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;"><div><div style="font-size:13px;font-weight:700;">Krish Patel</div><div style="font-size:11px;color:var(--text3);">DVFS + TCS Cooling</div></div><span style="font-size:11px;color:var(--yellow);background:rgba(245,197,24,0.1);border:1px solid rgba(245,197,24,0.25);border-radius:6px;padding:3px 10px;font-weight:700;">GPU blocked</span></div><div style="padding:12px 16px;font-size:11px;"><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>DVFS (SCRUM-14)</span><strong style="color:var(--orange);">40</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:40%;height:100%;background:var(--orange);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>TCS Cooling (SCRUM-15)</span><strong style="color:var(--red);">20</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:20%;height:100%;background:var(--red);border-radius:2px;"></div></div></div><div style="color:var(--text3);padding-top:8px;border-top:1px solid var(--border);">3 commits Jun 12-30. Arch 3 (NCCL) selected. Blocked: 2-3 NVLink GPUs. Due Jul 31.</div></div></div>
-        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;"><div style="padding:10px 16px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;"><div><div style="font-size:13px;font-weight:700;color:#e85d52;">Mujtaba Khan</div><div style="font-size:11px;color:var(--text3);">CEO / PM</div></div><span style="font-size:11px;color:var(--green);background:rgba(62,207,142,0.1);border:1px solid rgba(62,207,142,0.25);border-radius:6px;padding:3px 10px;font-weight:700;">Active</span></div><div style="padding:12px 16px;font-size:11px;"><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Jira Setup (SCRUM-37)</span><strong style="color:var(--green);">100</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:100%;height:100%;background:var(--green);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Interface sign-off (SCRUM-31)</span><strong style="color:var(--green);">85</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:85%;height:100%;background:var(--green);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Lab Onboarding (SCRUM-38)</span><strong style="color:var(--orange);">20</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:20%;height:100%;background:var(--orange);border-radius:2px;"></div></div></div><div style="color:var(--text3);padding-top:8px;border-top:1px solid var(--border);">Open: E2E scope | Classifier meeting | System map review | Humber IT email</div></div></div>
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;"><div style="padding:10px 16px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;"><div><div style="font-size:13px;font-weight:700;color:#e85d52;">Mujtaba Khan</div><div style="font-size:11px;color:var(--text3);">CEO / PM</div></div><span style="font-size:11px;color:var(--green);background:rgba(62,207,142,0.1);border:1px solid rgba(62,207,142,0.25);border-radius:6px;padding:3px 10px;font-weight:700;">Active</span></div><div style="padding:12px 16px;font-size:11px;"><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Jira Setup (SCRUM-37)</span><strong style="color:var(--green);">100</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:100%;height:100%;background:var(--green);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Interface sign-off (SCRUM-31)</span><strong style="color:var(--green);">85</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:85%;height:100%;background:var(--green);border-radius:2px;"></div></div></div><div style="margin-bottom:7px;"><div style="display:flex;justify-content:space-between;color:var(--text3);margin-bottom:3px;"><span>Lab Onboarding (SCRUM-38)</span><strong style="color:var(--orange);">20</strong></div><div style="height:4px;background:var(--bg3);border-radius:2px;"><div style="width:20%;height:100%;background:var(--orange);border-radius:2px;"></div></div></div><div style="color:var(--text3);padding-top:8px;border-top:1px solid var(--border);">Open: E2E scope | Classifier meeting (SCRUM-11) | System map review Jul 5 | Humber IT email</div></div></div>
       </div>
       <div class="section-header" style="margin-top:4px;"><div class="section-title">Blockers</div></div>
-      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;"><table style="width:100%;border-collapse:collapse;font-size:12px;"><thead><tr style="background:var(--bg3);"><th style="padding:10px 16px;text-align:left;color:var(--text3);font-size:10px;text-transform:uppercase;font-weight:700;">Issue</th><th style="padding:10px 16px;text-align:left;color:var(--text3);font-size:10px;text-transform:uppercase;font-weight:700;">Blocker</th><th style="padding:10px 16px;text-align:left;color:var(--text3);font-size:10px;text-transform:uppercase;font-weight:700;">Owner</th><th style="padding:10px 16px;text-align:left;color:var(--text3);font-size:10px;text-transform:uppercase;font-weight:700;">Due</th></tr></thead><tbody><tr style="border-top:1px solid var(--border);background:rgba(255,77,77,0.04);"><td style="padding:10px 16px;"><span style="color:var(--red);font-weight:700;">SCRUM-31</span></td><td style="padding:10px 16px;color:var(--text2);">Aaron Le review needed. Hard blocker for E2E + Humber</td><td style="padding:10px 16px;color:var(--text2);">Manish / MK</td><td style="padding:10px 16px;color:var(--red);">Jul 7</td></tr><tr style="border-top:1px solid var(--border);"><td style="padding:10px 16px;"><span style="color:var(--orange);font-weight:700;">SCRUM-11</span></td><td style="padding:10px 16px;color:var(--text2);">Blocked on MK+Rakshit meeting. Key IP</td><td style="padding:10px 16px;color:var(--text2);">MK</td><td style="padding:10px 16px;color:var(--orange);">ASAP</td></tr><tr style="border-top:1px solid var(--border);"><td style="padding:10px 16px;"><span style="color:var(--orange);font-weight:700;">OPC UA</span></td><td style="padding:10px 16px;color:var(--text2);">Need Humber IT server URL + port</td><td style="padding:10px 16px;color:var(--text2);">MK</td><td style="padding:10px 16px;color:var(--orange);">Ext</td></tr><tr style="border-top:1px solid var(--border);"><td style="padding:10px 16px;"><span style="color:var(--yellow);font-weight:700;">GitHub push</span></td><td style="padding:10px 16px;color:var(--text2);">Rakshit + Nishant still on personal repos. Must push to org</td><td style="padding:10px 16px;color:var(--text2);">R + N</td><td style="padding:10px 16px;color:var(--yellow);">This week</td></tr><tr style="border-top:1px solid var(--border);"><td style="padding:10px 16px;"><span style="color:var(--yellow);font-weight:700;">Hierarchy</span></td><td style="padding:10px 16px;color:var(--text2);">What-runs-when must be locked. BFS cannot run during RL shifts</td><td style="padding:10px 16px;color:var(--text2);">Nishant</td><td style="padding:10px 16px;color:var(--yellow);">Pre-Humber</td></tr></tbody></table></div>
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;"><table style="width:100%;border-collapse:collapse;font-size:12px;"><thead><tr style="background:var(--bg3);"><th style="padding:10px 16px;text-align:left;color:var(--text3);font-size:10px;text-transform:uppercase;font-weight:700;">Issue</th><th style="padding:10px 16px;text-align:left;color:var(--text3);font-size:10px;text-transform:uppercase;font-weight:700;">Blocker</th><th style="padding:10px 16px;text-align:left;color:var(--text3);font-size:10px;text-transform:uppercase;font-weight:700;">Owner</th><th style="padding:10px 16px;text-align:left;color:var(--text3);font-size:10px;text-transform:uppercase;font-weight:700;">Due</th></tr></thead><tbody>
+        <tr style="border-top:1px solid var(--border);background:rgba(255,77,77,0.04);"><td style="padding:10px 16px;"><span style="color:var(--red);font-weight:700;">SCRUM-31</span></td><td style="padding:10px 16px;color:var(--text2);">Aaron Le review needed. Hard blocker for E2E + Humber</td><td style="padding:10px 16px;color:var(--text2);">Manish / MK</td><td style="padding:10px 16px;color:var(--red);">Jul 7</td></tr>
+        <tr style="border-top:1px solid var(--border);"><td style="padding:10px 16px;"><span style="color:var(--orange);font-weight:700;">SCRUM-11</span></td><td style="padding:10px 16px;color:var(--text2);">Blocked on MK + Rakshit meeting. Key IP / classifier</td><td style="padding:10px 16px;color:var(--text2);">MK</td><td style="padding:10px 16px;color:var(--orange);">ASAP</td></tr>
+        <tr style="border-top:1px solid var(--border);"><td style="padding:10px 16px;"><span style="color:var(--orange);font-weight:700;">OPC UA</span></td><td style="padding:10px 16px;color:var(--text2);">Need Humber IT server URL + port (MK to email)</td><td style="padding:10px 16px;color:var(--text2);">MK</td><td style="padding:10px 16px;color:var(--orange);">Ext</td></tr>
+        <tr style="border-top:1px solid var(--border);"><td style="padding:10px 16px;"><span style="color:var(--yellow);font-weight:700;">GitHub push</span></td><td style="padding:10px 16px;color:var(--text2);">Rakshit + Nishant still on personal repos. Must push to org</td><td style="padding:10px 16px;color:var(--text2);">R + N</td><td style="padding:10px 16px;color:var(--yellow);">This week</td></tr>
+        <tr style="border-top:1px solid var(--border);"><td style="padding:10px 16px;"><span style="color:var(--yellow);font-weight:700;">Hierarchy</span></td><td style="padding:10px 16px;color:var(--text2);">What-runs-when must be locked. BFS cannot run during RL shifts (SCRUM-40)</td><td style="padding:10px 16px;color:var(--text2);">Nishant</td><td style="padding:10px 16px;color:var(--yellow);">Jul 15</td></tr>
+      </tbody></table></div>
     </div>
 
   </div>
@@ -743,21 +789,13 @@ function showPage(id) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
-  document.querySelectorAll('.tab-btn').forEach(b => { if (b.textContent.toLowerCase() === id || b.getAttribute('onclick')?.includes(id)) b.classList.add('active'); });
+  document.querySelectorAll('.tab-btn').forEach(b => { if (b.getAttribute('onclick')?.includes(id)) b.classList.add('active'); });
   document.querySelectorAll('.nav-btn').forEach(b => { if (b.getAttribute('onclick')?.includes(id)) b.classList.add('active'); });
 }
 
 function toggleCheck(el) {
   el.classList.toggle('checked');
   el.closest('.task-item').classList.toggle('done');
-}
-
-function markSent(btn) {
-  const card = btn.closest('.email-card, .card');
-  btn.textContent = 'âœ“ Sent';
-  btn.style.background = 'rgba(62,207,142,0.25)';
-  btn.disabled = true;
-  card.style.opacity = '0.5';
 }
 </script>
 </body>
